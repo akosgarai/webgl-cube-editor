@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/akosgarai/webgl-cube-editor/pkg/wglrenderer"
 	"github.com/divan/three"
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/hexops/vecty"
@@ -62,7 +63,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				vecty.Text(p.Message),
 			),
 		),
-		WebGLRenderer(WebGLOptions{
+		wglrenderer.WebGLRenderer(wglrenderer.WebGLOptions{
 			Init:     p.init,
 			Shutdown: p.shutdown,
 		}),

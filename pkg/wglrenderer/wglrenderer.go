@@ -1,4 +1,4 @@
-package main
+package wglrenderer
 
 import (
 	"github.com/divan/three"
