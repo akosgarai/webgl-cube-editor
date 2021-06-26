@@ -1,12 +1,12 @@
 package main
 
 import (
+	"github.com/akosgarai/webgl-cube-editor/pkg/components"
 	"github.com/akosgarai/webgl-cube-editor/pkg/wglrenderer"
 	"github.com/divan/three"
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/hexops/vecty"
 	"github.com/hexops/vecty/elem"
-	"github.com/hexops/vecty/event"
 )
 
 // Page is a top-level app component.
@@ -20,48 +20,15 @@ type Page struct {
 	mesh     *three.Mesh
 }
 
-// Label is a general app component.
-type Label struct {
-	vecty.Core
-	Text string
-}
-
-// Render implements vecty.Component for Label.
-func (l *Label) Render() vecty.ComponentOrHTML {
-	return elem.Div(
-		vecty.Markup(
-			vecty.Style("font-family", "monospace"),
-			vecty.Class("bold", "label"),
-		),
-		vecty.Text(l.Text),
-	)
-}
-
 // Render implements vecty.Component for Page.
 func (p *Page) Render() vecty.ComponentOrHTML {
 	return elem.Body(
+		&components.Heading{Text: p.Title},
 		elem.Div(
-			elem.Heading1(
-				vecty.Text(p.Title),
-			),
-		),
-		elem.Div(
-			&Label{Text: "Description:"},
-			elem.TextArea(
-				vecty.Markup(
-					vecty.Style("font-family", "monospace"),
-					vecty.Property("rows", 14),
-					vecty.Property("cols", 70),
-
-					// When input is typed into the textarea, update the local
-					// component state and rerender.
-					event.Input(func(e *vecty.Event) {
-						p.Message = e.Target.Get("value").String()
-						vecty.Rerender(p)
-					}),
-				),
-				vecty.Text(p.Message),
-			),
+			&components.Label{Text: "Description:", For: "description"},
+			&components.TextArea{Message: p.Message, Id: "description"},
+			&components.Label{Text: "Color:", For: "cube-color"},
+			&components.Select{Id: "cube-color"},
 		),
 		wglrenderer.WebGLRenderer(wglrenderer.WebGLOptions{
 			Init:     p.init,
