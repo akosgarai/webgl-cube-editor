@@ -7,29 +7,43 @@ import (
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/hexops/vecty"
 	"github.com/hexops/vecty/elem"
+	"github.com/hexops/vecty/event"
 	"github.com/hexops/vecty/prop"
 )
 
 // Page is a top-level app component.
 type Page struct {
 	vecty.Core
-	Title    string
-	scene    *three.Scene
-	camera   three.PerspectiveCamera
-	renderer *three.WebGLRenderer
-	mesh     *three.Mesh
+	Title     string
+	MeshColor string
+	scene     *three.Scene
+	camera    three.PerspectiveCamera
+	renderer  *three.WebGLRenderer
+	mesh      *three.Mesh
 }
 
 // Render implements vecty.Component for Page.
 func (p *Page) Render() vecty.ComponentOrHTML {
 	return elem.Body(
+		vecty.Markup(
+			event.Change(func(e *vecty.Event) {
+				p.MeshColor = e.Target.Get("value").String()
+			}),
+		),
 		elem.Div(
 			vecty.Markup(
 				prop.ID("form-container"),
 			),
 			&components.Heading{Text: p.Title},
 			&components.Label{Text: "Color:", For: "cube-color"},
-			&components.Select{Id: "cube-color"},
+			&components.Select{
+				Id: "cube-color",
+				Options: map[string]string{
+					"blue": "Blue",
+					"red":  "Red",
+				},
+				SelectedOption: p.MeshColor,
+			},
 		),
 		elem.Div(
 			vecty.Markup(
@@ -67,7 +81,7 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 
 	// material
 	params := three.NewMaterialParameters()
-	params.Color = three.NewColor("blue")
+	params.Color = three.NewColor(p.MeshColor)
 	mat := three.NewMeshLambertMaterial(params)
 
 	// cube object
@@ -95,6 +109,11 @@ func (p *Page) animate() {
 		return
 	}
 	js.Global.Call("requestAnimationFrame", p.animate)
-	p.mesh.Rotation.Set("y", p.mesh.Rotation.Get("y").Float()+0.01)
+	currentRotation := p.mesh.Rotation.Get("y").Float()
+	p.mesh.Rotation.Set("y", currentRotation+0.01)
+	// material
+	params := three.NewMaterialParameters()
+	params.Color = three.NewColor(p.MeshColor)
+	p.mesh.Material = three.NewMeshLambertMaterial(params)
 	p.renderer.Render(p.scene, p.camera)
 }
