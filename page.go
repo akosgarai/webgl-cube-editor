@@ -36,14 +36,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 			),
 			&components.Heading{Text: p.Title},
 			&components.Label{Text: "Color:", For: "cube-color"},
-			&components.Select{
-				Id: "cube-color",
-				Options: map[string]string{
-					"blue": "Blue",
-					"red":  "Red",
-				},
-				SelectedOption: p.MeshColor,
-			},
+			&components.ColorPicker{Id: "cube-color", Value: p.MeshColor},
 		),
 		elem.Div(
 			vecty.Markup(

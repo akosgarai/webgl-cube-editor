@@ -9,7 +9,7 @@ const (
 )
 
 func main() {
-	page := &Page{Title: PageTitle, MeshColor: "red"}
+	page := &Page{Title: PageTitle, MeshColor: "#ff0000"}
 	vecty.SetTitle(PageTitle)
 	vecty.RenderBody(page)
 }
