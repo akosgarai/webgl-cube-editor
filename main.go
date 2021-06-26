@@ -9,7 +9,7 @@ const (
 )
 
 func main() {
-	page := &Page{Title: PageTitle, Message: "This is my message to the world."}
+	page := &Page{Title: PageTitle}
 	vecty.SetTitle(PageTitle)
 	vecty.RenderBody(page)
 }

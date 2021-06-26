@@ -7,13 +7,13 @@ import (
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/hexops/vecty"
 	"github.com/hexops/vecty/elem"
+	"github.com/hexops/vecty/prop"
 )
 
 // Page is a top-level app component.
 type Page struct {
 	vecty.Core
 	Title    string
-	Message  string
 	scene    *three.Scene
 	camera   three.PerspectiveCamera
 	renderer *three.WebGLRenderer
@@ -23,24 +23,33 @@ type Page struct {
 // Render implements vecty.Component for Page.
 func (p *Page) Render() vecty.ComponentOrHTML {
 	return elem.Body(
-		&components.Heading{Text: p.Title},
 		elem.Div(
-			&components.Label{Text: "Description:", For: "description"},
-			&components.TextArea{Message: p.Message, Id: "description"},
+			vecty.Markup(
+				prop.ID("form-container"),
+			),
+			&components.Heading{Text: p.Title},
 			&components.Label{Text: "Color:", For: "cube-color"},
 			&components.Select{Id: "cube-color"},
 		),
-		wglrenderer.WebGLRenderer(wglrenderer.WebGLOptions{
-			Init:     p.init,
-			Shutdown: p.shutdown,
-		}),
+		elem.Div(
+			vecty.Markup(
+				prop.ID("canvas-container"),
+				vecty.Style("width", "90%"),
+				vecty.Style("margin-left", "auto"),
+				vecty.Style("margin-right", "auto"),
+			),
+			wglrenderer.WebGLRenderer(wglrenderer.WebGLOptions{
+				Init:     p.init,
+				Shutdown: p.shutdown,
+			}),
+		),
 	)
 }
 func (p *Page) init(renderer *three.WebGLRenderer) {
 	p.renderer = renderer
 
-	windowWidth := js.Global.Get("innerWidth").Float()
-	windowHeight := js.Global.Get("innerHeight").Float()
+	windowWidth := js.Global.Get("document").Call("querySelector", "#canvas-container").Get("clientWidth").Float()
+	windowHeight := js.Global.Get("innerHeight").Float() - js.Global.Get("document").Call("querySelector", "#form-container").Get("clientHeight").Float()*2
 	devicePixelRatio := js.Global.Get("devicePixelRatio").Float()
 
 	// setup camera and scene
