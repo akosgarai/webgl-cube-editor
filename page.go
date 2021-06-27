@@ -19,21 +19,24 @@ const (
 	CubeHeightId      = "cube-height"
 	CubeDepthId       = "cube-dept"
 	BackgroundColorId = "background-color"
+	LightColorId      = "light-color"
 )
 
 // Page is a top-level app component.
 type Page struct {
 	vecty.Core
-	Title           string
-	MeshColor       string
-	BackgroundColor string
-	MeshWidth       int
-	MeshHeight      int
-	MeshDepth       int
-	scene           *three.Scene
-	camera          three.PerspectiveCamera
-	renderer        *three.WebGLRenderer
-	mesh            *three.Mesh
+	Title            string
+	MeshColor        string
+	BackgroundColor  string
+	LightColor       string
+	MeshWidth        int
+	MeshHeight       int
+	MeshDepth        int
+	scene            *three.Scene
+	camera           three.PerspectiveCamera
+	renderer         *three.WebGLRenderer
+	mesh             *three.Mesh
+	directionalLight *three.DirectionalLight
 
 	canvasWidth  float64
 	canvasHeight float64
@@ -69,6 +72,10 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 					p.BackgroundColor = e.Target.Get("value").String()
 					p.scene.Background = three.NewColor(p.BackgroundColor)
 					break
+				case LightColorId:
+					p.LightColor = e.Target.Get("value").String()
+					p.directionalLight.Set("color", three.NewColor(p.LightColor))
+					break
 				}
 				if updateGeometry {
 					// size
@@ -92,6 +99,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				&components.Heading{Text: p.Title},
 				&components.ColorPicker{Id: CubeColorId, Value: p.MeshColor, Label: "Cube Color:"},
 				&components.ColorPicker{Id: BackgroundColorId, Value: p.BackgroundColor, Label: "Background:"},
+				&components.ColorPicker{Id: LightColorId, Value: p.LightColor, Label: "Light:"},
 				&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth, Label: "Cube Width:"},
 				&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight, Label: "Cube Height:"},
 				&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth, Label: "Cube Depth:"},
@@ -127,9 +135,9 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 	p.renderer.SetSize(p.canvasWidth, p.canvasHeight, true)
 
 	// lights
-	light := three.NewDirectionalLight(three.NewColor("white"), 1)
-	light.Position.Set(0, 256, 256)
-	p.scene.Add(light)
+	p.directionalLight = three.NewDirectionalLight(three.NewColor(p.LightColor), 1)
+	p.directionalLight.Position.Set(0, 256, 256)
+	p.scene.Add(p.directionalLight)
 
 	// material
 	params := three.NewMaterialParameters()
