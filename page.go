@@ -39,6 +39,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 	return elem.Body(
 		vecty.Markup(
 			event.Change(func(e *vecty.Event) {
+				updateGeometry := false
 				switch e.Target.Get("id").String() {
 				case CubeColorId:
 					p.MeshColor = e.Target.Get("value").String()
@@ -49,13 +50,24 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 					break
 				case CubeWidthId:
 					p.MeshWidth, _ = strconv.Atoi(e.Target.Get("value").String())
+					updateGeometry = true
 					break
 				case CubeHeightId:
 					p.MeshHeight, _ = strconv.Atoi(e.Target.Get("value").String())
+					updateGeometry = true
 					break
 				case CubeDepthId:
 					p.MeshDepth, _ = strconv.Atoi(e.Target.Get("value").String())
+					updateGeometry = true
 					break
+				}
+				if updateGeometry {
+					// size
+					p.mesh.Geometry = three.NewBoxGeometry(&three.BoxGeometryParameters{
+						Width:  float64(p.MeshWidth),
+						Height: float64(p.MeshHeight),
+						Depth:  float64(p.MeshDepth),
+					})
 				}
 			}),
 		),
@@ -141,11 +153,5 @@ func (p *Page) animate() {
 	js.Global.Call("requestAnimationFrame", p.animate)
 	currentRotation := p.mesh.Rotation.Get("y").Float()
 	p.mesh.Rotation.Set("y", currentRotation+0.01)
-	// size
-	p.mesh.Geometry = three.NewBoxGeometry(&three.BoxGeometryParameters{
-		Width:  float64(p.MeshWidth),
-		Height: float64(p.MeshHeight),
-		Depth:  float64(p.MeshDepth),
-	})
 	p.renderer.Render(p.scene, p.camera)
 }
