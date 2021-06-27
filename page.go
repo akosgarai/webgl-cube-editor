@@ -1,6 +1,8 @@
 package main
 
 import (
+	"strconv"
+
 	"github.com/akosgarai/webgl-cube-editor/pkg/components"
 	"github.com/akosgarai/webgl-cube-editor/pkg/wglrenderer"
 	"github.com/divan/three"
@@ -12,18 +14,24 @@ import (
 )
 
 const (
-	CubeColorId = "cube-color"
+	CubeColorId  = "cube-color"
+	CubeWidthId  = "cube-width"
+	CubeHeightId = "cube-height"
+	CubeDepthId  = "cube-dept"
 )
 
 // Page is a top-level app component.
 type Page struct {
 	vecty.Core
-	Title     string
-	MeshColor string
-	scene     *three.Scene
-	camera    three.PerspectiveCamera
-	renderer  *three.WebGLRenderer
-	mesh      *three.Mesh
+	Title      string
+	MeshColor  string
+	MeshWidth  int
+	MeshHeight int
+	MeshDepth  int
+	scene      *three.Scene
+	camera     three.PerspectiveCamera
+	renderer   *three.WebGLRenderer
+	mesh       *three.Mesh
 }
 
 // Render implements vecty.Component for Page.
@@ -35,6 +43,15 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				case CubeColorId:
 					p.MeshColor = e.Target.Get("value").String()
 					break
+				case CubeWidthId:
+					p.MeshWidth, _ = strconv.Atoi(e.Target.Get("value").String())
+					break
+				case CubeHeightId:
+					p.MeshHeight, _ = strconv.Atoi(e.Target.Get("value").String())
+					break
+				case CubeDepthId:
+					p.MeshDepth, _ = strconv.Atoi(e.Target.Get("value").String())
+					break
 				}
 			}),
 		),
@@ -45,6 +62,12 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 			&components.Heading{Text: p.Title},
 			&components.Label{Text: "Color:", For: CubeColorId},
 			&components.ColorPicker{Id: CubeColorId, Value: p.MeshColor},
+			&components.Label{Text: "Width:", For: CubeWidthId},
+			&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth},
+			&components.Label{Text: "Height:", For: CubeHeightId},
+			&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight},
+			&components.Label{Text: "Depth:", For: CubeDepthId},
+			&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth},
 		),
 		elem.Div(
 			vecty.Markup(
@@ -87,9 +110,9 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 
 	// cube object
 	geom := three.NewBoxGeometry(&three.BoxGeometryParameters{
-		Width:  200,
-		Height: 200,
-		Depth:  200,
+		Width:  float64(p.MeshWidth),
+		Height: float64(p.MeshHeight),
+		Depth:  float64(p.MeshDepth),
 	})
 	p.mesh = three.NewMesh(geom, mat)
 	p.scene.Add(p.mesh)
@@ -116,5 +139,11 @@ func (p *Page) animate() {
 	params := three.NewMaterialParameters()
 	params.Color = three.NewColor(p.MeshColor)
 	p.mesh.Material = three.NewMeshLambertMaterial(params)
+	// size
+	p.mesh.Geometry = three.NewBoxGeometry(&three.BoxGeometryParameters{
+		Width:  float64(p.MeshWidth),
+		Height: float64(p.MeshHeight),
+		Depth:  float64(p.MeshDepth),
+	})
 	p.renderer.Render(p.scene, p.camera)
 }
