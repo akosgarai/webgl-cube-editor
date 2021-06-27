@@ -57,25 +57,31 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 		),
 		elem.Div(
 			vecty.Markup(
-				prop.ID("form-container"),
+				vecty.Class("container"),
 			),
-			&components.Heading{Text: p.Title},
-			&components.ColorPicker{Id: CubeColorId, Value: p.MeshColor, Label: "Color:"},
-			&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth, Label: "Width:"},
-			&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight, Label: "Height:"},
-			&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth, Label: "Depth:"},
-		),
-		elem.Div(
-			vecty.Markup(
-				prop.ID("canvas-container"),
-				vecty.Style("width", "90%"),
-				vecty.Style("margin-left", "auto"),
-				vecty.Style("margin-right", "auto"),
+			elem.Div(
+				vecty.Markup(
+					prop.ID("form-container"),
+					vecty.Class("row"),
+				),
+				&components.Heading{Text: p.Title},
+				&components.ColorPicker{Id: CubeColorId, Value: p.MeshColor, Label: "Color:"},
+				&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth, Label: "Width:"},
+				&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight, Label: "Height:"},
+				&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth, Label: "Depth:"},
 			),
-			wglrenderer.WebGLRenderer(wglrenderer.WebGLOptions{
-				Init:     p.init,
-				Shutdown: p.shutdown,
-			}),
+			elem.Div(
+				vecty.Markup(
+					prop.ID("canvas-container"),
+					vecty.Style("width", "90%"),
+					vecty.Style("margin-left", "auto"),
+					vecty.Style("margin-right", "auto"),
+				),
+				wglrenderer.WebGLRenderer(wglrenderer.WebGLOptions{
+					Init:     p.init,
+					Shutdown: p.shutdown,
+				}),
+			),
 		),
 	)
 }

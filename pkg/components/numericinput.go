@@ -19,12 +19,25 @@ type NumericInput struct {
 // Render implements vecty.Component for Numeric Input.
 func (i *NumericInput) Render() vecty.ComponentOrHTML {
 	return elem.Div(
+		vecty.Markup(
+			vecty.Class("col-50"),
+		),
 		&Label{Text: i.Label, For: i.Id},
-		elem.Input(
+		elem.Div(
 			vecty.Markup(
-				vecty.Property("id", i.Id),
-				prop.Type("number"),
-				prop.Value(strconv.Itoa(i.Value)),
+				vecty.Class("col-75"),
+			),
+			elem.Div(
+				vecty.Markup(
+					vecty.Style("padding-right", "20px"),
+				),
+				elem.Input(
+					vecty.Markup(
+						vecty.Property("id", i.Id),
+						prop.Type("number"),
+						prop.Value(strconv.Itoa(i.Value)),
+					),
+				),
 			),
 		),
 	)

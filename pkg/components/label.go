@@ -17,8 +17,7 @@ type Label struct {
 func (l *Label) Render() vecty.ComponentOrHTML {
 	return elem.Div(
 		vecty.Markup(
-			vecty.Style("font-family", "monospace"),
-			vecty.Class("bold", "label"),
+			vecty.Class("col-25"),
 		),
 		elem.Label(
 			vecty.Markup(
