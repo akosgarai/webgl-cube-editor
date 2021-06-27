@@ -39,7 +39,7 @@ type Page struct {
 	scene            *three.Scene
 	camera           three.PerspectiveCamera
 	renderer         *three.WebGLRenderer
-	mesh             *three.Mesh
+	cubeMesh         *three.Mesh
 	directionalLight *three.DirectionalLight
 
 	canvasWidth  float64
@@ -58,7 +58,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 					// material
 					params := three.NewMaterialParameters()
 					params.Color = three.NewColor(p.MeshColor)
-					p.mesh.Material = three.NewMeshLambertMaterial(params)
+					p.cubeMesh.Material = three.NewMeshLambertMaterial(params)
 					break
 				case CubeWidthId:
 					p.MeshWidth, _ = strconv.Atoi(e.Target.Get("value").String())
@@ -89,7 +89,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				}
 				if updateGeometry {
 					// size
-					p.mesh.Geometry = three.NewBoxGeometry(&three.BoxGeometryParameters{
+					p.cubeMesh.Geometry = three.NewBoxGeometry(&three.BoxGeometryParameters{
 						Width:  float64(p.MeshWidth),
 						Height: float64(p.MeshHeight),
 						Depth:  float64(p.MeshDepth),
@@ -195,8 +195,8 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 		Height: float64(p.MeshHeight),
 		Depth:  float64(p.MeshDepth),
 	})
-	p.mesh = three.NewMesh(geom, mat)
-	p.scene.Add(p.mesh)
+	p.cubeMesh = three.NewMesh(geom, mat)
+	p.scene.Add(p.cubeMesh)
 	p.scene.Background = three.NewColor(p.BackgroundColor)
 
 	// start animation
@@ -207,7 +207,8 @@ func (p *Page) shutdown(renderer *three.WebGLRenderer) {
 	p.scene = nil
 	p.camera = three.PerspectiveCamera{}
 	p.renderer = nil
-	p.mesh = nil
+	p.cubeMesh = nil
+	p.directionalLight = nil
 }
 func (p *Page) animate() {
 	if p.renderer == nil {
@@ -224,7 +225,7 @@ func (p *Page) animate() {
 		p.canvasWidth = windowWidth
 	}
 	js.Global.Call("requestAnimationFrame", p.animate)
-	p.mesh.Rotation.Set("y", p.mesh.Rotation.Get("y").Float()+0.0001*float64(p.RotationSpeedY))
-	p.mesh.Rotation.Set("x", p.mesh.Rotation.Get("x").Float()+0.0001*float64(p.RotationSpeedX))
+	p.cubeMesh.Rotation.Set("y", p.cubeMesh.Rotation.Get("y").Float()+0.0001*float64(p.RotationSpeedY))
+	p.cubeMesh.Rotation.Set("x", p.cubeMesh.Rotation.Get("x").Float()+0.0001*float64(p.RotationSpeedX))
 	p.renderer.Render(p.scene, p.camera)
 }
