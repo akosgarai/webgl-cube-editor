@@ -34,6 +34,9 @@ type Page struct {
 	camera          three.PerspectiveCamera
 	renderer        *three.WebGLRenderer
 	mesh            *three.Mesh
+
+	canvasWidth  float64
+	canvasHeight float64
 }
 
 // Render implements vecty.Component for Page.
@@ -111,17 +114,17 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 func (p *Page) init(renderer *three.WebGLRenderer) {
 	p.renderer = renderer
 
-	windowWidth := js.Global.Get("document").Call("querySelector", "#canvas-container").Get("clientWidth").Float()
-	windowHeight := js.Global.Get("innerHeight").Float() - js.Global.Get("document").Call("querySelector", "#form-container").Get("clientHeight").Float()*2
+	p.canvasWidth = js.Global.Get("document").Call("querySelector", "#canvas-container").Get("clientWidth").Float()
+	p.canvasHeight = js.Global.Get("innerHeight").Float() - js.Global.Get("document").Call("querySelector", "#form-container").Get("clientHeight").Float()*2
 	devicePixelRatio := js.Global.Get("devicePixelRatio").Float()
 
 	// setup camera and scene
-	p.camera = three.NewPerspectiveCamera(70, windowWidth/windowHeight, 1, 1000)
+	p.camera = three.NewPerspectiveCamera(70, p.canvasWidth/p.canvasHeight, 1, 1000)
 	p.camera.Position.Set(0, 0, 400)
 	p.scene = three.NewScene()
 
 	p.renderer.SetPixelRatio(devicePixelRatio)
-	p.renderer.SetSize(windowWidth, windowHeight, true)
+	p.renderer.SetSize(p.canvasWidth, p.canvasHeight, true)
 
 	// lights
 	light := three.NewDirectionalLight(three.NewColor("white"), 1)
@@ -157,6 +160,15 @@ func (p *Page) animate() {
 	if p.renderer == nil {
 		// We shutdown, stop animation.
 		return
+	}
+	windowWidth := js.Global.Get("document").Call("querySelector", "#canvas-container").Get("clientWidth").Float()
+	if windowWidth != p.canvasWidth {
+		js.Global.Get("document").Call("querySelector", "#canvas-container canvas").Set("width", windowWidth)
+		js.Global.Get("document").Call("querySelector", "#canvas-container canvas").Set("style", "width: 100%")
+		p.camera.Aspect = windowWidth / p.canvasHeight
+		p.camera.UpdateProjectionMatrix()
+		p.renderer.SetSize(windowWidth, p.canvasHeight, false)
+		p.canvasWidth = windowWidth
 	}
 	js.Global.Call("requestAnimationFrame", p.animate)
 	currentRotation := p.mesh.Rotation.Get("y").Float()
