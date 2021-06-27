@@ -30475,7 +30475,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; page = $f.page; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
 		page = new Page.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "Cube color editor", "#ff0000", "#000000", "#ffffff", 200, 200, 200, 100, 0, ptrType.nil, new three.PerspectiveCamera.ptr(null, new three.Vector3.ptr(null, 0, 0, 0), false, 0), ptrType$1.nil, ptrType$2.nil, ptrType$3.nil, 0, 0);
 		$r = vecty.SetTitle("Cube color editor"); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
-		$r = vecty.AddStylesheet("index.css"); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
+		$r = vecty.AddStylesheet("assets/index.css"); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = vecty.RenderBody(page); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$s = -1; return;
 		/* */ } return; } if ($f === undefined) { $f = { $blk: main }; } $f.page = page; $f.$s = $s; $f.$r = $r; return $f;
@@ -30601,7 +30601,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		p.scene.Object.background = $externalize(three.NewColor(p.BackgroundColor), ptrType$4);
 		textureLoader = three.NewTextureLoader();
 		textureLoader.Object.crossOrigin = $externalize("anonymous", $String);
-		groundTexture = textureLoader.Load("https://raw.githubusercontent.com/akosgarai/webgl-cube-editor/master/assets/grass.jpg", (function(text) {
+		groundTexture = textureLoader.Load("https://raw.githubusercontent.com/akosgarai/webgl-cube-editor/main/assets/grass.jpg", (function(text) {
 			var text;
 			text.wrapS = 1000;
 			text.wrapT = 1000;

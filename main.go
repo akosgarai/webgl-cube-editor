@@ -21,6 +21,6 @@ func main() {
 		RotationSpeedX:  0,
 	}
 	vecty.SetTitle(PageTitle)
-	vecty.AddStylesheet("index.css")
+	vecty.AddStylesheet("assets/index.css")
 	vecty.RenderBody(page)
 }
