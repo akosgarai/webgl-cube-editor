@@ -29453,7 +29453,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/fatih/struct
 	return $pkg;
 })();
 $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"] = (function() {
-	var $pkg = {}, $init, fmt, support, structs, js, math, PerspectiveCamera, Geometry, Object3D, BoxGeometry, BoxGeometryParameters, DirectionalLight, Side, Shading, MaterialParameters, Material, MeshLambertMaterial, Color, Euler, Matrix4, Vector3, Mesh, WebGLRenderer, Scene, TextureLoader, ptrType, ptrType$1, ptrType$3, mapType, ptrType$5, sliceType$3, sliceType$4, ptrType$7, funcType, ptrType$13, ptrType$17, ptrType$21, ptrType$24, ptrType$26, three, NewPerspectiveCamera, NewBoxGeometry, NewDirectionalLight, init, NewMaterialParameters, NewMeshLambertMaterial, NewColor, NewMesh, NewScene, NewTextureLoader;
+	var $pkg = {}, $init, fmt, support, structs, js, math, PerspectiveCamera, Geometry, Object3D, BoxGeometry, BoxGeometryParameters, DirectionalLight, Side, Shading, MaterialParameters, Material, MeshLambertMaterial, Color, Euler, Matrix4, Vector2, Vector3, Mesh, WebGLRenderer, Scene, TextureLoader, ptrType, ptrType$1, ptrType$3, mapType, ptrType$5, sliceType$3, sliceType$4, ptrType$7, funcType, ptrType$13, ptrType$17, ptrType$21, ptrType$24, ptrType$26, three, NewPerspectiveCamera, NewBoxGeometry, NewDirectionalLight, init, NewMaterialParameters, NewMeshLambertMaterial, NewColor, NewVector2, NewMesh, NewScene, NewTextureLoader;
 	fmt = $packages["fmt"];
 	support = $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/bep/gr/support"];
 	structs = $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/fatih/structs"];
@@ -29587,6 +29587,18 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 			return;
 		}
 		this.Object = Object_;
+	});
+	Vector2 = $pkg.Vector2 = $newType(0, $kindStruct, "three.Vector2", true, "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", true, function(Object_, X_, Y_) {
+		this.$val = this;
+		if (arguments.length === 0) {
+			this.Object = null;
+			this.X = 0;
+			this.Y = 0;
+			return;
+		}
+		this.Object = Object_;
+		this.X = X_;
+		this.Y = Y_;
 	});
 	Vector3 = $pkg.Vector3 = $newType(0, $kindStruct, "three.Vector3", true, "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", true, function(Object_, X_, Y_, Z_) {
 		this.$val = this;
@@ -30107,6 +30119,41 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 		return new Color.ptr(new (three.Color)($externalize(color, $String)));
 	};
 	$pkg.NewColor = NewColor;
+	NewVector2 = function(x, y) {
+		var x, y;
+		return new Vector2.ptr(new (three.Vector2)(x, y), 0, 0);
+	};
+	$pkg.NewVector2 = NewVector2;
+	Vector2.ptr.prototype.Set = function(x, y) {
+		var v, x, y;
+		v = this;
+		v.Object.set(x, y);
+		return v;
+	};
+	Vector2.prototype.Set = function(x, y) { return this.$val.Set(x, y); };
+	Vector2.ptr.prototype.Coords = function() {
+		var v, x, y;
+		x = 0;
+		y = 0;
+		v = this;
+		x = $parseFloat(v.Object.x);
+		y = $parseFloat(v.Object.y);
+		return [x, y];
+	};
+	Vector2.prototype.Coords = function() { return this.$val.Coords(); };
+	Vector2.ptr.prototype.Normalize = function() {
+		var v;
+		v = this;
+		v.Object.normalize();
+		return v;
+	};
+	Vector2.prototype.Normalize = function() { return this.$val.Normalize(); };
+	Vector2.ptr.prototype.DistanceTo = function(v1) {
+		var v, v1;
+		v = this;
+		return $parseFloat(v.Object.ditanceTo($externalize(v1, Vector2)));
+	};
+	Vector2.prototype.DistanceTo = function(v1) { return this.$val.DistanceTo(v1); };
 	Vector3.ptr.prototype.Set = function(x, y, z) {
 		var v, x, y, z;
 		v = this;
@@ -30212,6 +30259,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 	BoxGeometry.methods = [{prop: "ApplyMatrix", name: "ApplyMatrix", pkg: "", typ: $funcType([ptrType$3], [], false)}, {prop: "RotateX", name: "RotateX", pkg: "", typ: $funcType([], [], false)}, {prop: "RotateY", name: "RotateY", pkg: "", typ: $funcType([], [], false)}, {prop: "RotateZ", name: "RotateZ", pkg: "", typ: $funcType([], [], false)}, {prop: "Translate", name: "Translate", pkg: "", typ: $funcType([], [], false)}, {prop: "Scale", name: "Scale", pkg: "", typ: $funcType([], [], false)}, {prop: "LookAt", name: "LookAt", pkg: "", typ: $funcType([], [], false)}, {prop: "FromBufferGeometry", name: "FromBufferGeometry", pkg: "", typ: $funcType([Geometry], [], false)}, {prop: "Center", name: "Center", pkg: "", typ: $funcType([], [], false)}, {prop: "Normalize", name: "Normalize", pkg: "", typ: $funcType([], [BoxGeometry], false)}, {prop: "ComputeFaceNormals", name: "ComputeFaceNormals", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeVertexNormals", name: "ComputeVertexNormals", pkg: "", typ: $funcType([$Bool], [], false)}, {prop: "ComputeFlatVertexNormals", name: "ComputeFlatVertexNormals", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeMorphNormals", name: "ComputeMorphNormals", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeLineDistances", name: "ComputeLineDistances", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeBoundingBox", name: "ComputeBoundingBox", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeBoundingSphere", name: "ComputeBoundingSphere", pkg: "", typ: $funcType([], [], false)}, {prop: "Merge", name: "Merge", pkg: "", typ: $funcType([Geometry, Matrix4, $Float64], [], false)}, {prop: "MergeMesh", name: "MergeMesh", pkg: "", typ: $funcType([Mesh], [], false)}, {prop: "MergeVertices", name: "MergeVertices", pkg: "", typ: $funcType([], [], false)}, {prop: "SortFacesByMaterialIndex", name: "SortFacesByMaterialIndex", pkg: "", typ: $funcType([], [], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [$emptyInterface], false)}, {prop: "Copy", name: "Copy", pkg: "", typ: $funcType([Object3D, $Bool], [ptrType$13], false)}, {prop: "Dispose", name: "Dispose", pkg: "", typ: $funcType([], [], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}];
 	ptrType$17.methods = [{prop: "ApplyMatrix", name: "ApplyMatrix", pkg: "", typ: $funcType([ptrType$3], [], false)}, {prop: "Add", name: "Add", pkg: "", typ: $funcType([Object3D], [], false)}, {prop: "Remove", name: "Remove", pkg: "", typ: $funcType([ptrType$7], [], false)}, {prop: "GetObjectById", name: "GetObjectById", pkg: "", typ: $funcType([$Int], [ptrType$7], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [$emptyInterface], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}, {prop: "UpdateMatrix", name: "UpdateMatrix", pkg: "", typ: $funcType([], [], false)}];
 	MeshLambertMaterial.methods = [{prop: "OnBeforeCompile", name: "OnBeforeCompile", pkg: "", typ: $funcType([], [], false)}, {prop: "SetValues", name: "SetValues", pkg: "", typ: $funcType([MaterialParameters], [], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([$emptyInterface], [$emptyInterface], false)}, {prop: "Clone", name: "Clone", pkg: "", typ: $funcType([], [], false)}, {prop: "Copy", name: "Copy", pkg: "", typ: $funcType([Object3D], [], false)}, {prop: "Dispose", name: "Dispose", pkg: "", typ: $funcType([], [], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}];
+	Vector2.methods = [{prop: "Set", name: "Set", pkg: "", typ: $funcType([$Float64, $Float64], [Vector2], false)}, {prop: "Coords", name: "Coords", pkg: "", typ: $funcType([], [$Float64, $Float64], false)}, {prop: "Normalize", name: "Normalize", pkg: "", typ: $funcType([], [Vector2], false)}, {prop: "DistanceTo", name: "DistanceTo", pkg: "", typ: $funcType([Vector2], [$Float64], false)}];
 	Vector3.methods = [{prop: "Set", name: "Set", pkg: "", typ: $funcType([$Float64, $Float64, $Float64], [Vector3], false)}, {prop: "SetX", name: "SetX", pkg: "", typ: $funcType([$Float64], [Vector3], false)}, {prop: "SetY", name: "SetY", pkg: "", typ: $funcType([$Float64], [Vector3], false)}, {prop: "SetZ", name: "SetZ", pkg: "", typ: $funcType([$Float64], [Vector3], false)}, {prop: "Coords", name: "Coords", pkg: "", typ: $funcType([], [$Float64, $Float64, $Float64], false)}, {prop: "Normalize", name: "Normalize", pkg: "", typ: $funcType([], [Vector3], false)}];
 	Mesh.methods = [{prop: "SetRotationFromAxisAngle", name: "SetRotationFromAxisAngle", pkg: "", typ: $funcType([$String, $Float64], [], false)}, {prop: "RotateX", name: "RotateX", pkg: "", typ: $funcType([], [], false)}];
 	ptrType$21.methods = [{prop: "ApplyMatrix", name: "ApplyMatrix", pkg: "", typ: $funcType([ptrType$3], [], false)}, {prop: "Add", name: "Add", pkg: "", typ: $funcType([Object3D], [], false)}, {prop: "Remove", name: "Remove", pkg: "", typ: $funcType([ptrType$7], [], false)}, {prop: "GetObjectById", name: "GetObjectById", pkg: "", typ: $funcType([$Int], [ptrType$7], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [$emptyInterface], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}, {prop: "UpdateMatrix", name: "UpdateMatrix", pkg: "", typ: $funcType([], [], false)}];
@@ -30230,6 +30278,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 	Color.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}]);
 	Euler.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}, {prop: "X", name: "X", embedded: false, exported: true, typ: $Float64, tag: "js:\"x\""}, {prop: "Y", name: "Y", embedded: false, exported: true, typ: $Float64, tag: "js:\"y\""}, {prop: "Z", name: "Z", embedded: false, exported: true, typ: $Float64, tag: "js:\"z\""}, {prop: "Order", name: "Order", embedded: false, exported: true, typ: $Float64, tag: "js:\"order\""}]);
 	Matrix4.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}]);
+	Vector2.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}, {prop: "X", name: "X", embedded: false, exported: true, typ: $Float64, tag: "js:\"X\""}, {prop: "Y", name: "Y", embedded: false, exported: true, typ: $Float64, tag: "js:\"Y\""}]);
 	Vector3.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}, {prop: "X", name: "X", embedded: false, exported: true, typ: $Float64, tag: "js:\"X\""}, {prop: "Y", name: "Y", embedded: false, exported: true, typ: $Float64, tag: "js:\"Y\""}, {prop: "Z", name: "Z", embedded: false, exported: true, typ: $Float64, tag: "js:\"Z\""}]);
 	Mesh.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}, {prop: "ID", name: "ID", embedded: false, exported: true, typ: $Int, tag: "js:\"id\""}, {prop: "Position", name: "Position", embedded: false, exported: true, typ: ptrType, tag: "js:\"position\""}, {prop: "Rotation", name: "Rotation", embedded: false, exported: true, typ: ptrType$1, tag: "js:\"rotation\""}, {prop: "Geometry", name: "Geometry", embedded: false, exported: true, typ: Geometry, tag: "js:\"geometry\""}, {prop: "Material", name: "Material", embedded: false, exported: true, typ: Material, tag: "js:\"material\""}, {prop: "MatrixAutoUpdate", name: "MatrixAutoUpdate", embedded: false, exported: true, typ: $Bool, tag: "js:\"matrixAutoUpdate\""}]);
 	WebGLRenderer.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}]);
@@ -30358,7 +30407,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/pkg/wglrenderer"] = (function(
 	return $pkg;
 })();
 $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
-	var $pkg = {}, $init, components, wglrenderer, three, vecty, elem, event, prop, js, strconv, Page, ptrType, ptrType$1, ptrType$2, ptrType$3, ptrType$4, sliceType, sliceType$1, sliceType$2, ptrType$5, funcType, ptrType$6, ptrType$7, main;
+	var $pkg = {}, $init, components, wglrenderer, three, vecty, elem, event, prop, js, strconv, Page, ptrType, ptrType$1, ptrType$2, ptrType$3, ptrType$4, sliceType, sliceType$1, sliceType$2, ptrType$5, ptrType$6, funcType, ptrType$7, ptrType$8, main;
 	components = $packages["github.com/akosgarai/webgl-cube-editor/pkg/components"];
 	wglrenderer = $packages["github.com/akosgarai/webgl-cube-editor/pkg/wglrenderer"];
 	three = $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"];
@@ -30417,9 +30466,10 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 	sliceType$1 = $sliceType($String);
 	sliceType$2 = $sliceType(vecty.MarkupOrChild);
 	ptrType$5 = $ptrType(three.Vector3);
+	ptrType$6 = $ptrType(three.Vector2);
 	funcType = $funcType([], [], false);
-	ptrType$6 = $ptrType(three.Euler);
-	ptrType$7 = $ptrType(Page);
+	ptrType$7 = $ptrType(three.Euler);
+	ptrType$8 = $ptrType(Page);
 	main = function() {
 		var page, $s, $r;
 		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; page = $f.page; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
@@ -30551,8 +30601,12 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		p.scene.Object.background = $externalize(three.NewColor(p.BackgroundColor), ptrType$4);
 		textureLoader = three.NewTextureLoader();
 		textureLoader.Object.crossOrigin = $externalize("anonymous", $String);
-		groundTexture = textureLoader.Load("https://raw.githubusercontent.com/akosgarai/go_opengl_playground/master/examples/12-room-builder/assets/grass.jpg", (function(text) {
+		groundTexture = textureLoader.Load("https://raw.githubusercontent.com/akosgarai/webgl-cube-editor/master/docs/grass.jpg", (function(text) {
 			var text;
+			text.wrapS = 1000;
+			text.wrapT = 1000;
+			text.anisotropy = 16;
+			text.repeat = $externalize(three.NewVector2(25, 25), ptrType$6);
 		}));
 		materialParams = three.NewMaterialParameters();
 		materialParams.Object.map = groundTexture;
@@ -30593,12 +30647,12 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 			p.canvasWidth = windowWidth;
 		}
 		$global.requestAnimationFrame($externalize($methodVal(p, "animate"), funcType));
-		$internalize(p.cubeMesh.Object.rotation, ptrType$6).Object.y = $parseFloat($internalize(p.cubeMesh.Object.rotation, ptrType$6).Object.y) + 0.0001 * (p.RotationSpeedY);
-		$internalize(p.cubeMesh.Object.rotation, ptrType$6).Object.x = $parseFloat($internalize(p.cubeMesh.Object.rotation, ptrType$6).Object.x) + 0.0001 * (p.RotationSpeedX);
+		$internalize(p.cubeMesh.Object.rotation, ptrType$7).Object.y = $parseFloat($internalize(p.cubeMesh.Object.rotation, ptrType$7).Object.y) + 0.0001 * (p.RotationSpeedY);
+		$internalize(p.cubeMesh.Object.rotation, ptrType$7).Object.x = $parseFloat($internalize(p.cubeMesh.Object.rotation, ptrType$7).Object.x) + 0.0001 * (p.RotationSpeedX);
 		$clone(p.renderer, three.WebGLRenderer).Render(p.scene, $clone(p.camera, three.PerspectiveCamera));
 	};
 	Page.prototype.animate = function() { return this.$val.animate(); };
-	ptrType$7.methods = [{prop: "Render", name: "Render", pkg: "", typ: $funcType([], [vecty.ComponentOrHTML], false)}, {prop: "init", name: "init", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "shutdown", name: "shutdown", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "animate", name: "animate", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([], [], false)}];
+	ptrType$8.methods = [{prop: "Render", name: "Render", pkg: "", typ: $funcType([], [vecty.ComponentOrHTML], false)}, {prop: "init", name: "init", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "shutdown", name: "shutdown", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "animate", name: "animate", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([], [], false)}];
 	Page.init("github.com/akosgarai/webgl-cube-editor", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "Title", name: "Title", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "MeshColor", name: "MeshColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "BackgroundColor", name: "BackgroundColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "LightColor", name: "LightColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "MeshWidth", name: "MeshWidth", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "MeshHeight", name: "MeshHeight", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "MeshDepth", name: "MeshDepth", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "RotationSpeedY", name: "RotationSpeedY", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "RotationSpeedX", name: "RotationSpeedX", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "scene", name: "scene", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "camera", name: "camera", embedded: false, exported: false, typ: three.PerspectiveCamera, tag: ""}, {prop: "renderer", name: "renderer", embedded: false, exported: false, typ: ptrType$1, tag: ""}, {prop: "cubeMesh", name: "cubeMesh", embedded: false, exported: false, typ: ptrType$2, tag: ""}, {prop: "directionalLight", name: "directionalLight", embedded: false, exported: false, typ: ptrType$3, tag: ""}, {prop: "canvasWidth", name: "canvasWidth", embedded: false, exported: false, typ: $Float64, tag: ""}, {prop: "canvasHeight", name: "canvasHeight", embedded: false, exported: false, typ: $Float64, tag: ""}]);
 	$init = function() {
 		$pkg.$init = function() {};
