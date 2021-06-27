@@ -113,8 +113,8 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth, Label: "Cube Width:"},
 				&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight, Label: "Cube Height:"},
 				&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth, Label: "Cube Depth:"},
-				&components.NumericInput{Id: RotationSpeedYId, Value: p.RotationSpeedY, Label: "Y Rotation:"},
-				&components.NumericInput{Id: RotationSpeedXId, Value: p.RotationSpeedX, Label: "X Rotation:"},
+				&components.RangeInput{Id: RotationSpeedYId, Value: p.RotationSpeedY, Label: "Y Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
+				&components.RangeInput{Id: RotationSpeedXId, Value: p.RotationSpeedX, Label: "X Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
 			),
 			elem.Div(
 				vecty.Markup(
