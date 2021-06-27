@@ -29453,7 +29453,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/fatih/struct
 	return $pkg;
 })();
 $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"] = (function() {
-	var $pkg = {}, $init, fmt, support, structs, js, math, PerspectiveCamera, Geometry, Object3D, BoxGeometry, BoxGeometryParameters, DirectionalLight, Side, Shading, MaterialParameters, Material, MeshLambertMaterial, Color, Euler, Matrix4, Vector3, Mesh, WebGLRenderer, Scene, ptrType, ptrType$1, ptrType$3, mapType, ptrType$5, sliceType$3, sliceType$4, ptrType$7, ptrType$13, ptrType$17, ptrType$21, ptrType$24, three, NewPerspectiveCamera, NewBoxGeometry, NewDirectionalLight, init, NewMaterialParameters, NewMeshLambertMaterial, NewColor, NewMesh, NewScene;
+	var $pkg = {}, $init, fmt, support, structs, js, math, PerspectiveCamera, Geometry, Object3D, BoxGeometry, BoxGeometryParameters, DirectionalLight, Side, Shading, MaterialParameters, Material, MeshLambertMaterial, Color, Euler, Matrix4, Vector3, Mesh, WebGLRenderer, Scene, TextureLoader, ptrType, ptrType$1, ptrType$3, mapType, ptrType$5, sliceType$3, sliceType$4, ptrType$7, funcType, ptrType$13, ptrType$17, ptrType$21, ptrType$24, ptrType$26, three, NewPerspectiveCamera, NewBoxGeometry, NewDirectionalLight, init, NewMaterialParameters, NewMeshLambertMaterial, NewColor, NewMesh, NewScene, NewTextureLoader;
 	fmt = $packages["fmt"];
 	support = $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/bep/gr/support"];
 	structs = $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/fatih/structs"];
@@ -29642,6 +29642,16 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 		this.AutoUpdate = AutoUpdate_;
 		this.Background = Background_;
 	});
+	TextureLoader = $pkg.TextureLoader = $newType(0, $kindStruct, "three.TextureLoader", true, "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", true, function(Object_, CrossOrigin_) {
+		this.$val = this;
+		if (arguments.length === 0) {
+			this.Object = null;
+			this.CrossOrigin = "";
+			return;
+		}
+		this.Object = Object_;
+		this.CrossOrigin = CrossOrigin_;
+	});
 	ptrType = $ptrType(Vector3);
 	ptrType$1 = $ptrType(Euler);
 	ptrType$3 = $ptrType(Matrix4);
@@ -29650,10 +29660,12 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 	sliceType$3 = $sliceType($String);
 	sliceType$4 = $sliceType($emptyInterface);
 	ptrType$7 = $ptrType(js.Object);
+	funcType = $funcType([ptrType$7], [], false);
 	ptrType$13 = $ptrType(BoxGeometry);
 	ptrType$17 = $ptrType(DirectionalLight);
 	ptrType$21 = $ptrType(Mesh);
 	ptrType$24 = $ptrType(Scene);
+	ptrType$26 = $ptrType(TextureLoader);
 	NewPerspectiveCamera = function(fov, aspect, near, far) {
 		var aspect, far, fov, near;
 		return new PerspectiveCamera.ptr(new (three.PerspectiveCamera)(fov, aspect, near, far), new Vector3.ptr(null, 0, 0, 0), false, 0);
@@ -30186,6 +30198,16 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 		return new Scene.ptr(new (three.Scene)(), false, ptrType$5.nil);
 	};
 	$pkg.NewScene = NewScene;
+	NewTextureLoader = function() {
+		return new TextureLoader.ptr(new (three.TextureLoader)(), "");
+	};
+	$pkg.NewTextureLoader = NewTextureLoader;
+	TextureLoader.ptr.prototype.Load = function(url, fn) {
+		var fn, t, url;
+		t = this;
+		return t.Object.load($externalize(url, $String), $externalize(fn, funcType));
+	};
+	TextureLoader.prototype.Load = function(url, fn) { return this.$val.Load(url, fn); };
 	PerspectiveCamera.methods = [{prop: "Copy", name: "Copy", pkg: "", typ: $funcType([], [PerspectiveCamera], false)}, {prop: "SetFocalLength", name: "SetFocalLength", pkg: "", typ: $funcType([$Float64], [], false)}, {prop: "GetFocalLength", name: "GetFocalLength", pkg: "", typ: $funcType([], [$Float64], false)}, {prop: "GetEffectiveFOV", name: "GetEffectiveFOV", pkg: "", typ: $funcType([], [$Float64], false)}, {prop: "GetFilmWidth", name: "GetFilmWidth", pkg: "", typ: $funcType([], [$Float64], false)}, {prop: "GetFilmHeight", name: "GetFilmHeight", pkg: "", typ: $funcType([], [$Float64], false)}, {prop: "SetViewOffset", name: "SetViewOffset", pkg: "", typ: $funcType([$Float64, $Float64, $Float64, $Float64, $Float64, $Float64], [], false)}, {prop: "ClearViewOffset", name: "ClearViewOffset", pkg: "", typ: $funcType([], [], false)}, {prop: "UpdateProjectionMatrix", name: "UpdateProjectionMatrix", pkg: "", typ: $funcType([], [], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([$emptyInterface], [$emptyInterface], false)}, {prop: "LookAt", name: "LookAt", pkg: "", typ: $funcType([$Float64, $Float64, $Float64], [], false)}];
 	BoxGeometry.methods = [{prop: "ApplyMatrix", name: "ApplyMatrix", pkg: "", typ: $funcType([ptrType$3], [], false)}, {prop: "RotateX", name: "RotateX", pkg: "", typ: $funcType([], [], false)}, {prop: "RotateY", name: "RotateY", pkg: "", typ: $funcType([], [], false)}, {prop: "RotateZ", name: "RotateZ", pkg: "", typ: $funcType([], [], false)}, {prop: "Translate", name: "Translate", pkg: "", typ: $funcType([], [], false)}, {prop: "Scale", name: "Scale", pkg: "", typ: $funcType([], [], false)}, {prop: "LookAt", name: "LookAt", pkg: "", typ: $funcType([], [], false)}, {prop: "FromBufferGeometry", name: "FromBufferGeometry", pkg: "", typ: $funcType([Geometry], [], false)}, {prop: "Center", name: "Center", pkg: "", typ: $funcType([], [], false)}, {prop: "Normalize", name: "Normalize", pkg: "", typ: $funcType([], [BoxGeometry], false)}, {prop: "ComputeFaceNormals", name: "ComputeFaceNormals", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeVertexNormals", name: "ComputeVertexNormals", pkg: "", typ: $funcType([$Bool], [], false)}, {prop: "ComputeFlatVertexNormals", name: "ComputeFlatVertexNormals", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeMorphNormals", name: "ComputeMorphNormals", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeLineDistances", name: "ComputeLineDistances", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeBoundingBox", name: "ComputeBoundingBox", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeBoundingSphere", name: "ComputeBoundingSphere", pkg: "", typ: $funcType([], [], false)}, {prop: "Merge", name: "Merge", pkg: "", typ: $funcType([Geometry, Matrix4, $Float64], [], false)}, {prop: "MergeMesh", name: "MergeMesh", pkg: "", typ: $funcType([Mesh], [], false)}, {prop: "MergeVertices", name: "MergeVertices", pkg: "", typ: $funcType([], [], false)}, {prop: "SortFacesByMaterialIndex", name: "SortFacesByMaterialIndex", pkg: "", typ: $funcType([], [], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [$emptyInterface], false)}, {prop: "Copy", name: "Copy", pkg: "", typ: $funcType([Object3D, $Bool], [ptrType$13], false)}, {prop: "Dispose", name: "Dispose", pkg: "", typ: $funcType([], [], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}];
 	ptrType$17.methods = [{prop: "ApplyMatrix", name: "ApplyMatrix", pkg: "", typ: $funcType([ptrType$3], [], false)}, {prop: "Add", name: "Add", pkg: "", typ: $funcType([Object3D], [], false)}, {prop: "Remove", name: "Remove", pkg: "", typ: $funcType([ptrType$7], [], false)}, {prop: "GetObjectById", name: "GetObjectById", pkg: "", typ: $funcType([$Int], [ptrType$7], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [$emptyInterface], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}, {prop: "UpdateMatrix", name: "UpdateMatrix", pkg: "", typ: $funcType([], [], false)}];
@@ -30195,6 +30217,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 	ptrType$21.methods = [{prop: "ApplyMatrix", name: "ApplyMatrix", pkg: "", typ: $funcType([ptrType$3], [], false)}, {prop: "Add", name: "Add", pkg: "", typ: $funcType([Object3D], [], false)}, {prop: "Remove", name: "Remove", pkg: "", typ: $funcType([ptrType$7], [], false)}, {prop: "GetObjectById", name: "GetObjectById", pkg: "", typ: $funcType([$Int], [ptrType$7], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [$emptyInterface], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}, {prop: "UpdateMatrix", name: "UpdateMatrix", pkg: "", typ: $funcType([], [], false)}];
 	WebGLRenderer.methods = [{prop: "SetSize", name: "SetSize", pkg: "", typ: $funcType([$Float64, $Float64, $Bool], [], false)}, {prop: "SetPixelRatio", name: "SetPixelRatio", pkg: "", typ: $funcType([$Float64], [], false)}, {prop: "Render", name: "Render", pkg: "", typ: $funcType([ptrType$24, PerspectiveCamera], [], false)}];
 	ptrType$24.methods = [{prop: "ApplyMatrix", name: "ApplyMatrix", pkg: "", typ: $funcType([ptrType$3], [], false)}, {prop: "Add", name: "Add", pkg: "", typ: $funcType([Object3D], [], false)}, {prop: "Remove", name: "Remove", pkg: "", typ: $funcType([ptrType$7], [], false)}, {prop: "GetObjectById", name: "GetObjectById", pkg: "", typ: $funcType([$Int], [ptrType$7], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [$emptyInterface], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}, {prop: "UpdateMatrix", name: "UpdateMatrix", pkg: "", typ: $funcType([], [], false)}];
+	ptrType$26.methods = [{prop: "Load", name: "Load", pkg: "", typ: $funcType([$String, funcType], [ptrType$7], false)}];
 	PerspectiveCamera.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}, {prop: "Position", name: "Position", embedded: false, exported: true, typ: Vector3, tag: "js:\"position\""}, {prop: "MatrixAutoUpdate", name: "MatrixAutoUpdate", embedded: false, exported: true, typ: $Bool, tag: "js:\"matrixAutoUpdate\""}, {prop: "Aspect", name: "Aspect", embedded: false, exported: true, typ: $Float64, tag: "js:\"aspect\""}]);
 	Geometry.init([{prop: "ApplyMatrix", name: "ApplyMatrix", pkg: "", typ: $funcType([ptrType$3], [], false)}, {prop: "Center", name: "Center", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeBoundingBox", name: "ComputeBoundingBox", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeBoundingSphere", name: "ComputeBoundingSphere", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeFaceNormals", name: "ComputeFaceNormals", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeFlatVertexNormals", name: "ComputeFlatVertexNormals", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeLineDistances", name: "ComputeLineDistances", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeMorphNormals", name: "ComputeMorphNormals", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeVertexNormals", name: "ComputeVertexNormals", pkg: "", typ: $funcType([$Bool], [], false)}, {prop: "Dispose", name: "Dispose", pkg: "", typ: $funcType([], [], false)}, {prop: "FromBufferGeometry", name: "FromBufferGeometry", pkg: "", typ: $funcType([Geometry], [], false)}, {prop: "LookAt", name: "LookAt", pkg: "", typ: $funcType([], [], false)}, {prop: "Merge", name: "Merge", pkg: "", typ: $funcType([Geometry, Matrix4, $Float64], [], false)}, {prop: "MergeMesh", name: "MergeMesh", pkg: "", typ: $funcType([Mesh], [], false)}, {prop: "MergeVertices", name: "MergeVertices", pkg: "", typ: $funcType([], [], false)}, {prop: "RotateX", name: "RotateX", pkg: "", typ: $funcType([], [], false)}, {prop: "RotateY", name: "RotateY", pkg: "", typ: $funcType([], [], false)}, {prop: "RotateZ", name: "RotateZ", pkg: "", typ: $funcType([], [], false)}, {prop: "Scale", name: "Scale", pkg: "", typ: $funcType([], [], false)}, {prop: "SortFacesByMaterialIndex", name: "SortFacesByMaterialIndex", pkg: "", typ: $funcType([], [], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [$emptyInterface], false)}, {prop: "Translate", name: "Translate", pkg: "", typ: $funcType([], [], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}]);
 	Object3D.init([{prop: "Add", name: "Add", pkg: "", typ: $funcType([Object3D], [], false)}, {prop: "ApplyMatrix", name: "ApplyMatrix", pkg: "", typ: $funcType([ptrType$3], [], false)}, {prop: "GetObjectById", name: "GetObjectById", pkg: "", typ: $funcType([$Int], [ptrType$7], false)}, {prop: "Remove", name: "Remove", pkg: "", typ: $funcType([ptrType$7], [], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [$emptyInterface], false)}, {prop: "UpdateMatrix", name: "UpdateMatrix", pkg: "", typ: $funcType([], [], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}]);
@@ -30211,6 +30234,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 	Mesh.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}, {prop: "ID", name: "ID", embedded: false, exported: true, typ: $Int, tag: "js:\"id\""}, {prop: "Position", name: "Position", embedded: false, exported: true, typ: ptrType, tag: "js:\"position\""}, {prop: "Rotation", name: "Rotation", embedded: false, exported: true, typ: ptrType$1, tag: "js:\"rotation\""}, {prop: "Geometry", name: "Geometry", embedded: false, exported: true, typ: Geometry, tag: "js:\"geometry\""}, {prop: "Material", name: "Material", embedded: false, exported: true, typ: Material, tag: "js:\"material\""}, {prop: "MatrixAutoUpdate", name: "MatrixAutoUpdate", embedded: false, exported: true, typ: $Bool, tag: "js:\"matrixAutoUpdate\""}]);
 	WebGLRenderer.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}]);
 	Scene.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}, {prop: "AutoUpdate", name: "AutoUpdate", embedded: false, exported: true, typ: $Bool, tag: "js:\"autoUpdate\""}, {prop: "Background", name: "Background", embedded: false, exported: true, typ: ptrType$5, tag: "js:\"background\""}]);
+	TextureLoader.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}, {prop: "CrossOrigin", name: "CrossOrigin", embedded: false, exported: true, typ: $String, tag: "js:\"crossOrigin\""}]);
 	$init = function() {
 		$pkg.$init = function() {};
 		/* */ var $f, $c = false, $s = 0, $r; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
@@ -30502,8 +30526,8 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 	};
 	Page.prototype.Render = function() { return this.$val.Render(); };
 	Page.ptr.prototype.init = function(renderer) {
-		var _r, devicePixelRatio, geom, mat, p, params, renderer, $s, $r;
-		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; _r = $f._r; devicePixelRatio = $f.devicePixelRatio; geom = $f.geom; mat = $f.mat; p = $f.p; params = $f.params; renderer = $f.renderer; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		var _r, _r$1, devicePixelRatio, geom, groundGeom, groundMaterial, groundMesh, groundTexture, mat, materialParams, p, params, renderer, textureLoader, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; _r = $f._r; _r$1 = $f._r$1; devicePixelRatio = $f.devicePixelRatio; geom = $f.geom; groundGeom = $f.groundGeom; groundMaterial = $f.groundMaterial; groundMesh = $f.groundMesh; groundTexture = $f.groundTexture; mat = $f.mat; materialParams = $f.materialParams; p = $f.p; params = $f.params; renderer = $f.renderer; textureLoader = $f.textureLoader; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
 		p = this;
 		p.renderer = renderer;
 		p.canvasWidth = $parseFloat($global.document.querySelector($externalize("#canvas-container", $String)).clientWidth);
@@ -30525,9 +30549,22 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		p.cubeMesh = _r;
 		p.scene.Add(p.cubeMesh);
 		p.scene.Object.background = $externalize(three.NewColor(p.BackgroundColor), ptrType$4);
+		textureLoader = three.NewTextureLoader();
+		textureLoader.Object.crossOrigin = $externalize("anonymous", $String);
+		groundTexture = textureLoader.Load("https://raw.githubusercontent.com/akosgarai/go_opengl_playground/master/examples/12-room-builder/assets/grass.jpg", (function(text) {
+			var text;
+		}));
+		materialParams = three.NewMaterialParameters();
+		materialParams.Object.map = groundTexture;
+		groundMaterial = three.NewMeshLambertMaterial(materialParams);
+		groundGeom = $clone(three.NewBoxGeometry(new three.BoxGeometryParameters.ptr(20000, 0, 20000, 0, 0, 0)), three.BoxGeometry);
+		_r$1 = three.NewMesh(new groundGeom.constructor.elem(groundGeom), groundMaterial); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+		groundMesh = _r$1;
+		$clone($internalize(groundMesh.Object.position, ptrType$5), three.Vector3).Set(0, -100, 0);
+		p.scene.Add(groundMesh);
 		p.animate();
 		$s = -1; return;
-		/* */ } return; } if ($f === undefined) { $f = { $blk: Page.ptr.prototype.init }; } $f._r = _r; $f.devicePixelRatio = devicePixelRatio; $f.geom = geom; $f.mat = mat; $f.p = p; $f.params = params; $f.renderer = renderer; $f.$s = $s; $f.$r = $r; return $f;
+		/* */ } return; } if ($f === undefined) { $f = { $blk: Page.ptr.prototype.init }; } $f._r = _r; $f._r$1 = _r$1; $f.devicePixelRatio = devicePixelRatio; $f.geom = geom; $f.groundGeom = groundGeom; $f.groundMaterial = groundMaterial; $f.groundMesh = groundMesh; $f.groundTexture = groundTexture; $f.mat = mat; $f.materialParams = materialParams; $f.p = p; $f.params = params; $f.renderer = renderer; $f.textureLoader = textureLoader; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	Page.prototype.init = function(renderer) { return this.$val.init(renderer); };
 	Page.ptr.prototype.shutdown = function(renderer) {

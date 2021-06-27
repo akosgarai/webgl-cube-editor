@@ -198,6 +198,27 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 	p.cubeMesh = three.NewMesh(geom, mat)
 	p.scene.Add(p.cubeMesh)
 	p.scene.Background = three.NewColor(p.BackgroundColor)
+	// ground texture
+	// const RepeatWrapping = 1000;
+	textureLoader := three.NewTextureLoader()
+	textureLoader.CrossOrigin = "anonymous"
+	groundTexture := textureLoader.Load("https://raw.githubusercontent.com/akosgarai/go_opengl_playground/master/examples/12-room-builder/assets/grass.jpg", func(text *js.Object) {
+		text.Set("wrapS", 1000)
+		text.Set("wrapT", 1000)
+		text.Set("anisotropy", 16)
+		text.Set("repeat", three.NewVector2(25, 25))
+	})
+	materialParams := three.NewMaterialParameters()
+	materialParams.Map = groundTexture
+	groundMaterial := three.NewMeshLambertMaterial(materialParams)
+	groundGeom := three.NewBoxGeometry(&three.BoxGeometryParameters{
+		Width:  20000,
+		Height: 0,
+		Depth:  20000,
+	})
+	groundMesh := three.NewMesh(groundGeom, groundMaterial)
+	groundMesh.Position.Set(0, -100, 0)
+	p.scene.Add(groundMesh)
 
 	// start animation
 	p.animate()
