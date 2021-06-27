@@ -11,6 +11,10 @@ import (
 	"github.com/hexops/vecty/prop"
 )
 
+const (
+	CubeColorId = "cube-color"
+)
+
 // Page is a top-level app component.
 type Page struct {
 	vecty.Core
@@ -27,7 +31,11 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 	return elem.Body(
 		vecty.Markup(
 			event.Change(func(e *vecty.Event) {
-				p.MeshColor = e.Target.Get("value").String()
+				switch e.Target.Get("id").String() {
+				case CubeColorId:
+					p.MeshColor = e.Target.Get("value").String()
+					break
+				}
 			}),
 		),
 		elem.Div(
@@ -35,8 +43,8 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				prop.ID("form-container"),
 			),
 			&components.Heading{Text: p.Title},
-			&components.Label{Text: "Color:", For: "cube-color"},
-			&components.ColorPicker{Id: "cube-color", Value: p.MeshColor},
+			&components.Label{Text: "Color:", For: CubeColorId},
+			&components.ColorPicker{Id: CubeColorId, Value: p.MeshColor},
 		),
 		elem.Div(
 			vecty.Markup(
