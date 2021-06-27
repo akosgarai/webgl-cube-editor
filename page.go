@@ -42,6 +42,10 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				switch e.Target.Get("id").String() {
 				case CubeColorId:
 					p.MeshColor = e.Target.Get("value").String()
+					// material
+					params := three.NewMaterialParameters()
+					params.Color = three.NewColor(p.MeshColor)
+					p.mesh.Material = three.NewMeshLambertMaterial(params)
 					break
 				case CubeWidthId:
 					p.MeshWidth, _ = strconv.Atoi(e.Target.Get("value").String())
@@ -137,10 +141,6 @@ func (p *Page) animate() {
 	js.Global.Call("requestAnimationFrame", p.animate)
 	currentRotation := p.mesh.Rotation.Get("y").Float()
 	p.mesh.Rotation.Set("y", currentRotation+0.01)
-	// material
-	params := three.NewMaterialParameters()
-	params.Color = three.NewColor(p.MeshColor)
-	p.mesh.Material = three.NewMeshLambertMaterial(params)
 	// size
 	p.mesh.Geometry = three.NewBoxGeometry(&three.BoxGeometryParameters{
 		Width:  float64(p.MeshWidth),
