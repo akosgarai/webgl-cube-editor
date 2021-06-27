@@ -14,24 +14,26 @@ import (
 )
 
 const (
-	CubeColorId  = "cube-color"
-	CubeWidthId  = "cube-width"
-	CubeHeightId = "cube-height"
-	CubeDepthId  = "cube-dept"
+	CubeColorId       = "cube-color"
+	CubeWidthId       = "cube-width"
+	CubeHeightId      = "cube-height"
+	CubeDepthId       = "cube-dept"
+	BackgroundColorId = "background-color"
 )
 
 // Page is a top-level app component.
 type Page struct {
 	vecty.Core
-	Title      string
-	MeshColor  string
-	MeshWidth  int
-	MeshHeight int
-	MeshDepth  int
-	scene      *three.Scene
-	camera     three.PerspectiveCamera
-	renderer   *three.WebGLRenderer
-	mesh       *three.Mesh
+	Title           string
+	MeshColor       string
+	BackgroundColor string
+	MeshWidth       int
+	MeshHeight      int
+	MeshDepth       int
+	scene           *three.Scene
+	camera          three.PerspectiveCamera
+	renderer        *three.WebGLRenderer
+	mesh            *three.Mesh
 }
 
 // Render implements vecty.Component for Page.
@@ -60,6 +62,10 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 					p.MeshDepth, _ = strconv.Atoi(e.Target.Get("value").String())
 					updateGeometry = true
 					break
+				case BackgroundColorId:
+					p.BackgroundColor = e.Target.Get("value").String()
+					p.scene.Background = three.NewColor(p.BackgroundColor)
+					break
 				}
 				if updateGeometry {
 					// size
@@ -81,10 +87,11 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 					vecty.Class("row"),
 				),
 				&components.Heading{Text: p.Title},
-				&components.ColorPicker{Id: CubeColorId, Value: p.MeshColor, Label: "Color:"},
-				&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth, Label: "Width:"},
-				&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight, Label: "Height:"},
-				&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth, Label: "Depth:"},
+				&components.ColorPicker{Id: CubeColorId, Value: p.MeshColor, Label: "Cube Color:"},
+				&components.ColorPicker{Id: BackgroundColorId, Value: p.BackgroundColor, Label: "Background:"},
+				&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth, Label: "Cube Width:"},
+				&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight, Label: "Cube Height:"},
+				&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth, Label: "Cube Depth:"},
 			),
 			elem.Div(
 				vecty.Markup(
@@ -134,6 +141,7 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 	})
 	p.mesh = three.NewMesh(geom, mat)
 	p.scene.Add(p.mesh)
+	p.scene.Background = three.NewColor(p.BackgroundColor)
 
 	// start animation
 	p.animate()
