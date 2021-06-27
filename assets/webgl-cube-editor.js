@@ -30601,7 +30601,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		p.scene.Object.background = $externalize(three.NewColor(p.BackgroundColor), ptrType$4);
 		textureLoader = three.NewTextureLoader();
 		textureLoader.Object.crossOrigin = $externalize("anonymous", $String);
-		groundTexture = textureLoader.Load("https://raw.githubusercontent.com/akosgarai/webgl-cube-editor/master/docs/grass.jpg", (function(text) {
+		groundTexture = textureLoader.Load("https://raw.githubusercontent.com/akosgarai/webgl-cube-editor/master/assets/grass.jpg", (function(text) {
 			var text;
 			text.wrapS = 1000;
 			text.wrapT = 1000;

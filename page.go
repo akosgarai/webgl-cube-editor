@@ -202,7 +202,7 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 	// const RepeatWrapping = 1000;
 	textureLoader := three.NewTextureLoader()
 	textureLoader.CrossOrigin = "anonymous"
-	groundTexture := textureLoader.Load("https://raw.githubusercontent.com/akosgarai/webgl-cube-editor/master/docs/grass.jpg", func(text *js.Object) {
+	groundTexture := textureLoader.Load("https://raw.githubusercontent.com/akosgarai/webgl-cube-editor/master/assets/grass.jpg", func(text *js.Object) {
 		text.Set("wrapS", 1000)
 		text.Set("wrapT", 1000)
 		text.Set("anisotropy", 16)
