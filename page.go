@@ -60,14 +60,10 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				prop.ID("form-container"),
 			),
 			&components.Heading{Text: p.Title},
-			&components.Label{Text: "Color:", For: CubeColorId},
-			&components.ColorPicker{Id: CubeColorId, Value: p.MeshColor},
-			&components.Label{Text: "Width:", For: CubeWidthId},
-			&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth},
-			&components.Label{Text: "Height:", For: CubeHeightId},
-			&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight},
-			&components.Label{Text: "Depth:", For: CubeDepthId},
-			&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth},
+			&components.ColorPicker{Id: CubeColorId, Value: p.MeshColor, Label: "Color:"},
+			&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth, Label: "Width:"},
+			&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight, Label: "Height:"},
+			&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth, Label: "Depth:"},
 		),
 		elem.Div(
 			vecty.Markup(

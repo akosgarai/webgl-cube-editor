@@ -11,15 +11,19 @@ type ColorPicker struct {
 	vecty.Core
 	Id    string
 	Value string
+	Label string
 }
 
 // Render implements vecty.Component for ColorPicker.
 func (c *ColorPicker) Render() vecty.ComponentOrHTML {
-	return elem.Input(
-		vecty.Markup(
-			vecty.Property("id", c.Id),
-			prop.Type("color"),
-			prop.Value(c.Value),
+	return elem.Div(
+		&Label{Text: c.Label, For: c.Id},
+		elem.Input(
+			vecty.Markup(
+				vecty.Property("id", c.Id),
+				prop.Type("color"),
+				prop.Value(c.Value),
+			),
 		),
 	)
 }

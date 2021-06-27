@@ -13,15 +13,19 @@ type NumericInput struct {
 	vecty.Core
 	Id    string
 	Value int
+	Label string
 }
 
 // Render implements vecty.Component for Numeric Input.
 func (i *NumericInput) Render() vecty.ComponentOrHTML {
-	return elem.Input(
-		vecty.Markup(
-			vecty.Property("id", i.Id),
-			prop.Type("number"),
-			prop.Value(strconv.Itoa(i.Value)),
+	return elem.Div(
+		&Label{Text: i.Label, For: i.Id},
+		elem.Input(
+			vecty.Markup(
+				vecty.Property("id", i.Id),
+				prop.Type("number"),
+				prop.Value(strconv.Itoa(i.Value)),
+			),
 		),
 	)
 }
