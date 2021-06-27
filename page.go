@@ -20,6 +20,8 @@ const (
 	CubeDepthId       = "cube-dept"
 	BackgroundColorId = "background-color"
 	LightColorId      = "light-color"
+	RotationSpeedYId  = "rotation-speed-y"
+	RotationSpeedXId  = "rotation-speed-x"
 )
 
 // Page is a top-level app component.
@@ -32,6 +34,8 @@ type Page struct {
 	MeshWidth        int
 	MeshHeight       int
 	MeshDepth        int
+	RotationSpeedY   int
+	RotationSpeedX   int
 	scene            *three.Scene
 	camera           three.PerspectiveCamera
 	renderer         *three.WebGLRenderer
@@ -76,6 +80,12 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 					p.LightColor = e.Target.Get("value").String()
 					p.directionalLight.Set("color", three.NewColor(p.LightColor))
 					break
+				case RotationSpeedYId:
+					p.RotationSpeedY, _ = strconv.Atoi(e.Target.Get("value").String())
+					break
+				case RotationSpeedXId:
+					p.RotationSpeedX, _ = strconv.Atoi(e.Target.Get("value").String())
+					break
 				}
 				if updateGeometry {
 					// size
@@ -103,6 +113,8 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth, Label: "Cube Width:"},
 				&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight, Label: "Cube Height:"},
 				&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth, Label: "Cube Depth:"},
+				&components.NumericInput{Id: RotationSpeedYId, Value: p.RotationSpeedY, Label: "Y Rotation:"},
+				&components.NumericInput{Id: RotationSpeedXId, Value: p.RotationSpeedX, Label: "X Rotation:"},
 			),
 			elem.Div(
 				vecty.Markup(
@@ -123,7 +135,7 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 	p.renderer = renderer
 
 	p.canvasWidth = js.Global.Get("document").Call("querySelector", "#canvas-container").Get("clientWidth").Float()
-	p.canvasHeight = js.Global.Get("innerHeight").Float() - js.Global.Get("document").Call("querySelector", "#form-container").Get("clientHeight").Float()*2
+	p.canvasHeight = js.Global.Get("innerHeight").Float() - js.Global.Get("document").Call("querySelector", "#form-container").Get("clientHeight").Float()*1.1
 	devicePixelRatio := js.Global.Get("devicePixelRatio").Float()
 
 	// setup camera and scene
@@ -179,7 +191,7 @@ func (p *Page) animate() {
 		p.canvasWidth = windowWidth
 	}
 	js.Global.Call("requestAnimationFrame", p.animate)
-	currentRotation := p.mesh.Rotation.Get("y").Float()
-	p.mesh.Rotation.Set("y", currentRotation+0.01)
+	p.mesh.Rotation.Set("y", p.mesh.Rotation.Get("y").Float()+0.0001*float64(p.RotationSpeedY))
+	p.mesh.Rotation.Set("x", p.mesh.Rotation.Get("x").Float()+0.0001*float64(p.RotationSpeedX))
 	p.renderer.Render(p.scene, p.camera)
 }
