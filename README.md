@@ -4,4 +4,4 @@ This application is a POC application for myself. It is possible to write a webg
 
 ## Demo page
 
-https://akosgarai.github.io/webgl-cube-editor/index.html
+https://akosgarai.github.io/webgl-cube-editor/

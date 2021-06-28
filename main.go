@@ -12,13 +12,14 @@ func main() {
 	page := &Page{
 		Title:           PageTitle,
 		MeshColor:       "#ff0000",
-		MeshWidth:       200,
-		MeshHeight:      200,
-		MeshDepth:       200,
-		BackgroundColor: "#000000",
+		MeshWidth:       100,
+		MeshHeight:      100,
+		MeshDepth:       100,
+		BackgroundColor: "#53c1ff",
 		LightColor:      "#ffffff",
-		RotationSpeedY:  100,
-		RotationSpeedX:  0,
+		RotationSpeedY:  200,
+		RotationSpeedX:  300,
+		SunPosition:     [3]float64{500.0, 256, -256},
 	}
 	vecty.SetTitle(PageTitle)
 	vecty.AddStylesheet("assets/index.css")

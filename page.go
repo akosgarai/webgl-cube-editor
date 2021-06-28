@@ -14,14 +14,14 @@ import (
 )
 
 const (
-	CubeColorId       = "cube-color"
-	CubeWidthId       = "cube-width"
-	CubeHeightId      = "cube-height"
-	CubeDepthId       = "cube-dept"
-	BackgroundColorId = "background-color"
-	LightColorId      = "light-color"
-	RotationSpeedYId  = "rotation-speed-y"
-	RotationSpeedXId  = "rotation-speed-x"
+	CubeColorId             = "cube-color"
+	CubeWidthId             = "cube-width"
+	CubeHeightId            = "cube-height"
+	CubeDepthId             = "cube-dept"
+	BackgroundColorId       = "background-color"
+	DirectionalLightColorId = "directional-light-color"
+	RotationSpeedYId        = "rotation-speed-y"
+	RotationSpeedXId        = "rotation-speed-x"
 )
 
 // Page is a top-level app component.
@@ -36,6 +36,7 @@ type Page struct {
 	MeshDepth        int
 	RotationSpeedY   int
 	RotationSpeedX   int
+	SunPosition      [3]float64
 	scene            *three.Scene
 	camera           three.PerspectiveCamera
 	renderer         *three.WebGLRenderer
@@ -76,7 +77,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 					p.BackgroundColor = e.Target.Get("value").String()
 					p.scene.Background = three.NewColor(p.BackgroundColor)
 					break
-				case LightColorId:
+				case DirectionalLightColorId:
 					p.LightColor = e.Target.Get("value").String()
 					p.directionalLight.Set("color", three.NewColor(p.LightColor))
 					break
@@ -141,7 +142,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 					),
 					&components.ColorPicker{Id: CubeColorId, Value: p.MeshColor, Label: "Cube Color:"},
 					&components.ColorPicker{Id: BackgroundColorId, Value: p.BackgroundColor, Label: "Background:"},
-					&components.ColorPicker{Id: LightColorId, Value: p.LightColor, Label: "Light:"},
+					&components.ColorPicker{Id: DirectionalLightColorId, Value: p.LightColor, Label: "Light:"},
 					&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth, Label: "Cube Width:"},
 					&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight, Label: "Cube Height:"},
 					&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth, Label: "Cube Depth:"},
@@ -178,10 +179,19 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 
 	p.renderer.SetPixelRatio(devicePixelRatio)
 	p.renderer.SetSize(p.canvasWidth, p.canvasHeight, true)
+	p.renderer.Get("shadowMap").Set("enabled", true)
 
 	// lights
 	p.directionalLight = three.NewDirectionalLight(three.NewColor(p.LightColor), 1)
-	p.directionalLight.Position.Set(0, 256, 256)
+	p.directionalLight.Position.Set(p.SunPosition[0], p.SunPosition[1], p.SunPosition[2])
+	p.directionalLight.Set("castShadow", true)
+	p.directionalLight.Get("shadow").Get("mapSize").Set("width", 1024)
+	p.directionalLight.Get("shadow").Get("mapSize").Set("height", 1024)
+	p.directionalLight.Get("shadow").Get("camera").Set("left", -300)
+	p.directionalLight.Get("shadow").Get("camera").Set("right", 300)
+	p.directionalLight.Get("shadow").Get("camera").Set("top", 300)
+	p.directionalLight.Get("shadow").Get("camera").Set("bottom", -300)
+	p.directionalLight.Get("shadow").Get("camera").Set("far", 1000)
 	p.scene.Add(p.directionalLight)
 
 	// material
@@ -196,6 +206,7 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 		Depth:  float64(p.MeshDepth),
 	})
 	p.cubeMesh = three.NewMesh(geom, mat)
+	p.cubeMesh.Set("castShadow", true)
 	p.scene.Add(p.cubeMesh)
 	p.scene.Background = three.NewColor(p.BackgroundColor)
 	// ground texture
@@ -218,6 +229,7 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 	})
 	groundMesh := three.NewMesh(groundGeom, groundMaterial)
 	groundMesh.Position.Set(0, -100, 0)
+	groundMesh.Set("receiveShadow", true)
 	p.scene.Add(groundMesh)
 
 	// start animation
