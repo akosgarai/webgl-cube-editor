@@ -30484,8 +30484,8 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		/* */ } return; } if ($f === undefined) { $f = { $blk: main }; } $f.page = page; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	Page.ptr.prototype.Render = function() {
-		var $24r, _arg, _arg$1, _arg$10, _arg$11, _arg$12, _arg$13, _arg$14, _arg$15, _arg$2, _arg$3, _arg$4, _arg$5, _arg$6, _arg$7, _arg$8, _arg$9, _r, _r$1, _r$10, _r$11, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, p, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, $s, $r;
-		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $24r = $f.$24r; _arg = $f._arg; _arg$1 = $f._arg$1; _arg$10 = $f._arg$10; _arg$11 = $f._arg$11; _arg$12 = $f._arg$12; _arg$13 = $f._arg$13; _arg$14 = $f._arg$14; _arg$15 = $f._arg$15; _arg$2 = $f._arg$2; _arg$3 = $f._arg$3; _arg$4 = $f._arg$4; _arg$5 = $f._arg$5; _arg$6 = $f._arg$6; _arg$7 = $f._arg$7; _arg$8 = $f._arg$8; _arg$9 = $f._arg$9; _r = $f._r; _r$1 = $f._r$1; _r$10 = $f._r$10; _r$11 = $f._r$11; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; _r$6 = $f._r$6; _r$7 = $f._r$7; _r$8 = $f._r$8; _r$9 = $f._r$9; p = $f.p; x = $f.x; x$1 = $f.x$1; x$2 = $f.x$2; x$3 = $f.x$3; x$4 = $f.x$4; x$5 = $f.x$5; x$6 = $f.x$6; x$7 = $f.x$7; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		var $24r, _arg, _arg$1, _arg$10, _arg$11, _arg$12, _arg$13, _arg$14, _arg$15, _arg$16, _arg$17, _arg$18, _arg$19, _arg$2, _arg$20, _arg$21, _arg$22, _arg$23, _arg$24, _arg$25, _arg$26, _arg$27, _arg$28, _arg$29, _arg$3, _arg$30, _arg$31, _arg$32, _arg$33, _arg$34, _arg$35, _arg$36, _arg$37, _arg$38, _arg$39, _arg$4, _arg$40, _arg$41, _arg$42, _arg$43, _arg$44, _arg$45, _arg$46, _arg$47, _arg$48, _arg$49, _arg$5, _arg$50, _arg$51, _arg$52, _arg$6, _arg$7, _arg$8, _arg$9, _r, _r$1, _r$10, _r$11, _r$12, _r$13, _r$14, _r$15, _r$16, _r$17, _r$18, _r$19, _r$2, _r$20, _r$21, _r$22, _r$23, _r$24, _r$25, _r$26, _r$27, _r$28, _r$29, _r$3, _r$30, _r$31, _r$32, _r$33, _r$34, _r$35, _r$36, _r$37, _r$38, _r$39, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, p, x, x$1, x$10, x$11, x$12, x$13, x$14, x$15, x$16, x$17, x$18, x$19, x$2, x$20, x$21, x$22, x$23, x$3, x$4, x$5, x$6, x$7, x$8, x$9, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $24r = $f.$24r; _arg = $f._arg; _arg$1 = $f._arg$1; _arg$10 = $f._arg$10; _arg$11 = $f._arg$11; _arg$12 = $f._arg$12; _arg$13 = $f._arg$13; _arg$14 = $f._arg$14; _arg$15 = $f._arg$15; _arg$16 = $f._arg$16; _arg$17 = $f._arg$17; _arg$18 = $f._arg$18; _arg$19 = $f._arg$19; _arg$2 = $f._arg$2; _arg$20 = $f._arg$20; _arg$21 = $f._arg$21; _arg$22 = $f._arg$22; _arg$23 = $f._arg$23; _arg$24 = $f._arg$24; _arg$25 = $f._arg$25; _arg$26 = $f._arg$26; _arg$27 = $f._arg$27; _arg$28 = $f._arg$28; _arg$29 = $f._arg$29; _arg$3 = $f._arg$3; _arg$30 = $f._arg$30; _arg$31 = $f._arg$31; _arg$32 = $f._arg$32; _arg$33 = $f._arg$33; _arg$34 = $f._arg$34; _arg$35 = $f._arg$35; _arg$36 = $f._arg$36; _arg$37 = $f._arg$37; _arg$38 = $f._arg$38; _arg$39 = $f._arg$39; _arg$4 = $f._arg$4; _arg$40 = $f._arg$40; _arg$41 = $f._arg$41; _arg$42 = $f._arg$42; _arg$43 = $f._arg$43; _arg$44 = $f._arg$44; _arg$45 = $f._arg$45; _arg$46 = $f._arg$46; _arg$47 = $f._arg$47; _arg$48 = $f._arg$48; _arg$49 = $f._arg$49; _arg$5 = $f._arg$5; _arg$50 = $f._arg$50; _arg$51 = $f._arg$51; _arg$52 = $f._arg$52; _arg$6 = $f._arg$6; _arg$7 = $f._arg$7; _arg$8 = $f._arg$8; _arg$9 = $f._arg$9; _r = $f._r; _r$1 = $f._r$1; _r$10 = $f._r$10; _r$11 = $f._r$11; _r$12 = $f._r$12; _r$13 = $f._r$13; _r$14 = $f._r$14; _r$15 = $f._r$15; _r$16 = $f._r$16; _r$17 = $f._r$17; _r$18 = $f._r$18; _r$19 = $f._r$19; _r$2 = $f._r$2; _r$20 = $f._r$20; _r$21 = $f._r$21; _r$22 = $f._r$22; _r$23 = $f._r$23; _r$24 = $f._r$24; _r$25 = $f._r$25; _r$26 = $f._r$26; _r$27 = $f._r$27; _r$28 = $f._r$28; _r$29 = $f._r$29; _r$3 = $f._r$3; _r$30 = $f._r$30; _r$31 = $f._r$31; _r$32 = $f._r$32; _r$33 = $f._r$33; _r$34 = $f._r$34; _r$35 = $f._r$35; _r$36 = $f._r$36; _r$37 = $f._r$37; _r$38 = $f._r$38; _r$39 = $f._r$39; _r$4 = $f._r$4; _r$5 = $f._r$5; _r$6 = $f._r$6; _r$7 = $f._r$7; _r$8 = $f._r$8; _r$9 = $f._r$9; p = $f.p; x = $f.x; x$1 = $f.x$1; x$10 = $f.x$10; x$11 = $f.x$11; x$12 = $f.x$12; x$13 = $f.x$13; x$14 = $f.x$14; x$15 = $f.x$15; x$16 = $f.x$16; x$17 = $f.x$17; x$18 = $f.x$18; x$19 = $f.x$19; x$2 = $f.x$2; x$20 = $f.x$20; x$21 = $f.x$21; x$22 = $f.x$22; x$23 = $f.x$23; x$3 = $f.x$3; x$4 = $f.x$4; x$5 = $f.x$5; x$6 = $f.x$6; x$7 = $f.x$7; x$8 = $f.x$8; x$9 = $f.x$9; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
 		p = [p];
 		p[0] = this;
 		_r = vecty.Markup(new sliceType([event.Change((function(p) { return function(e) {
@@ -30542,15 +30542,8 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		_arg$3 = new components.Heading.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), p[0].Title);
 		_arg$4 = (x$3 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"]))])), new x$3.constructor.elem(x$3));
 		_r$1 = vecty.Markup(new sliceType([event.Click((function(p) { return function(e) {
-			var display, e;
-			display = $internalize($global.document.querySelector($externalize("#form-items-container", $String)).style.display, $String);
-			if (display === "none") {
-				$global.document.querySelector($externalize("#form-items-container", $String)).style.display = $externalize("block", $String);
-				$global.document.querySelector($externalize("#settings-lock", $String)).innerText = $externalize("close_fullscreen", $String);
-			} else {
-				$global.document.querySelector($externalize("#form-items-container", $String)).style.display = $externalize("none", $String);
-				$global.document.querySelector($externalize("#settings-lock", $String)).innerText = $externalize("open_in_full", $String);
-			}
+			var e;
+			p[0].toggleMenu("#form-items-container", "#settings-lock");
 		}; })(p))])); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 		_arg$5 = (x$4 = _r$1, new x$4.constructor.elem(x$4));
 		_arg$6 = (x$5 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["material-icons"])), prop.ID("settings-lock")])), new x$5.constructor.elem(x$5));
@@ -30564,20 +30557,110 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		_arg$10 = _r$5;
 		_r$6 = elem.Div(new sliceType$2([_arg$4, _arg$10])); /* */ $s = 7; case 7: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
 		_arg$11 = _r$6;
-		_r$7 = elem.Div(new sliceType$2([(x$6 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("form-items-container"), vecty.Style("display", "none")])), new x$6.constructor.elem(x$6)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-color", p[0].MeshColor, "Cube Color:"), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "background-color", p[0].BackgroundColor, "Background:"), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "directional-light-color", p[0].LightColor, "Light:"), new components.NumericInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-width", p[0].MeshWidth, "Cube Width:"), new components.NumericInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-height", p[0].MeshHeight, "Cube Height:"), new components.NumericInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-dept", p[0].MeshDepth, "Cube Depth:"), new components.RangeInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "rotation-speed-y", p[0].RotationSpeedY, -1000, 1000, 10, "Y Rotation:"), new components.RangeInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "rotation-speed-x", p[0].RotationSpeedX, -1000, 1000, 10, "X Rotation:")])); /* */ $s = 8; case 8: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
-		_arg$12 = _r$7;
-		_r$8 = elem.Div(new sliceType$2([_arg$2, _arg$3, _arg$11, _arg$12])); /* */ $s = 9; case 9: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
-		_arg$13 = _r$8;
-		_r$9 = elem.Div(new sliceType$2([(x$7 = vecty.Markup(new sliceType([prop.ID("canvas-container"), vecty.Style("width", "90%"), vecty.Style("margin-left", "auto"), vecty.Style("margin-right", "auto")])), new x$7.constructor.elem(x$7)), wglrenderer.WebGLRenderer(new wglrenderer.WebGLOptions.ptr($methodVal(p[0], "init"), $methodVal(p[0], "shutdown")), new sliceType$2([]))])); /* */ $s = 10; case 10: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
-		_arg$14 = _r$9;
-		_r$10 = elem.Div(new sliceType$2([_arg$1, _arg$13, _arg$14])); /* */ $s = 11; case 11: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
-		_arg$15 = _r$10;
-		_r$11 = elem.Body(new sliceType$2([_arg, _arg$15])); /* */ $s = 12; case 12: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
-		$24r = _r$11;
-		$s = 13; case 13: return $24r;
-		/* */ } return; } if ($f === undefined) { $f = { $blk: Page.ptr.prototype.Render }; } $f.$24r = $24r; $f._arg = _arg; $f._arg$1 = _arg$1; $f._arg$10 = _arg$10; $f._arg$11 = _arg$11; $f._arg$12 = _arg$12; $f._arg$13 = _arg$13; $f._arg$14 = _arg$14; $f._arg$15 = _arg$15; $f._arg$2 = _arg$2; $f._arg$3 = _arg$3; $f._arg$4 = _arg$4; $f._arg$5 = _arg$5; $f._arg$6 = _arg$6; $f._arg$7 = _arg$7; $f._arg$8 = _arg$8; $f._arg$9 = _arg$9; $f._r = _r; $f._r$1 = _r$1; $f._r$10 = _r$10; $f._r$11 = _r$11; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._r$6 = _r$6; $f._r$7 = _r$7; $f._r$8 = _r$8; $f._r$9 = _r$9; $f.p = p; $f.x = x; $f.x$1 = x$1; $f.x$2 = x$2; $f.x$3 = x$3; $f.x$4 = x$4; $f.x$5 = x$5; $f.x$6 = x$6; $f.x$7 = x$7; $f.$s = $s; $f.$r = $r; return $f;
+		_arg$12 = (x$6 = vecty.Markup(new sliceType([prop.ID("form-items-container"), vecty.Style("display", "none")])), new x$6.constructor.elem(x$6));
+		_arg$13 = (x$7 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row", "sub-menu"]))])), new x$7.constructor.elem(x$7));
+		_r$7 = vecty.Markup(new sliceType([event.Click((function(p) { return function(e) {
+			var e;
+			p[0].toggleMenu("#cube-display-container", "#cube-display-lock");
+		}; })(p))])); /* */ $s = 8; case 8: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+		_arg$14 = (x$8 = _r$7, new x$8.constructor.elem(x$8));
+		_arg$15 = (x$9 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["material-icons"])), prop.ID("cube-display-lock")])), new x$9.constructor.elem(x$9));
+		_r$8 = vecty.Text("open_in_full", new sliceType$2([])); /* */ $s = 9; case 9: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
+		_arg$16 = _r$8;
+		_r$9 = elem.Span(new sliceType$2([_arg$15, _arg$16])); /* */ $s = 10; case 10: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
+		_arg$17 = _r$9;
+		_r$10 = vecty.Text("Cube Display", new sliceType$2([])); /* */ $s = 11; case 11: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
+		_arg$18 = _r$10;
+		_r$11 = elem.Button(new sliceType$2([_arg$14, _arg$17, _arg$18])); /* */ $s = 12; case 12: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
+		_arg$19 = _r$11;
+		_r$12 = elem.Div(new sliceType$2([_arg$13, _arg$19])); /* */ $s = 13; case 13: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
+		_arg$20 = _r$12;
+		_r$13 = elem.Div(new sliceType$2([(x$10 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("cube-display-container"), vecty.Style("display", "none")])), new x$10.constructor.elem(x$10)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-color", p[0].MeshColor, "Cube Color:"), new components.NumericInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-width", p[0].MeshWidth, "Cube Width:"), new components.NumericInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-height", p[0].MeshHeight, "Cube Height:"), new components.NumericInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-dept", p[0].MeshDepth, "Cube Depth:")])); /* */ $s = 14; case 14: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
+		_arg$21 = _r$13;
+		_arg$22 = (x$11 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row", "sub-menu"]))])), new x$11.constructor.elem(x$11));
+		_r$14 = vecty.Markup(new sliceType([event.Click((function(p) { return function(e) {
+			var e;
+			p[0].toggleMenu("#cube-rotation-container", "#cube-rotation-lock");
+		}; })(p))])); /* */ $s = 15; case 15: if($c) { $c = false; _r$14 = _r$14.$blk(); } if (_r$14 && _r$14.$blk !== undefined) { break s; }
+		_arg$23 = (x$12 = _r$14, new x$12.constructor.elem(x$12));
+		_arg$24 = (x$13 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["material-icons"])), prop.ID("cube-rotation-lock")])), new x$13.constructor.elem(x$13));
+		_r$15 = vecty.Text("open_in_full", new sliceType$2([])); /* */ $s = 16; case 16: if($c) { $c = false; _r$15 = _r$15.$blk(); } if (_r$15 && _r$15.$blk !== undefined) { break s; }
+		_arg$25 = _r$15;
+		_r$16 = elem.Span(new sliceType$2([_arg$24, _arg$25])); /* */ $s = 17; case 17: if($c) { $c = false; _r$16 = _r$16.$blk(); } if (_r$16 && _r$16.$blk !== undefined) { break s; }
+		_arg$26 = _r$16;
+		_r$17 = vecty.Text("Cube Rotation", new sliceType$2([])); /* */ $s = 18; case 18: if($c) { $c = false; _r$17 = _r$17.$blk(); } if (_r$17 && _r$17.$blk !== undefined) { break s; }
+		_arg$27 = _r$17;
+		_r$18 = elem.Button(new sliceType$2([_arg$23, _arg$26, _arg$27])); /* */ $s = 19; case 19: if($c) { $c = false; _r$18 = _r$18.$blk(); } if (_r$18 && _r$18.$blk !== undefined) { break s; }
+		_arg$28 = _r$18;
+		_r$19 = elem.Div(new sliceType$2([_arg$22, _arg$28])); /* */ $s = 20; case 20: if($c) { $c = false; _r$19 = _r$19.$blk(); } if (_r$19 && _r$19.$blk !== undefined) { break s; }
+		_arg$29 = _r$19;
+		_r$20 = elem.Div(new sliceType$2([(x$14 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("cube-rotation-container"), vecty.Style("display", "none")])), new x$14.constructor.elem(x$14)), new components.RangeInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "rotation-speed-y", p[0].RotationSpeedY, -1000, 1000, 10, "Y Rotation:"), new components.RangeInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "rotation-speed-x", p[0].RotationSpeedX, -1000, 1000, 10, "X Rotation:")])); /* */ $s = 21; case 21: if($c) { $c = false; _r$20 = _r$20.$blk(); } if (_r$20 && _r$20.$blk !== undefined) { break s; }
+		_arg$30 = _r$20;
+		_arg$31 = (x$15 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row", "sub-menu"]))])), new x$15.constructor.elem(x$15));
+		_r$21 = vecty.Markup(new sliceType([event.Click((function(p) { return function(e) {
+			var e;
+			p[0].toggleMenu("#cube-lightsources-container", "#cube-lightsources-lock");
+		}; })(p))])); /* */ $s = 22; case 22: if($c) { $c = false; _r$21 = _r$21.$blk(); } if (_r$21 && _r$21.$blk !== undefined) { break s; }
+		_arg$32 = (x$16 = _r$21, new x$16.constructor.elem(x$16));
+		_arg$33 = (x$17 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["material-icons"])), prop.ID("cube-lightsources-lock")])), new x$17.constructor.elem(x$17));
+		_r$22 = vecty.Text("open_in_full", new sliceType$2([])); /* */ $s = 23; case 23: if($c) { $c = false; _r$22 = _r$22.$blk(); } if (_r$22 && _r$22.$blk !== undefined) { break s; }
+		_arg$34 = _r$22;
+		_r$23 = elem.Span(new sliceType$2([_arg$33, _arg$34])); /* */ $s = 24; case 24: if($c) { $c = false; _r$23 = _r$23.$blk(); } if (_r$23 && _r$23.$blk !== undefined) { break s; }
+		_arg$35 = _r$23;
+		_r$24 = vecty.Text("Lightsources", new sliceType$2([])); /* */ $s = 25; case 25: if($c) { $c = false; _r$24 = _r$24.$blk(); } if (_r$24 && _r$24.$blk !== undefined) { break s; }
+		_arg$36 = _r$24;
+		_r$25 = elem.Button(new sliceType$2([_arg$32, _arg$35, _arg$36])); /* */ $s = 26; case 26: if($c) { $c = false; _r$25 = _r$25.$blk(); } if (_r$25 && _r$25.$blk !== undefined) { break s; }
+		_arg$37 = _r$25;
+		_r$26 = elem.Div(new sliceType$2([_arg$31, _arg$37])); /* */ $s = 27; case 27: if($c) { $c = false; _r$26 = _r$26.$blk(); } if (_r$26 && _r$26.$blk !== undefined) { break s; }
+		_arg$38 = _r$26;
+		_r$27 = elem.Div(new sliceType$2([(x$18 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("cube-lightsources-container"), vecty.Style("display", "none")])), new x$18.constructor.elem(x$18)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "directional-light-color", p[0].LightColor, "Light:")])); /* */ $s = 28; case 28: if($c) { $c = false; _r$27 = _r$27.$blk(); } if (_r$27 && _r$27.$blk !== undefined) { break s; }
+		_arg$39 = _r$27;
+		_arg$40 = (x$19 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row", "sub-menu"]))])), new x$19.constructor.elem(x$19));
+		_r$28 = vecty.Markup(new sliceType([event.Click((function(p) { return function(e) {
+			var e;
+			p[0].toggleMenu("#cube-scene-container", "#cube-scene-lock");
+		}; })(p))])); /* */ $s = 29; case 29: if($c) { $c = false; _r$28 = _r$28.$blk(); } if (_r$28 && _r$28.$blk !== undefined) { break s; }
+		_arg$41 = (x$20 = _r$28, new x$20.constructor.elem(x$20));
+		_arg$42 = (x$21 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["material-icons"])), prop.ID("cube-scene-lock")])), new x$21.constructor.elem(x$21));
+		_r$29 = vecty.Text("open_in_full", new sliceType$2([])); /* */ $s = 30; case 30: if($c) { $c = false; _r$29 = _r$29.$blk(); } if (_r$29 && _r$29.$blk !== undefined) { break s; }
+		_arg$43 = _r$29;
+		_r$30 = elem.Span(new sliceType$2([_arg$42, _arg$43])); /* */ $s = 31; case 31: if($c) { $c = false; _r$30 = _r$30.$blk(); } if (_r$30 && _r$30.$blk !== undefined) { break s; }
+		_arg$44 = _r$30;
+		_r$31 = vecty.Text("Scene", new sliceType$2([])); /* */ $s = 32; case 32: if($c) { $c = false; _r$31 = _r$31.$blk(); } if (_r$31 && _r$31.$blk !== undefined) { break s; }
+		_arg$45 = _r$31;
+		_r$32 = elem.Button(new sliceType$2([_arg$41, _arg$44, _arg$45])); /* */ $s = 33; case 33: if($c) { $c = false; _r$32 = _r$32.$blk(); } if (_r$32 && _r$32.$blk !== undefined) { break s; }
+		_arg$46 = _r$32;
+		_r$33 = elem.Div(new sliceType$2([_arg$40, _arg$46])); /* */ $s = 34; case 34: if($c) { $c = false; _r$33 = _r$33.$blk(); } if (_r$33 && _r$33.$blk !== undefined) { break s; }
+		_arg$47 = _r$33;
+		_r$34 = elem.Div(new sliceType$2([(x$22 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("cube-scene-container"), vecty.Style("display", "none")])), new x$22.constructor.elem(x$22)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "background-color", p[0].BackgroundColor, "Background:")])); /* */ $s = 35; case 35: if($c) { $c = false; _r$34 = _r$34.$blk(); } if (_r$34 && _r$34.$blk !== undefined) { break s; }
+		_arg$48 = _r$34;
+		_r$35 = elem.Div(new sliceType$2([_arg$12, _arg$20, _arg$21, _arg$29, _arg$30, _arg$38, _arg$39, _arg$47, _arg$48])); /* */ $s = 36; case 36: if($c) { $c = false; _r$35 = _r$35.$blk(); } if (_r$35 && _r$35.$blk !== undefined) { break s; }
+		_arg$49 = _r$35;
+		_r$36 = elem.Div(new sliceType$2([_arg$2, _arg$3, _arg$11, _arg$49])); /* */ $s = 37; case 37: if($c) { $c = false; _r$36 = _r$36.$blk(); } if (_r$36 && _r$36.$blk !== undefined) { break s; }
+		_arg$50 = _r$36;
+		_r$37 = elem.Div(new sliceType$2([(x$23 = vecty.Markup(new sliceType([prop.ID("canvas-container"), vecty.Style("width", "90%"), vecty.Style("margin-left", "auto"), vecty.Style("margin-right", "auto")])), new x$23.constructor.elem(x$23)), wglrenderer.WebGLRenderer(new wglrenderer.WebGLOptions.ptr($methodVal(p[0], "init"), $methodVal(p[0], "shutdown")), new sliceType$2([]))])); /* */ $s = 38; case 38: if($c) { $c = false; _r$37 = _r$37.$blk(); } if (_r$37 && _r$37.$blk !== undefined) { break s; }
+		_arg$51 = _r$37;
+		_r$38 = elem.Div(new sliceType$2([_arg$1, _arg$50, _arg$51])); /* */ $s = 39; case 39: if($c) { $c = false; _r$38 = _r$38.$blk(); } if (_r$38 && _r$38.$blk !== undefined) { break s; }
+		_arg$52 = _r$38;
+		_r$39 = elem.Body(new sliceType$2([_arg, _arg$52])); /* */ $s = 40; case 40: if($c) { $c = false; _r$39 = _r$39.$blk(); } if (_r$39 && _r$39.$blk !== undefined) { break s; }
+		$24r = _r$39;
+		$s = 41; case 41: return $24r;
+		/* */ } return; } if ($f === undefined) { $f = { $blk: Page.ptr.prototype.Render }; } $f.$24r = $24r; $f._arg = _arg; $f._arg$1 = _arg$1; $f._arg$10 = _arg$10; $f._arg$11 = _arg$11; $f._arg$12 = _arg$12; $f._arg$13 = _arg$13; $f._arg$14 = _arg$14; $f._arg$15 = _arg$15; $f._arg$16 = _arg$16; $f._arg$17 = _arg$17; $f._arg$18 = _arg$18; $f._arg$19 = _arg$19; $f._arg$2 = _arg$2; $f._arg$20 = _arg$20; $f._arg$21 = _arg$21; $f._arg$22 = _arg$22; $f._arg$23 = _arg$23; $f._arg$24 = _arg$24; $f._arg$25 = _arg$25; $f._arg$26 = _arg$26; $f._arg$27 = _arg$27; $f._arg$28 = _arg$28; $f._arg$29 = _arg$29; $f._arg$3 = _arg$3; $f._arg$30 = _arg$30; $f._arg$31 = _arg$31; $f._arg$32 = _arg$32; $f._arg$33 = _arg$33; $f._arg$34 = _arg$34; $f._arg$35 = _arg$35; $f._arg$36 = _arg$36; $f._arg$37 = _arg$37; $f._arg$38 = _arg$38; $f._arg$39 = _arg$39; $f._arg$4 = _arg$4; $f._arg$40 = _arg$40; $f._arg$41 = _arg$41; $f._arg$42 = _arg$42; $f._arg$43 = _arg$43; $f._arg$44 = _arg$44; $f._arg$45 = _arg$45; $f._arg$46 = _arg$46; $f._arg$47 = _arg$47; $f._arg$48 = _arg$48; $f._arg$49 = _arg$49; $f._arg$5 = _arg$5; $f._arg$50 = _arg$50; $f._arg$51 = _arg$51; $f._arg$52 = _arg$52; $f._arg$6 = _arg$6; $f._arg$7 = _arg$7; $f._arg$8 = _arg$8; $f._arg$9 = _arg$9; $f._r = _r; $f._r$1 = _r$1; $f._r$10 = _r$10; $f._r$11 = _r$11; $f._r$12 = _r$12; $f._r$13 = _r$13; $f._r$14 = _r$14; $f._r$15 = _r$15; $f._r$16 = _r$16; $f._r$17 = _r$17; $f._r$18 = _r$18; $f._r$19 = _r$19; $f._r$2 = _r$2; $f._r$20 = _r$20; $f._r$21 = _r$21; $f._r$22 = _r$22; $f._r$23 = _r$23; $f._r$24 = _r$24; $f._r$25 = _r$25; $f._r$26 = _r$26; $f._r$27 = _r$27; $f._r$28 = _r$28; $f._r$29 = _r$29; $f._r$3 = _r$3; $f._r$30 = _r$30; $f._r$31 = _r$31; $f._r$32 = _r$32; $f._r$33 = _r$33; $f._r$34 = _r$34; $f._r$35 = _r$35; $f._r$36 = _r$36; $f._r$37 = _r$37; $f._r$38 = _r$38; $f._r$39 = _r$39; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._r$6 = _r$6; $f._r$7 = _r$7; $f._r$8 = _r$8; $f._r$9 = _r$9; $f.p = p; $f.x = x; $f.x$1 = x$1; $f.x$10 = x$10; $f.x$11 = x$11; $f.x$12 = x$12; $f.x$13 = x$13; $f.x$14 = x$14; $f.x$15 = x$15; $f.x$16 = x$16; $f.x$17 = x$17; $f.x$18 = x$18; $f.x$19 = x$19; $f.x$2 = x$2; $f.x$20 = x$20; $f.x$21 = x$21; $f.x$22 = x$22; $f.x$23 = x$23; $f.x$3 = x$3; $f.x$4 = x$4; $f.x$5 = x$5; $f.x$6 = x$6; $f.x$7 = x$7; $f.x$8 = x$8; $f.x$9 = x$9; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	Page.prototype.Render = function() { return this.$val.Render(); };
+	Page.ptr.prototype.toggleMenu = function(formSelector, buttonSelector) {
+		var buttonSelector, display, formSelector, p;
+		p = this;
+		display = $internalize($global.document.querySelector($externalize(formSelector, $String)).style.display, $String);
+		if (display === "none") {
+			$global.document.querySelector($externalize(formSelector, $String)).style.display = $externalize("block", $String);
+			$global.document.querySelector($externalize(buttonSelector, $String)).innerText = $externalize("close_fullscreen", $String);
+		} else {
+			$global.document.querySelector($externalize(formSelector, $String)).style.display = $externalize("none", $String);
+			$global.document.querySelector($externalize(buttonSelector, $String)).innerText = $externalize("open_in_full", $String);
+		}
+	};
+	Page.prototype.toggleMenu = function(formSelector, buttonSelector) { return this.$val.toggleMenu(formSelector, buttonSelector); };
 	Page.ptr.prototype.init = function(renderer) {
 		var _r, _r$1, devicePixelRatio, geom, groundGeom, groundMaterial, groundMesh, groundTexture, mat, materialParams, p, params, renderer, textureLoader, $s, $r;
 		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; _r = $f._r; _r$1 = $f._r$1; devicePixelRatio = $f.devicePixelRatio; geom = $f.geom; groundGeom = $f.groundGeom; groundMaterial = $f.groundMaterial; groundMesh = $f.groundMesh; groundTexture = $f.groundTexture; mat = $f.mat; materialParams = $f.materialParams; p = $f.p; params = $f.params; renderer = $f.renderer; textureLoader = $f.textureLoader; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
@@ -30666,7 +30749,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		$clone(p.renderer, three.WebGLRenderer).Render(p.scene, $clone(p.camera, three.PerspectiveCamera));
 	};
 	Page.prototype.animate = function() { return this.$val.animate(); };
-	ptrType$8.methods = [{prop: "Render", name: "Render", pkg: "", typ: $funcType([], [vecty.ComponentOrHTML], false)}, {prop: "init", name: "init", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "shutdown", name: "shutdown", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "animate", name: "animate", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([], [], false)}];
+	ptrType$8.methods = [{prop: "Render", name: "Render", pkg: "", typ: $funcType([], [vecty.ComponentOrHTML], false)}, {prop: "toggleMenu", name: "toggleMenu", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([$String, $String], [], false)}, {prop: "init", name: "init", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "shutdown", name: "shutdown", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "animate", name: "animate", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([], [], false)}];
 	Page.init("github.com/akosgarai/webgl-cube-editor", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "Title", name: "Title", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "MeshColor", name: "MeshColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "BackgroundColor", name: "BackgroundColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "LightColor", name: "LightColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "MeshWidth", name: "MeshWidth", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "MeshHeight", name: "MeshHeight", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "MeshDepth", name: "MeshDepth", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "RotationSpeedY", name: "RotationSpeedY", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "RotationSpeedX", name: "RotationSpeedX", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "SunPosition", name: "SunPosition", embedded: false, exported: true, typ: arrayType, tag: ""}, {prop: "scene", name: "scene", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "camera", name: "camera", embedded: false, exported: false, typ: three.PerspectiveCamera, tag: ""}, {prop: "renderer", name: "renderer", embedded: false, exported: false, typ: ptrType$1, tag: ""}, {prop: "cubeMesh", name: "cubeMesh", embedded: false, exported: false, typ: ptrType$2, tag: ""}, {prop: "directionalLight", name: "directionalLight", embedded: false, exported: false, typ: ptrType$3, tag: ""}, {prop: "canvasWidth", name: "canvasWidth", embedded: false, exported: false, typ: $Float64, tag: ""}, {prop: "canvasHeight", name: "canvasHeight", embedded: false, exported: false, typ: $Float64, tag: ""}]);
 	$init = function() {
 		$pkg.$init = function() {};

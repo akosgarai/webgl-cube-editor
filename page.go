@@ -114,14 +114,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 					elem.Button(
 						vecty.Markup(
 							event.Click(func(e *vecty.Event) {
-								display := js.Global.Get("document").Call("querySelector", "#form-items-container").Get("style").Get("display").String()
-								if display == "none" {
-									js.Global.Get("document").Call("querySelector", "#form-items-container").Get("style").Set("display", "block")
-									js.Global.Get("document").Call("querySelector", "#settings-lock").Set("innerText", "close_fullscreen")
-								} else {
-									js.Global.Get("document").Call("querySelector", "#form-items-container").Get("style").Set("display", "none")
-									js.Global.Get("document").Call("querySelector", "#settings-lock").Set("innerText", "open_in_full")
-								}
+								p.toggleMenu("#form-items-container", "#settings-lock")
 							}),
 						),
 						elem.Span(
@@ -136,18 +129,125 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				),
 				elem.Div(
 					vecty.Markup(
-						vecty.Class("row"),
 						prop.ID("form-items-container"),
 						vecty.Style("display", "none"),
 					),
-					&components.ColorPicker{Id: CubeColorId, Value: p.MeshColor, Label: "Cube Color:"},
-					&components.ColorPicker{Id: BackgroundColorId, Value: p.BackgroundColor, Label: "Background:"},
-					&components.ColorPicker{Id: DirectionalLightColorId, Value: p.LightColor, Label: "Light:"},
-					&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth, Label: "Cube Width:"},
-					&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight, Label: "Cube Height:"},
-					&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth, Label: "Cube Depth:"},
-					&components.RangeInput{Id: RotationSpeedYId, Value: p.RotationSpeedY, Label: "Y Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
-					&components.RangeInput{Id: RotationSpeedXId, Value: p.RotationSpeedX, Label: "X Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
+					elem.Div(
+						vecty.Markup(
+							vecty.Class("row", "sub-menu"),
+						),
+						elem.Button(
+							vecty.Markup(
+								event.Click(func(e *vecty.Event) {
+									p.toggleMenu("#cube-display-container", "#cube-display-lock")
+								}),
+							),
+							elem.Span(
+								vecty.Markup(
+									vecty.Class("material-icons"),
+									prop.ID("cube-display-lock"),
+								),
+								vecty.Text("open_in_full"),
+							),
+							vecty.Text("Cube Display"),
+						),
+					),
+					elem.Div(
+						vecty.Markup(
+							vecty.Class("row"),
+							prop.ID("cube-display-container"),
+							vecty.Style("display", "none"),
+						),
+						&components.ColorPicker{Id: CubeColorId, Value: p.MeshColor, Label: "Cube Color:"},
+						&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth, Label: "Cube Width:"},
+						&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight, Label: "Cube Height:"},
+						&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth, Label: "Cube Depth:"},
+					),
+					elem.Div(
+						vecty.Markup(
+							vecty.Class("row", "sub-menu"),
+						),
+						elem.Button(
+							vecty.Markup(
+								event.Click(func(e *vecty.Event) {
+									p.toggleMenu("#cube-rotation-container", "#cube-rotation-lock")
+								}),
+							),
+							elem.Span(
+								vecty.Markup(
+									vecty.Class("material-icons"),
+									prop.ID("cube-rotation-lock"),
+								),
+								vecty.Text("open_in_full"),
+							),
+							vecty.Text("Cube Rotation"),
+						),
+					),
+					elem.Div(
+						vecty.Markup(
+							vecty.Class("row"),
+							prop.ID("cube-rotation-container"),
+							vecty.Style("display", "none"),
+						),
+						&components.RangeInput{Id: RotationSpeedYId, Value: p.RotationSpeedY, Label: "Y Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
+						&components.RangeInput{Id: RotationSpeedXId, Value: p.RotationSpeedX, Label: "X Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
+					),
+					elem.Div(
+						vecty.Markup(
+							vecty.Class("row", "sub-menu"),
+						),
+						elem.Button(
+							vecty.Markup(
+								event.Click(func(e *vecty.Event) {
+									p.toggleMenu("#cube-lightsources-container", "#cube-lightsources-lock")
+								}),
+							),
+							elem.Span(
+								vecty.Markup(
+									vecty.Class("material-icons"),
+									prop.ID("cube-lightsources-lock"),
+								),
+								vecty.Text("open_in_full"),
+							),
+							vecty.Text("Lightsources"),
+						),
+					),
+					elem.Div(
+						vecty.Markup(
+							vecty.Class("row"),
+							prop.ID("cube-lightsources-container"),
+							vecty.Style("display", "none"),
+						),
+						&components.ColorPicker{Id: DirectionalLightColorId, Value: p.LightColor, Label: "Light:"},
+					),
+					elem.Div(
+						vecty.Markup(
+							vecty.Class("row", "sub-menu"),
+						),
+						elem.Button(
+							vecty.Markup(
+								event.Click(func(e *vecty.Event) {
+									p.toggleMenu("#cube-scene-container", "#cube-scene-lock")
+								}),
+							),
+							elem.Span(
+								vecty.Markup(
+									vecty.Class("material-icons"),
+									prop.ID("cube-scene-lock"),
+								),
+								vecty.Text("open_in_full"),
+							),
+							vecty.Text("Scene"),
+						),
+					),
+					elem.Div(
+						vecty.Markup(
+							vecty.Class("row"),
+							prop.ID("cube-scene-container"),
+							vecty.Style("display", "none"),
+						),
+						&components.ColorPicker{Id: BackgroundColorId, Value: p.BackgroundColor, Label: "Background:"},
+					),
 				),
 			),
 			elem.Div(
@@ -164,6 +264,16 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 			),
 		),
 	)
+}
+func (p *Page) toggleMenu(formSelector, buttonSelector string) {
+	display := js.Global.Get("document").Call("querySelector", formSelector).Get("style").Get("display").String()
+	if display == "none" {
+		js.Global.Get("document").Call("querySelector", formSelector).Get("style").Set("display", "block")
+		js.Global.Get("document").Call("querySelector", buttonSelector).Set("innerText", "close_fullscreen")
+	} else {
+		js.Global.Get("document").Call("querySelector", formSelector).Get("style").Set("display", "none")
+		js.Global.Get("document").Call("querySelector", buttonSelector).Set("innerText", "open_in_full")
+	}
 }
 func (p *Page) init(renderer *three.WebGLRenderer) {
 	p.renderer = renderer

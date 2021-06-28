@@ -48,6 +48,10 @@ label {
   padding: 12px 12px 12px 0;
   display: inline-block;
 }
+/* make the 2 level buttons visible that they are second level menu buttons */
+.sub-menu {
+    padding-left: 36px;
+}
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
   .col-25, .col-75 {
