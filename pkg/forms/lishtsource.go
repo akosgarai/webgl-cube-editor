@@ -12,12 +12,14 @@ import (
 // the ambient and directional lightsources.
 type Lightsource struct {
 	vecty.Core
-	AmbientLightColorId     string
-	AmbientLightColor       string
-	AmbientLightIntensityId string
-	AmbientLightIntensity   float64
-	DirectionalLightColorId string
-	DirectionalLightColor   string
+	AmbientLightColorId         string
+	AmbientLightColor           string
+	AmbientLightIntensityId     string
+	AmbientLightIntensity       float64
+	DirectionalLightColorId     string
+	DirectionalLightColor       string
+	DirectionalLightIntensityId string
+	DirectionalLightIntensity   float64
 }
 
 // Render implements vecty.Component for Lightsource.
@@ -69,6 +71,7 @@ func (f *Lightsource) Render() vecty.ComponentOrHTML {
 					vecty.Style("display", "none"),
 				),
 				&components.ColorPicker{Id: f.DirectionalLightColorId, Value: f.DirectionalLightColor, Label: "Light:"},
+				&components.FloatRangeInput{Id: f.DirectionalLightIntensityId, Value: f.DirectionalLightIntensity, Label: "Intensity:", MinValue: 0, MaxValue: 1, StepValue: 0.01},
 			),
 		),
 	)

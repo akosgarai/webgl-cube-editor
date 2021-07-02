@@ -29602,7 +29602,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/pkg/forms"] = (function() {
 		this.RotationComponentYId = RotationComponentYId_;
 		this.RotationYValue = RotationYValue_;
 	});
-	Lightsource = $pkg.Lightsource = $newType(0, $kindStruct, "forms.Lightsource", true, "github.com/akosgarai/webgl-cube-editor/pkg/forms", true, function(Core_, AmbientLightColorId_, AmbientLightColor_, AmbientLightIntensityId_, AmbientLightIntensity_, DirectionalLightColorId_, DirectionalLightColor_) {
+	Lightsource = $pkg.Lightsource = $newType(0, $kindStruct, "forms.Lightsource", true, "github.com/akosgarai/webgl-cube-editor/pkg/forms", true, function(Core_, AmbientLightColorId_, AmbientLightColor_, AmbientLightIntensityId_, AmbientLightIntensity_, DirectionalLightColorId_, DirectionalLightColor_, DirectionalLightIntensityId_, DirectionalLightIntensity_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.Core = new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false);
@@ -29612,6 +29612,8 @@ $packages["github.com/akosgarai/webgl-cube-editor/pkg/forms"] = (function() {
 			this.AmbientLightIntensity = 0;
 			this.DirectionalLightColorId = "";
 			this.DirectionalLightColor = "";
+			this.DirectionalLightIntensityId = "";
+			this.DirectionalLightIntensity = 0;
 			return;
 		}
 		this.Core = Core_;
@@ -29621,6 +29623,8 @@ $packages["github.com/akosgarai/webgl-cube-editor/pkg/forms"] = (function() {
 		this.AmbientLightIntensity = AmbientLightIntensity_;
 		this.DirectionalLightColorId = DirectionalLightColorId_;
 		this.DirectionalLightColor = DirectionalLightColor_;
+		this.DirectionalLightIntensityId = DirectionalLightIntensityId_;
+		this.DirectionalLightIntensity = DirectionalLightIntensity_;
 	});
 	Scene = $pkg.Scene = $newType(0, $kindStruct, "forms.Scene", true, "github.com/akosgarai/webgl-cube-editor/pkg/forms", true, function(Core_, BackgroundColorId_, BackgroundColor_) {
 		this.$val = this;
@@ -29677,7 +29681,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/pkg/forms"] = (function() {
 		_r = elem.Div(new sliceType$2([(x$1 = vecty.Markup(new sliceType$1([vecty.Class(new sliceType(["row"])), prop.ID("ambient-lightsources-container"), vecty.Style("display", "none")])), new x$1.constructor.elem(x$1)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), f.AmbientLightColorId, f.AmbientLightColor, "Light color:"), new components.FloatRangeInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), f.AmbientLightIntensityId, f.AmbientLightIntensity, 0, 1, 0.01, "Intensity:")])); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 		_arg$3 = _r;
 		_arg$4 = new components.DisplayButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "directional-lightsources-lock", "Directional Lightsources", "sub-menu-2", "#directional-lightsources-container", "open_in_full", "close_fullscreen");
-		_r$1 = elem.Div(new sliceType$2([(x$2 = vecty.Markup(new sliceType$1([vecty.Class(new sliceType(["row"])), prop.ID("directional-lightsources-container"), vecty.Style("display", "none")])), new x$2.constructor.elem(x$2)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), f.DirectionalLightColorId, f.DirectionalLightColor, "Light:")])); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+		_r$1 = elem.Div(new sliceType$2([(x$2 = vecty.Markup(new sliceType$1([vecty.Class(new sliceType(["row"])), prop.ID("directional-lightsources-container"), vecty.Style("display", "none")])), new x$2.constructor.elem(x$2)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), f.DirectionalLightColorId, f.DirectionalLightColor, "Light:"), new components.FloatRangeInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), f.DirectionalLightIntensityId, f.DirectionalLightIntensity, 0, 1, 0.01, "Intensity:")])); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 		_arg$5 = _r$1;
 		_r$2 = elem.Div(new sliceType$2([_arg$1, _arg$2, _arg$3, _arg$4, _arg$5])); /* */ $s = 3; case 3: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 		_arg$6 = _r$2;
@@ -29706,7 +29710,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/pkg/forms"] = (function() {
 	ptrType$3.methods = [{prop: "Render", name: "Render", pkg: "", typ: $funcType([], [vecty.ComponentOrHTML], false)}];
 	CubeDisplay.init("", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "CubeColorId", name: "CubeColorId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "CubeColor", name: "CubeColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "CubeWidthId", name: "CubeWidthId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "CubeWidth", name: "CubeWidth", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "CubeHeightId", name: "CubeHeightId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "CubeHeight", name: "CubeHeight", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "CubeDepthId", name: "CubeDepthId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "CubeDepth", name: "CubeDepth", embedded: false, exported: true, typ: $Int, tag: ""}]);
 	CubeRotation.init("", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "RotationComponentXId", name: "RotationComponentXId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "RotationXValue", name: "RotationXValue", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "RotationComponentYId", name: "RotationComponentYId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "RotationYValue", name: "RotationYValue", embedded: false, exported: true, typ: $Int, tag: ""}]);
-	Lightsource.init("", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "AmbientLightColorId", name: "AmbientLightColorId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "AmbientLightColor", name: "AmbientLightColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "AmbientLightIntensityId", name: "AmbientLightIntensityId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "AmbientLightIntensity", name: "AmbientLightIntensity", embedded: false, exported: true, typ: $Float64, tag: ""}, {prop: "DirectionalLightColorId", name: "DirectionalLightColorId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "DirectionalLightColor", name: "DirectionalLightColor", embedded: false, exported: true, typ: $String, tag: ""}]);
+	Lightsource.init("", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "AmbientLightColorId", name: "AmbientLightColorId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "AmbientLightColor", name: "AmbientLightColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "AmbientLightIntensityId", name: "AmbientLightIntensityId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "AmbientLightIntensity", name: "AmbientLightIntensity", embedded: false, exported: true, typ: $Float64, tag: ""}, {prop: "DirectionalLightColorId", name: "DirectionalLightColorId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "DirectionalLightColor", name: "DirectionalLightColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "DirectionalLightIntensityId", name: "DirectionalLightIntensityId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "DirectionalLightIntensity", name: "DirectionalLightIntensity", embedded: false, exported: true, typ: $Float64, tag: ""}]);
 	Scene.init("", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "BackgroundColorId", name: "BackgroundColorId", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "BackgroundColor", name: "BackgroundColor", embedded: false, exported: true, typ: $String, tag: ""}]);
 	$init = function() {
 		$pkg.$init = function() {};
@@ -31753,7 +31757,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 	prop = $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/hexops/vecty/prop"];
 	js = $packages["github.com/gopherjs/gopherjs/js"];
 	strconv = $packages["strconv"];
-	Page = $pkg.Page = $newType(0, $kindStruct, "main.Page", true, "github.com/akosgarai/webgl-cube-editor", true, function(Core_, Title_, MeshColor_, BackgroundColor_, DirectionalLightColor_, AmbientLightColor_, AmbientLightIntensity_, MeshWidth_, MeshHeight_, MeshDepth_, RotationSpeedY_, RotationSpeedX_, SunPosition_, scene_, camera_, renderer_, cubeMesh_, directionalLight_, ambientLight_, canvasWidth_, canvasHeight_) {
+	Page = $pkg.Page = $newType(0, $kindStruct, "main.Page", true, "github.com/akosgarai/webgl-cube-editor", true, function(Core_, Title_, MeshColor_, BackgroundColor_, DirectionalLightColor_, DirectionalLightIntensity_, AmbientLightColor_, AmbientLightIntensity_, MeshWidth_, MeshHeight_, MeshDepth_, RotationSpeedY_, RotationSpeedX_, SunPosition_, scene_, camera_, renderer_, cubeMesh_, directionalLight_, ambientLight_, canvasWidth_, canvasHeight_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.Core = new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false);
@@ -31761,6 +31765,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 			this.MeshColor = "";
 			this.BackgroundColor = "";
 			this.DirectionalLightColor = "";
+			this.DirectionalLightIntensity = 0;
 			this.AmbientLightColor = "";
 			this.AmbientLightIntensity = 0;
 			this.MeshWidth = 0;
@@ -31784,6 +31789,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		this.MeshColor = MeshColor_;
 		this.BackgroundColor = BackgroundColor_;
 		this.DirectionalLightColor = DirectionalLightColor_;
+		this.DirectionalLightIntensity = DirectionalLightIntensity_;
 		this.AmbientLightColor = AmbientLightColor_;
 		this.AmbientLightIntensity = AmbientLightIntensity_;
 		this.MeshWidth = MeshWidth_;
@@ -31819,7 +31825,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 	main = function() {
 		var page, $s, $r;
 		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; page = $f.page; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
-		page = new Page.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "Cube color editor", "#ff0000", "#53c1ff", "#ffffff", "#ffffff", 1, 100, 100, 100, 200, 300, $toNativeArray($kindFloat64, [500, 256, -256]), ptrType.nil, new three.PerspectiveCamera.ptr(null, new three.Vector3.ptr(null, 0, 0, 0), false, 0), ptrType$1.nil, ptrType$2.nil, ptrType$3.nil, ptrType$4.nil, 0, 0);
+		page = new Page.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "Cube color editor", "#ff0000", "#53c1ff", "#ffffff", 1, "#ffffff", 1, 100, 100, 100, 200, 300, $toNativeArray($kindFloat64, [500, 256, -256]), ptrType.nil, new three.PerspectiveCamera.ptr(null, new three.Vector3.ptr(null, 0, 0, 0), false, 0), ptrType$1.nil, ptrType$2.nil, ptrType$3.nil, ptrType$4.nil, 0, 0);
 		$r = vecty.SetTitle("Cube color editor"); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = vecty.AddStylesheet("assets/index.css"); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = vecty.RenderBody(page); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
@@ -31832,7 +31838,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		p = [p];
 		p[0] = this;
 		_r = vecty.Markup(new sliceType([event.Change((function(p) { return function(e) {
-			var _1, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, e, params, updateGeometry, x$1;
+			var _1, _tuple, _tuple$1, _tuple$2, _tuple$3, _tuple$4, _tuple$5, _tuple$6, e, params, updateGeometry, x$1;
 			updateGeometry = false;
 			switch (0) { default:
 				_1 = $clone($clone(e.Target, $packages["syscall/js"].Value).Get("id"), $packages["syscall/js"].Value).String();
@@ -31865,22 +31871,27 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 					p[0].DirectionalLightColor = $clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String();
 					p[0].directionalLight.Object.color = $externalize(three.NewColor(p[0].DirectionalLightColor), ptrType$5);
 					break;
+				} else if (_1 === ("directional-light-intensity")) {
+					_tuple$3 = strconv.ParseFloat($clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String(), 64);
+					p[0].DirectionalLightIntensity = _tuple$3[0];
+					p[0].directionalLight.Object.intensity = p[0].DirectionalLightIntensity;
+					break;
 				} else if (_1 === ("ambient-light-color")) {
 					p[0].AmbientLightColor = $clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String();
 					p[0].ambientLight.Object.color = $externalize(three.NewColor(p[0].AmbientLightColor), ptrType$5);
 					break;
 				} else if (_1 === ("ambient-light-intensity")) {
-					_tuple$3 = strconv.ParseFloat($clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String(), 64);
-					p[0].AmbientLightIntensity = _tuple$3[0];
+					_tuple$4 = strconv.ParseFloat($clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String(), 64);
+					p[0].AmbientLightIntensity = _tuple$4[0];
 					p[0].ambientLight.Object.intensity = p[0].AmbientLightIntensity;
 					break;
 				} else if (_1 === ("rotation-speed-y")) {
-					_tuple$4 = strconv.Atoi($clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String());
-					p[0].RotationSpeedY = _tuple$4[0];
+					_tuple$5 = strconv.Atoi($clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String());
+					p[0].RotationSpeedY = _tuple$5[0];
 					break;
 				} else if (_1 === ("rotation-speed-x")) {
-					_tuple$5 = strconv.Atoi($clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String());
-					p[0].RotationSpeedX = _tuple$5[0];
+					_tuple$6 = strconv.Atoi($clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String());
+					p[0].RotationSpeedX = _tuple$6[0];
 					break;
 				}
 			}
@@ -31893,7 +31904,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		_arg$2 = (x$2 = vecty.Markup(new sliceType([prop.ID("form-container")])), new x$2.constructor.elem(x$2));
 		_arg$3 = new components.Heading.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), p[0].Title);
 		_arg$4 = new components.DisplayButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "settings-lock", "Settings", "main-menu", "#form-items-container", "open_in_full", "close_fullscreen");
-		_r$1 = elem.Div(new sliceType$2([(x$3 = vecty.Markup(new sliceType([prop.ID("form-items-container"), vecty.Style("display", "none")])), new x$3.constructor.elem(x$3)), new forms.CubeDisplay.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-color", p[0].MeshColor, "cube-width", p[0].MeshWidth, "cube-height", p[0].MeshHeight, "cube-dept", p[0].MeshDepth), new forms.CubeRotation.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "rotation-speed-x", p[0].RotationSpeedX, "rotation-speed-y", p[0].RotationSpeedY), new forms.Lightsource.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "ambient-light-color", p[0].AmbientLightColor, "ambient-light-intensity", p[0].AmbientLightIntensity, "directional-light-color", p[0].DirectionalLightColor), new forms.Scene.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "background-color", p[0].BackgroundColor)])); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
+		_r$1 = elem.Div(new sliceType$2([(x$3 = vecty.Markup(new sliceType([prop.ID("form-items-container"), vecty.Style("display", "none")])), new x$3.constructor.elem(x$3)), new forms.CubeDisplay.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-color", p[0].MeshColor, "cube-width", p[0].MeshWidth, "cube-height", p[0].MeshHeight, "cube-dept", p[0].MeshDepth), new forms.CubeRotation.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "rotation-speed-x", p[0].RotationSpeedX, "rotation-speed-y", p[0].RotationSpeedY), new forms.Lightsource.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "ambient-light-color", p[0].AmbientLightColor, "ambient-light-intensity", p[0].AmbientLightIntensity, "directional-light-color", p[0].DirectionalLightColor, "directional-light-intensity", p[0].DirectionalLightIntensity), new forms.Scene.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "background-color", p[0].BackgroundColor)])); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 		_arg$5 = _r$1;
 		_r$2 = elem.Div(new sliceType$2([_arg$2, _arg$3, _arg$4, _arg$5])); /* */ $s = 3; case 3: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 		_arg$6 = _r$2;
@@ -31921,7 +31932,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		$clone(p.renderer, three.WebGLRenderer).SetPixelRatio(devicePixelRatio);
 		$clone(p.renderer, three.WebGLRenderer).SetSize(p.canvasWidth, p.canvasHeight, true);
 		p.renderer.Object.shadowMap.enabled = $externalize(true, $Bool);
-		p.directionalLight = three.NewDirectionalLight(three.NewColor(p.DirectionalLightColor), 1);
+		p.directionalLight = three.NewDirectionalLight(three.NewColor(p.DirectionalLightColor), p.DirectionalLightIntensity);
 		$clone($internalize(p.directionalLight.Object.position, ptrType$6), three.Vector3).Set(p.SunPosition[0], p.SunPosition[1], p.SunPosition[2]);
 		p.directionalLight.Object.castShadow = $externalize(true, $Bool);
 		p.directionalLight.Object.shadow.mapSize.width = 1024;
@@ -31998,7 +32009,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 	};
 	Page.prototype.animate = function() { return this.$val.animate(); };
 	ptrType$9.methods = [{prop: "Render", name: "Render", pkg: "", typ: $funcType([], [vecty.ComponentOrHTML], false)}, {prop: "init", name: "init", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "shutdown", name: "shutdown", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "animate", name: "animate", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([], [], false)}];
-	Page.init("github.com/akosgarai/webgl-cube-editor", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "Title", name: "Title", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "MeshColor", name: "MeshColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "BackgroundColor", name: "BackgroundColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "DirectionalLightColor", name: "DirectionalLightColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "AmbientLightColor", name: "AmbientLightColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "AmbientLightIntensity", name: "AmbientLightIntensity", embedded: false, exported: true, typ: $Float64, tag: ""}, {prop: "MeshWidth", name: "MeshWidth", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "MeshHeight", name: "MeshHeight", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "MeshDepth", name: "MeshDepth", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "RotationSpeedY", name: "RotationSpeedY", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "RotationSpeedX", name: "RotationSpeedX", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "SunPosition", name: "SunPosition", embedded: false, exported: true, typ: arrayType, tag: ""}, {prop: "scene", name: "scene", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "camera", name: "camera", embedded: false, exported: false, typ: three.PerspectiveCamera, tag: ""}, {prop: "renderer", name: "renderer", embedded: false, exported: false, typ: ptrType$1, tag: ""}, {prop: "cubeMesh", name: "cubeMesh", embedded: false, exported: false, typ: ptrType$2, tag: ""}, {prop: "directionalLight", name: "directionalLight", embedded: false, exported: false, typ: ptrType$3, tag: ""}, {prop: "ambientLight", name: "ambientLight", embedded: false, exported: false, typ: ptrType$4, tag: ""}, {prop: "canvasWidth", name: "canvasWidth", embedded: false, exported: false, typ: $Float64, tag: ""}, {prop: "canvasHeight", name: "canvasHeight", embedded: false, exported: false, typ: $Float64, tag: ""}]);
+	Page.init("github.com/akosgarai/webgl-cube-editor", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "Title", name: "Title", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "MeshColor", name: "MeshColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "BackgroundColor", name: "BackgroundColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "DirectionalLightColor", name: "DirectionalLightColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "DirectionalLightIntensity", name: "DirectionalLightIntensity", embedded: false, exported: true, typ: $Float64, tag: ""}, {prop: "AmbientLightColor", name: "AmbientLightColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "AmbientLightIntensity", name: "AmbientLightIntensity", embedded: false, exported: true, typ: $Float64, tag: ""}, {prop: "MeshWidth", name: "MeshWidth", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "MeshHeight", name: "MeshHeight", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "MeshDepth", name: "MeshDepth", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "RotationSpeedY", name: "RotationSpeedY", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "RotationSpeedX", name: "RotationSpeedX", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "SunPosition", name: "SunPosition", embedded: false, exported: true, typ: arrayType, tag: ""}, {prop: "scene", name: "scene", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "camera", name: "camera", embedded: false, exported: false, typ: three.PerspectiveCamera, tag: ""}, {prop: "renderer", name: "renderer", embedded: false, exported: false, typ: ptrType$1, tag: ""}, {prop: "cubeMesh", name: "cubeMesh", embedded: false, exported: false, typ: ptrType$2, tag: ""}, {prop: "directionalLight", name: "directionalLight", embedded: false, exported: false, typ: ptrType$3, tag: ""}, {prop: "ambientLight", name: "ambientLight", embedded: false, exported: false, typ: ptrType$4, tag: ""}, {prop: "canvasWidth", name: "canvasWidth", embedded: false, exported: false, typ: $Float64, tag: ""}, {prop: "canvasHeight", name: "canvasHeight", embedded: false, exported: false, typ: $Float64, tag: ""}]);
 	$init = function() {
 		$pkg.$init = function() {};
 		/* */ var $f, $c = false, $s = 0, $r; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:

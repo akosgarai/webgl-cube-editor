@@ -15,39 +15,41 @@ import (
 )
 
 const (
-	CubeColorId             = "cube-color"
-	CubeWidthId             = "cube-width"
-	CubeHeightId            = "cube-height"
-	CubeDepthId             = "cube-dept"
-	BackgroundColorId       = "background-color"
-	DirectionalLightColorId = "directional-light-color"
-	AmbientLightColorId     = "ambient-light-color"
-	AmbientLightIntensityId = "ambient-light-intensity"
-	RotationSpeedYId        = "rotation-speed-y"
-	RotationSpeedXId        = "rotation-speed-x"
+	CubeColorId                 = "cube-color"
+	CubeWidthId                 = "cube-width"
+	CubeHeightId                = "cube-height"
+	CubeDepthId                 = "cube-dept"
+	BackgroundColorId           = "background-color"
+	DirectionalLightColorId     = "directional-light-color"
+	DirectionalLightIntensityId = "directional-light-intensity"
+	AmbientLightColorId         = "ambient-light-color"
+	AmbientLightIntensityId     = "ambient-light-intensity"
+	RotationSpeedYId            = "rotation-speed-y"
+	RotationSpeedXId            = "rotation-speed-x"
 )
 
 // Page is a top-level app component.
 type Page struct {
 	vecty.Core
-	Title                 string
-	MeshColor             string
-	BackgroundColor       string
-	DirectionalLightColor string
-	AmbientLightColor     string
-	AmbientLightIntensity float64
-	MeshWidth             int
-	MeshHeight            int
-	MeshDepth             int
-	RotationSpeedY        int
-	RotationSpeedX        int
-	SunPosition           [3]float64
-	scene                 *three.Scene
-	camera                three.PerspectiveCamera
-	renderer              *three.WebGLRenderer
-	cubeMesh              *three.Mesh
-	directionalLight      *three.DirectionalLight
-	ambientLight          *three.AmbientLight
+	Title                     string
+	MeshColor                 string
+	BackgroundColor           string
+	DirectionalLightColor     string
+	DirectionalLightIntensity float64
+	AmbientLightColor         string
+	AmbientLightIntensity     float64
+	MeshWidth                 int
+	MeshHeight                int
+	MeshDepth                 int
+	RotationSpeedY            int
+	RotationSpeedX            int
+	SunPosition               [3]float64
+	scene                     *three.Scene
+	camera                    three.PerspectiveCamera
+	renderer                  *three.WebGLRenderer
+	cubeMesh                  *three.Mesh
+	directionalLight          *three.DirectionalLight
+	ambientLight              *three.AmbientLight
 
 	canvasWidth  float64
 	canvasHeight float64
@@ -86,6 +88,10 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				case DirectionalLightColorId:
 					p.DirectionalLightColor = e.Target.Get("value").String()
 					p.directionalLight.Set("color", three.NewColor(p.DirectionalLightColor))
+					break
+				case DirectionalLightIntensityId:
+					p.DirectionalLightIntensity, _ = strconv.ParseFloat(e.Target.Get("value").String(), 64)
+					p.directionalLight.Set("intensity", p.DirectionalLightIntensity)
 					break
 				case AmbientLightColorId:
 					p.AmbientLightColor = e.Target.Get("value").String()
@@ -151,12 +157,14 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 						RotationYValue:       p.RotationSpeedY,
 					},
 					&forms.Lightsource{
-						AmbientLightColorId:     AmbientLightColorId,
-						AmbientLightColor:       p.AmbientLightColor,
-						AmbientLightIntensityId: AmbientLightIntensityId,
-						AmbientLightIntensity:   p.AmbientLightIntensity,
-						DirectionalLightColorId: DirectionalLightColorId,
-						DirectionalLightColor:   p.DirectionalLightColor,
+						AmbientLightColorId:         AmbientLightColorId,
+						AmbientLightColor:           p.AmbientLightColor,
+						AmbientLightIntensityId:     AmbientLightIntensityId,
+						AmbientLightIntensity:       p.AmbientLightIntensity,
+						DirectionalLightColorId:     DirectionalLightColorId,
+						DirectionalLightColor:       p.DirectionalLightColor,
+						DirectionalLightIntensity:   p.DirectionalLightIntensity,
+						DirectionalLightIntensityId: DirectionalLightIntensityId,
 					},
 					&forms.Scene{
 						BackgroundColorId: BackgroundColorId,
@@ -196,7 +204,7 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 	p.renderer.Get("shadowMap").Set("enabled", true)
 
 	// lights
-	p.directionalLight = three.NewDirectionalLight(three.NewColor(p.DirectionalLightColor), 1)
+	p.directionalLight = three.NewDirectionalLight(three.NewColor(p.DirectionalLightColor), p.DirectionalLightIntensity)
 	p.directionalLight.Position.Set(p.SunPosition[0], p.SunPosition[1], p.SunPosition[2])
 	p.directionalLight.Set("castShadow", true)
 	p.directionalLight.Get("shadow").Get("mapSize").Set("width", 1024)
