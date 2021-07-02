@@ -21,6 +21,7 @@ const (
 	BackgroundColorId       = "background-color"
 	DirectionalLightColorId = "directional-light-color"
 	AmbientLightColorId     = "ambient-light-color"
+	AmbientLightIntensityId = "ambient-light-intensity"
 	RotationSpeedYId        = "rotation-speed-y"
 	RotationSpeedXId        = "rotation-speed-x"
 )
@@ -33,6 +34,7 @@ type Page struct {
 	BackgroundColor       string
 	DirectionalLightColor string
 	AmbientLightColor     string
+	AmbientLightIntensity float64
 	MeshWidth             int
 	MeshHeight            int
 	MeshDepth             int
@@ -87,6 +89,10 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				case AmbientLightColorId:
 					p.AmbientLightColor = e.Target.Get("value").String()
 					p.ambientLight.Set("color", three.NewColor(p.AmbientLightColor))
+					break
+				case AmbientLightIntensityId:
+					p.AmbientLightIntensity, _ = strconv.ParseFloat(e.Target.Get("value").String(), 64)
+					p.ambientLight.Set("intensity", p.AmbientLightIntensity)
 					break
 				case RotationSpeedYId:
 					p.RotationSpeedY, _ = strconv.Atoi(e.Target.Get("value").String())
@@ -160,8 +166,8 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 							prop.ID("cube-rotation-container"),
 							vecty.Style("display", "none"),
 						),
-						&components.RangeInput{Id: RotationSpeedYId, Value: p.RotationSpeedY, Label: "Y Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
-						&components.RangeInput{Id: RotationSpeedXId, Value: p.RotationSpeedX, Label: "X Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
+						&components.IntRangeInput{Id: RotationSpeedYId, Value: p.RotationSpeedY, Label: "Y Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
+						&components.IntRangeInput{Id: RotationSpeedXId, Value: p.RotationSpeedX, Label: "X Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
 					),
 					&components.DisplayButton{
 						Id:                 "lightsources-lock",
@@ -192,7 +198,8 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 									prop.ID("ambient-lightsources-container"),
 									vecty.Style("display", "none"),
 								),
-								&components.ColorPicker{Id: AmbientLightColorId, Value: p.AmbientLightColor, Label: "Light:"},
+								&components.ColorPicker{Id: AmbientLightColorId, Value: p.AmbientLightColor, Label: "Light color:"},
+								&components.FloatRangeInput{Id: AmbientLightIntensityId, Value: p.AmbientLightIntensity, Label: "Intensity:", MinValue: 0, MaxValue: 1, StepValue: 0.01},
 							),
 						),
 						elem.Div(
@@ -276,7 +283,7 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 	p.directionalLight.Get("shadow").Get("camera").Set("far", 1000)
 	p.scene.Add(p.directionalLight)
 
-	p.ambientLight = three.NewAmbientLight(three.NewColor(p.AmbientLightColor), 1)
+	p.ambientLight = three.NewAmbientLight(three.NewColor(p.AmbientLightColor), p.AmbientLightIntensity)
 	p.scene.Add(p.ambientLight)
 
 	// material

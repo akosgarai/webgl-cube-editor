@@ -18,6 +18,7 @@ func main() {
 		BackgroundColor:       "#53c1ff",
 		DirectionalLightColor: "#ffffff",
 		AmbientLightColor:     "#ffffff",
+		AmbientLightIntensity: 1.0,
 		RotationSpeedY:        200,
 		RotationSpeedX:        300,
 		SunPosition:           [3]float64{500.0, 256, -256},
