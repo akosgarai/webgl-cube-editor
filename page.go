@@ -4,6 +4,7 @@ import (
 	"strconv"
 
 	"github.com/akosgarai/webgl-cube-editor/pkg/components"
+	"github.com/akosgarai/webgl-cube-editor/pkg/forms"
 	"github.com/akosgarai/webgl-cube-editor/pkg/wglrenderer"
 	"github.com/divan/three"
 	"github.com/gopherjs/gopherjs/js"
@@ -133,106 +134,34 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 						prop.ID("form-items-container"),
 						vecty.Style("display", "none"),
 					),
-					&components.DisplayButton{
-						Id:                 "cube-display-lock",
-						Label:              "Cube Display",
-						TabulationClass:    "sub-menu",
-						TargetFormSelector: "#cube-display-container",
-						OffIcon:            "open_in_full",
-						OnIcon:             "close_fullscreen",
+					&forms.CubeDisplay{
+						CubeColorId:  CubeColorId,
+						CubeWidthId:  CubeWidthId,
+						CubeHeightId: CubeHeightId,
+						CubeDepthId:  CubeDepthId,
+						CubeColor:    p.MeshColor,
+						CubeWidth:    p.MeshWidth,
+						CubeHeight:   p.MeshHeight,
+						CubeDepth:    p.MeshDepth,
 					},
-					elem.Div(
-						vecty.Markup(
-							vecty.Class("row"),
-							prop.ID("cube-display-container"),
-							vecty.Style("display", "none"),
-						),
-						&components.ColorPicker{Id: CubeColorId, Value: p.MeshColor, Label: "Cube Color:"},
-						&components.NumericInput{Id: CubeWidthId, Value: p.MeshWidth, Label: "Cube Width:"},
-						&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight, Label: "Cube Height:"},
-						&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth, Label: "Cube Depth:"},
-					),
-					&components.DisplayButton{
-						Id:                 "cube-rotation-lock",
-						Label:              "Cube Rotation",
-						TabulationClass:    "sub-menu",
-						TargetFormSelector: "#cube-rotation-container",
-						OffIcon:            "open_in_full",
-						OnIcon:             "close_fullscreen",
+					&forms.CubeRotation{
+						RotationComponentXId: RotationSpeedXId,
+						RotationXValue:       p.RotationSpeedX,
+						RotationComponentYId: RotationSpeedYId,
+						RotationYValue:       p.RotationSpeedY,
 					},
-					elem.Div(
-						vecty.Markup(
-							vecty.Class("row"),
-							prop.ID("cube-rotation-container"),
-							vecty.Style("display", "none"),
-						),
-						&components.IntRangeInput{Id: RotationSpeedYId, Value: p.RotationSpeedY, Label: "Y Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
-						&components.IntRangeInput{Id: RotationSpeedXId, Value: p.RotationSpeedX, Label: "X Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
-					),
-					&components.DisplayButton{
-						Id:                 "lightsources-lock",
-						Label:              "Lightsources",
-						TabulationClass:    "sub-menu",
-						TargetFormSelector: "#lightsources-container",
-						OffIcon:            "open_in_full",
-						OnIcon:             "close_fullscreen",
+					&forms.Lightsource{
+						AmbientLightColorId:     AmbientLightColorId,
+						AmbientLightColor:       p.AmbientLightColor,
+						AmbientLightIntensityId: AmbientLightIntensityId,
+						AmbientLightIntensity:   p.AmbientLightIntensity,
+						DirectionalLightColorId: DirectionalLightColorId,
+						DirectionalLightColor:   p.DirectionalLightColor,
 					},
-					elem.Div(
-						vecty.Markup(
-							vecty.Class("row"),
-							prop.ID("lightsources-container"),
-							vecty.Style("display", "none"),
-						),
-						&components.DisplayButton{
-							Id:                 "ambient-lightsources-lock",
-							Label:              "Ambient Lightsource",
-							TabulationClass:    "sub-menu-2",
-							TargetFormSelector: "#ambient-lightsources-container",
-							OffIcon:            "open_in_full",
-							OnIcon:             "close_fullscreen",
-						},
-						elem.Div(
-							vecty.Markup(
-								vecty.Class("row"),
-								prop.ID("ambient-lightsources-container"),
-								vecty.Style("display", "none"),
-							),
-							&components.ColorPicker{Id: AmbientLightColorId, Value: p.AmbientLightColor, Label: "Light color:"},
-							&components.FloatRangeInput{Id: AmbientLightIntensityId, Value: p.AmbientLightIntensity, Label: "Intensity:", MinValue: 0, MaxValue: 1, StepValue: 0.01},
-						),
-						&components.DisplayButton{
-							Id:                 "directional-lightsources-lock",
-							Label:              "Directional Lightsources",
-							TabulationClass:    "sub-menu-2",
-							TargetFormSelector: "#directional-lightsources-container",
-							OffIcon:            "open_in_full",
-							OnIcon:             "close_fullscreen",
-						},
-						elem.Div(
-							vecty.Markup(
-								vecty.Class("row"),
-								prop.ID("directional-lightsources-container"),
-								vecty.Style("display", "none"),
-							),
-							&components.ColorPicker{Id: DirectionalLightColorId, Value: p.DirectionalLightColor, Label: "Light:"},
-						),
-					),
-					&components.DisplayButton{
-						Id:                 "scene-lock",
-						Label:              "Scene",
-						TabulationClass:    "sub-menu",
-						TargetFormSelector: "#scene-container",
-						OffIcon:            "open_in_full",
-						OnIcon:             "close_fullscreen",
+					&forms.Scene{
+						BackgroundColorId: BackgroundColorId,
+						BackgroundColor:   p.BackgroundColor,
 					},
-					elem.Div(
-						vecty.Markup(
-							vecty.Class("row"),
-							prop.ID("scene-container"),
-							vecty.Style("display", "none"),
-						),
-						&components.ColorPicker{Id: BackgroundColorId, Value: p.BackgroundColor, Label: "Background:"},
-					),
 				),
 			),
 			elem.Div(
