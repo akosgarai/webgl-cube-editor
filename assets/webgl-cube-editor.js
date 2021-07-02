@@ -29511,7 +29511,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/fatih/struct
 	return $pkg;
 })();
 $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"] = (function() {
-	var $pkg = {}, $init, fmt, support, structs, js, math, PerspectiveCamera, Geometry, Object3D, BoxGeometry, BoxGeometryParameters, DirectionalLight, Side, Shading, MaterialParameters, Material, MeshLambertMaterial, Color, Euler, Matrix4, Vector2, Vector3, Mesh, WebGLRenderer, Scene, TextureLoader, ptrType, ptrType$1, ptrType$3, mapType, ptrType$5, sliceType$3, sliceType$4, ptrType$7, funcType, ptrType$13, ptrType$17, ptrType$21, ptrType$24, ptrType$26, three, NewPerspectiveCamera, NewBoxGeometry, NewDirectionalLight, init, NewMaterialParameters, NewMeshLambertMaterial, NewColor, NewVector2, NewMesh, NewScene, NewTextureLoader;
+	var $pkg = {}, $init, fmt, support, structs, js, math, PerspectiveCamera, Geometry, Object3D, BoxGeometry, BoxGeometryParameters, AmbientLight, DirectionalLight, Side, Shading, MaterialParameters, Material, MeshLambertMaterial, Color, Euler, Matrix4, Vector2, Vector3, Mesh, WebGLRenderer, Scene, TextureLoader, ptrType, ptrType$1, ptrType$3, mapType, ptrType$5, sliceType$3, sliceType$4, ptrType$7, funcType, ptrType$13, ptrType$16, ptrType$17, ptrType$21, ptrType$24, ptrType$26, three, NewPerspectiveCamera, NewBoxGeometry, NewAmbientLight, NewDirectionalLight, init, NewMaterialParameters, NewMeshLambertMaterial, NewColor, NewVector2, NewMesh, NewScene, NewTextureLoader;
 	fmt = $packages["fmt"];
 	support = $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/bep/gr/support"];
 	structs = $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/fatih/structs"];
@@ -29570,6 +29570,18 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 		this.WidthSegments = WidthSegments_;
 		this.HeightSegments = HeightSegments_;
 		this.DepthSegments = DepthSegments_;
+	});
+	AmbientLight = $pkg.AmbientLight = $newType(0, $kindStruct, "three.AmbientLight", true, "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", true, function(Object_, Position_, MatrixAutoUpdate_) {
+		this.$val = this;
+		if (arguments.length === 0) {
+			this.Object = null;
+			this.Position = ptrType.nil;
+			this.MatrixAutoUpdate = false;
+			return;
+		}
+		this.Object = Object_;
+		this.Position = Position_;
+		this.MatrixAutoUpdate = MatrixAutoUpdate_;
 	});
 	DirectionalLight = $pkg.DirectionalLight = $newType(0, $kindStruct, "three.DirectionalLight", true, "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", true, function(Object_, Position_, MatrixAutoUpdate_) {
 		this.$val = this;
@@ -29732,6 +29744,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 	ptrType$7 = $ptrType(js.Object);
 	funcType = $funcType([ptrType$7], [], false);
 	ptrType$13 = $ptrType(BoxGeometry);
+	ptrType$16 = $ptrType(AmbientLight);
 	ptrType$17 = $ptrType(DirectionalLight);
 	ptrType$21 = $ptrType(Mesh);
 	ptrType$24 = $ptrType(Scene);
@@ -30008,6 +30021,48 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 		return m.Object;
 	};
 	MeshLambertMaterial.prototype.getInternalObject = function() { return this.$val.getInternalObject(); };
+	AmbientLight.ptr.prototype.ApplyMatrix = function(matrix) {
+		var matrix, obj;
+		obj = this;
+		obj.Object.applyMatrix($externalize(matrix, ptrType$3));
+	};
+	AmbientLight.prototype.ApplyMatrix = function(matrix) { return this.$val.ApplyMatrix(matrix); };
+	AmbientLight.ptr.prototype.Add = function(m) {
+		var m, obj;
+		obj = this;
+		obj.Object.add($externalize(m, Object3D));
+	};
+	AmbientLight.prototype.Add = function(m) { return this.$val.Add(m); };
+	AmbientLight.ptr.prototype.Remove = function(m) {
+		var m, obj;
+		obj = this;
+		obj.Object.remove(m);
+	};
+	AmbientLight.prototype.Remove = function(m) { return this.$val.Remove(m); };
+	AmbientLight.ptr.prototype.GetObjectById = function(id) {
+		var id, obj;
+		obj = this;
+		return obj.Object.getObjectById(id);
+	};
+	AmbientLight.prototype.GetObjectById = function(id) { return this.$val.GetObjectById(id); };
+	AmbientLight.ptr.prototype.ToJSON = function() {
+		var obj;
+		obj = this;
+		return $internalize(obj.Object.toJSON(), $emptyInterface);
+	};
+	AmbientLight.prototype.ToJSON = function() { return this.$val.ToJSON(); };
+	AmbientLight.ptr.prototype.getInternalObject = function() {
+		var obj;
+		obj = this;
+		return obj.Object;
+	};
+	AmbientLight.prototype.getInternalObject = function() { return this.$val.getInternalObject(); };
+	AmbientLight.ptr.prototype.UpdateMatrix = function() {
+		var obj;
+		obj = this;
+		obj.Object.updateMatrix();
+	};
+	AmbientLight.prototype.UpdateMatrix = function() { return this.$val.UpdateMatrix(); };
 	DirectionalLight.ptr.prototype.ApplyMatrix = function(matrix) {
 		var matrix, obj;
 		obj = this;
@@ -30139,6 +30194,11 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 		return new BoxGeometry.ptr(new (three.BoxGeometry)(params.Width, params.Height, params.Depth, params.WidthSegments, params.HeightSegments, params.DepthSegments), 0, 0, 0, 0, 0, 0);
 	};
 	$pkg.NewBoxGeometry = NewBoxGeometry;
+	NewAmbientLight = function(color, intensity) {
+		var color, intensity;
+		return new AmbientLight.ptr(new (three.AmbientLight)($externalize(color, ptrType$5), intensity), ptrType.nil, false);
+	};
+	$pkg.NewAmbientLight = NewAmbientLight;
 	NewDirectionalLight = function(color, intensity) {
 		var color, intensity;
 		return new DirectionalLight.ptr(new (three.DirectionalLight)($externalize(color, ptrType$5), intensity), ptrType.nil, false);
@@ -30315,6 +30375,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 	TextureLoader.prototype.Load = function(url, fn) { return this.$val.Load(url, fn); };
 	PerspectiveCamera.methods = [{prop: "Copy", name: "Copy", pkg: "", typ: $funcType([], [PerspectiveCamera], false)}, {prop: "SetFocalLength", name: "SetFocalLength", pkg: "", typ: $funcType([$Float64], [], false)}, {prop: "GetFocalLength", name: "GetFocalLength", pkg: "", typ: $funcType([], [$Float64], false)}, {prop: "GetEffectiveFOV", name: "GetEffectiveFOV", pkg: "", typ: $funcType([], [$Float64], false)}, {prop: "GetFilmWidth", name: "GetFilmWidth", pkg: "", typ: $funcType([], [$Float64], false)}, {prop: "GetFilmHeight", name: "GetFilmHeight", pkg: "", typ: $funcType([], [$Float64], false)}, {prop: "SetViewOffset", name: "SetViewOffset", pkg: "", typ: $funcType([$Float64, $Float64, $Float64, $Float64, $Float64, $Float64], [], false)}, {prop: "ClearViewOffset", name: "ClearViewOffset", pkg: "", typ: $funcType([], [], false)}, {prop: "UpdateProjectionMatrix", name: "UpdateProjectionMatrix", pkg: "", typ: $funcType([], [], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([$emptyInterface], [$emptyInterface], false)}, {prop: "LookAt", name: "LookAt", pkg: "", typ: $funcType([$Float64, $Float64, $Float64], [], false)}];
 	BoxGeometry.methods = [{prop: "ApplyMatrix", name: "ApplyMatrix", pkg: "", typ: $funcType([ptrType$3], [], false)}, {prop: "RotateX", name: "RotateX", pkg: "", typ: $funcType([], [], false)}, {prop: "RotateY", name: "RotateY", pkg: "", typ: $funcType([], [], false)}, {prop: "RotateZ", name: "RotateZ", pkg: "", typ: $funcType([], [], false)}, {prop: "Translate", name: "Translate", pkg: "", typ: $funcType([], [], false)}, {prop: "Scale", name: "Scale", pkg: "", typ: $funcType([], [], false)}, {prop: "LookAt", name: "LookAt", pkg: "", typ: $funcType([], [], false)}, {prop: "FromBufferGeometry", name: "FromBufferGeometry", pkg: "", typ: $funcType([Geometry], [], false)}, {prop: "Center", name: "Center", pkg: "", typ: $funcType([], [], false)}, {prop: "Normalize", name: "Normalize", pkg: "", typ: $funcType([], [BoxGeometry], false)}, {prop: "ComputeFaceNormals", name: "ComputeFaceNormals", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeVertexNormals", name: "ComputeVertexNormals", pkg: "", typ: $funcType([$Bool], [], false)}, {prop: "ComputeFlatVertexNormals", name: "ComputeFlatVertexNormals", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeMorphNormals", name: "ComputeMorphNormals", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeLineDistances", name: "ComputeLineDistances", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeBoundingBox", name: "ComputeBoundingBox", pkg: "", typ: $funcType([], [], false)}, {prop: "ComputeBoundingSphere", name: "ComputeBoundingSphere", pkg: "", typ: $funcType([], [], false)}, {prop: "Merge", name: "Merge", pkg: "", typ: $funcType([Geometry, Matrix4, $Float64], [], false)}, {prop: "MergeMesh", name: "MergeMesh", pkg: "", typ: $funcType([Mesh], [], false)}, {prop: "MergeVertices", name: "MergeVertices", pkg: "", typ: $funcType([], [], false)}, {prop: "SortFacesByMaterialIndex", name: "SortFacesByMaterialIndex", pkg: "", typ: $funcType([], [], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [$emptyInterface], false)}, {prop: "Copy", name: "Copy", pkg: "", typ: $funcType([Object3D, $Bool], [ptrType$13], false)}, {prop: "Dispose", name: "Dispose", pkg: "", typ: $funcType([], [], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}];
+	ptrType$16.methods = [{prop: "ApplyMatrix", name: "ApplyMatrix", pkg: "", typ: $funcType([ptrType$3], [], false)}, {prop: "Add", name: "Add", pkg: "", typ: $funcType([Object3D], [], false)}, {prop: "Remove", name: "Remove", pkg: "", typ: $funcType([ptrType$7], [], false)}, {prop: "GetObjectById", name: "GetObjectById", pkg: "", typ: $funcType([$Int], [ptrType$7], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [$emptyInterface], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}, {prop: "UpdateMatrix", name: "UpdateMatrix", pkg: "", typ: $funcType([], [], false)}];
 	ptrType$17.methods = [{prop: "ApplyMatrix", name: "ApplyMatrix", pkg: "", typ: $funcType([ptrType$3], [], false)}, {prop: "Add", name: "Add", pkg: "", typ: $funcType([Object3D], [], false)}, {prop: "Remove", name: "Remove", pkg: "", typ: $funcType([ptrType$7], [], false)}, {prop: "GetObjectById", name: "GetObjectById", pkg: "", typ: $funcType([$Int], [ptrType$7], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [$emptyInterface], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}, {prop: "UpdateMatrix", name: "UpdateMatrix", pkg: "", typ: $funcType([], [], false)}];
 	MeshLambertMaterial.methods = [{prop: "OnBeforeCompile", name: "OnBeforeCompile", pkg: "", typ: $funcType([], [], false)}, {prop: "SetValues", name: "SetValues", pkg: "", typ: $funcType([MaterialParameters], [], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([$emptyInterface], [$emptyInterface], false)}, {prop: "Clone", name: "Clone", pkg: "", typ: $funcType([], [], false)}, {prop: "Copy", name: "Copy", pkg: "", typ: $funcType([Object3D], [], false)}, {prop: "Dispose", name: "Dispose", pkg: "", typ: $funcType([], [], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}];
 	Vector2.methods = [{prop: "Set", name: "Set", pkg: "", typ: $funcType([$Float64, $Float64], [Vector2], false)}, {prop: "Coords", name: "Coords", pkg: "", typ: $funcType([], [$Float64, $Float64], false)}, {prop: "Normalize", name: "Normalize", pkg: "", typ: $funcType([], [Vector2], false)}, {prop: "DistanceTo", name: "DistanceTo", pkg: "", typ: $funcType([Vector2], [$Float64], false)}];
@@ -30329,6 +30390,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"
 	Object3D.init([{prop: "Add", name: "Add", pkg: "", typ: $funcType([Object3D], [], false)}, {prop: "ApplyMatrix", name: "ApplyMatrix", pkg: "", typ: $funcType([ptrType$3], [], false)}, {prop: "GetObjectById", name: "GetObjectById", pkg: "", typ: $funcType([$Int], [ptrType$7], false)}, {prop: "Remove", name: "Remove", pkg: "", typ: $funcType([ptrType$7], [], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([], [$emptyInterface], false)}, {prop: "UpdateMatrix", name: "UpdateMatrix", pkg: "", typ: $funcType([], [], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}]);
 	BoxGeometry.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}, {prop: "Width", name: "Width", embedded: false, exported: true, typ: $Float64, tag: "js:\"width\""}, {prop: "Height", name: "Height", embedded: false, exported: true, typ: $Float64, tag: "js:\"height\""}, {prop: "Depth", name: "Depth", embedded: false, exported: true, typ: $Float64, tag: "js:\"depth\""}, {prop: "WidthSegments", name: "WidthSegments", embedded: false, exported: true, typ: $Float64, tag: "js:\"widthSegments\""}, {prop: "HeightSegments", name: "HeightSegments", embedded: false, exported: true, typ: $Float64, tag: "js:\"heightSegments\""}, {prop: "DepthSegments", name: "DepthSegments", embedded: false, exported: true, typ: $Float64, tag: "js:\"depthSegments\""}]);
 	BoxGeometryParameters.init("", [{prop: "Width", name: "Width", embedded: false, exported: true, typ: $Float64, tag: ""}, {prop: "Height", name: "Height", embedded: false, exported: true, typ: $Float64, tag: ""}, {prop: "Depth", name: "Depth", embedded: false, exported: true, typ: $Float64, tag: ""}, {prop: "WidthSegments", name: "WidthSegments", embedded: false, exported: true, typ: $Float64, tag: ""}, {prop: "HeightSegments", name: "HeightSegments", embedded: false, exported: true, typ: $Float64, tag: ""}, {prop: "DepthSegments", name: "DepthSegments", embedded: false, exported: true, typ: $Float64, tag: ""}]);
+	AmbientLight.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}, {prop: "Position", name: "Position", embedded: false, exported: true, typ: ptrType, tag: "js:\"position\""}, {prop: "MatrixAutoUpdate", name: "MatrixAutoUpdate", embedded: false, exported: true, typ: $Bool, tag: "js:\"matrixAutoUpdate\""}]);
 	DirectionalLight.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}, {prop: "Position", name: "Position", embedded: false, exported: true, typ: ptrType, tag: "js:\"position\""}, {prop: "MatrixAutoUpdate", name: "MatrixAutoUpdate", embedded: false, exported: true, typ: $Bool, tag: "js:\"matrixAutoUpdate\""}]);
 	MaterialParameters.init("", [{prop: "Object", name: "Object", embedded: true, exported: true, typ: ptrType$7, tag: ""}, {prop: "Color", name: "Color", embedded: false, exported: true, typ: ptrType$5, tag: "js:\"color\""}, {prop: "Shading", name: "Shading", embedded: false, exported: true, typ: Shading, tag: "js:\"shading\""}, {prop: "Side", name: "Side", embedded: false, exported: true, typ: Side, tag: "js:\"side\""}, {prop: "Transparent", name: "Transparent", embedded: false, exported: true, typ: $Bool, tag: "js:\"transparent\""}, {prop: "Opacity", name: "Opacity", embedded: false, exported: true, typ: $Float64, tag: "js:\"opacity\""}, {prop: "Map", name: "Map", embedded: false, exported: true, typ: ptrType$7, tag: "js:\"map\""}]);
 	Material.init([{prop: "Clone", name: "Clone", pkg: "", typ: $funcType([], [], false)}, {prop: "Copy", name: "Copy", pkg: "", typ: $funcType([Object3D], [], false)}, {prop: "Dispose", name: "Dispose", pkg: "", typ: $funcType([], [], false)}, {prop: "OnBeforeCompile", name: "OnBeforeCompile", pkg: "", typ: $funcType([], [], false)}, {prop: "SetValues", name: "SetValues", pkg: "", typ: $funcType([MaterialParameters], [], false)}, {prop: "ToJSON", name: "ToJSON", pkg: "", typ: $funcType([$emptyInterface], [$emptyInterface], false)}, {prop: "getInternalObject", name: "getInternalObject", pkg: "github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three", typ: $funcType([], [ptrType$7], false)}]);
@@ -30465,7 +30527,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/pkg/wglrenderer"] = (function(
 	return $pkg;
 })();
 $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
-	var $pkg = {}, $init, components, wglrenderer, three, vecty, elem, event, prop, js, strconv, Page, arrayType, ptrType, ptrType$1, ptrType$2, ptrType$3, ptrType$4, sliceType, sliceType$1, sliceType$2, ptrType$5, ptrType$6, funcType, ptrType$7, ptrType$8, main;
+	var $pkg = {}, $init, components, wglrenderer, three, vecty, elem, event, prop, js, strconv, Page, arrayType, ptrType, ptrType$1, ptrType$2, ptrType$3, ptrType$4, ptrType$5, sliceType, sliceType$1, sliceType$2, ptrType$6, ptrType$7, funcType, ptrType$8, ptrType$9, main;
 	components = $packages["github.com/akosgarai/webgl-cube-editor/pkg/components"];
 	wglrenderer = $packages["github.com/akosgarai/webgl-cube-editor/pkg/wglrenderer"];
 	three = $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/divan/three"];
@@ -30475,14 +30537,15 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 	prop = $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/hexops/vecty/prop"];
 	js = $packages["github.com/gopherjs/gopherjs/js"];
 	strconv = $packages["strconv"];
-	Page = $pkg.Page = $newType(0, $kindStruct, "main.Page", true, "github.com/akosgarai/webgl-cube-editor", true, function(Core_, Title_, MeshColor_, BackgroundColor_, LightColor_, MeshWidth_, MeshHeight_, MeshDepth_, RotationSpeedY_, RotationSpeedX_, SunPosition_, scene_, camera_, renderer_, cubeMesh_, directionalLight_, canvasWidth_, canvasHeight_) {
+	Page = $pkg.Page = $newType(0, $kindStruct, "main.Page", true, "github.com/akosgarai/webgl-cube-editor", true, function(Core_, Title_, MeshColor_, BackgroundColor_, DirectionalLightColor_, AmbientLightColor_, MeshWidth_, MeshHeight_, MeshDepth_, RotationSpeedY_, RotationSpeedX_, SunPosition_, scene_, camera_, renderer_, cubeMesh_, directionalLight_, ambientLight_, canvasWidth_, canvasHeight_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.Core = new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false);
 			this.Title = "";
 			this.MeshColor = "";
 			this.BackgroundColor = "";
-			this.LightColor = "";
+			this.DirectionalLightColor = "";
+			this.AmbientLightColor = "";
 			this.MeshWidth = 0;
 			this.MeshHeight = 0;
 			this.MeshDepth = 0;
@@ -30494,6 +30557,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 			this.renderer = ptrType$1.nil;
 			this.cubeMesh = ptrType$2.nil;
 			this.directionalLight = ptrType$3.nil;
+			this.ambientLight = ptrType$4.nil;
 			this.canvasWidth = 0;
 			this.canvasHeight = 0;
 			return;
@@ -30502,7 +30566,8 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		this.Title = Title_;
 		this.MeshColor = MeshColor_;
 		this.BackgroundColor = BackgroundColor_;
-		this.LightColor = LightColor_;
+		this.DirectionalLightColor = DirectionalLightColor_;
+		this.AmbientLightColor = AmbientLightColor_;
 		this.MeshWidth = MeshWidth_;
 		this.MeshHeight = MeshHeight_;
 		this.MeshDepth = MeshDepth_;
@@ -30514,6 +30579,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		this.renderer = renderer_;
 		this.cubeMesh = cubeMesh_;
 		this.directionalLight = directionalLight_;
+		this.ambientLight = ambientLight_;
 		this.canvasWidth = canvasWidth_;
 		this.canvasHeight = canvasHeight_;
 	});
@@ -30522,19 +30588,20 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 	ptrType$1 = $ptrType(three.WebGLRenderer);
 	ptrType$2 = $ptrType(three.Mesh);
 	ptrType$3 = $ptrType(three.DirectionalLight);
-	ptrType$4 = $ptrType(three.Color);
+	ptrType$4 = $ptrType(three.AmbientLight);
+	ptrType$5 = $ptrType(three.Color);
 	sliceType = $sliceType(vecty.Applyer);
 	sliceType$1 = $sliceType($String);
 	sliceType$2 = $sliceType(vecty.MarkupOrChild);
-	ptrType$5 = $ptrType(three.Vector3);
-	ptrType$6 = $ptrType(three.Vector2);
+	ptrType$6 = $ptrType(three.Vector3);
+	ptrType$7 = $ptrType(three.Vector2);
 	funcType = $funcType([], [], false);
-	ptrType$7 = $ptrType(three.Euler);
-	ptrType$8 = $ptrType(Page);
+	ptrType$8 = $ptrType(three.Euler);
+	ptrType$9 = $ptrType(Page);
 	main = function() {
 		var page, $s, $r;
 		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; page = $f.page; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
-		page = new Page.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "Cube color editor", "#ff0000", "#53c1ff", "#ffffff", 100, 100, 100, 200, 300, $toNativeArray($kindFloat64, [500, 256, -256]), ptrType.nil, new three.PerspectiveCamera.ptr(null, new three.Vector3.ptr(null, 0, 0, 0), false, 0), ptrType$1.nil, ptrType$2.nil, ptrType$3.nil, 0, 0);
+		page = new Page.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "Cube color editor", "#ff0000", "#53c1ff", "#ffffff", "#ffffff", 100, 100, 100, 200, 300, $toNativeArray($kindFloat64, [500, 256, -256]), ptrType.nil, new three.PerspectiveCamera.ptr(null, new three.Vector3.ptr(null, 0, 0, 0), false, 0), ptrType$1.nil, ptrType$2.nil, ptrType$3.nil, ptrType$4.nil, 0, 0);
 		$r = vecty.SetTitle("Cube color editor"); /* */ $s = 1; case 1: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = vecty.AddStylesheet("assets/index.css"); /* */ $s = 2; case 2: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
 		$r = vecty.RenderBody(page); /* */ $s = 3; case 3: if($c) { $c = false; $r = $r.$blk(); } if ($r && $r.$blk !== undefined) { break s; }
@@ -30542,8 +30609,8 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		/* */ } return; } if ($f === undefined) { $f = { $blk: main }; } $f.page = page; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	Page.ptr.prototype.Render = function() {
-		var $24r, _arg, _arg$1, _arg$10, _arg$11, _arg$12, _arg$13, _arg$14, _arg$15, _arg$16, _arg$17, _arg$2, _arg$3, _arg$4, _arg$5, _arg$6, _arg$7, _arg$8, _arg$9, _r, _r$1, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, p, x, x$1, x$2, x$3, x$4, x$5, x$6, x$7, x$8, $s, $r;
-		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $24r = $f.$24r; _arg = $f._arg; _arg$1 = $f._arg$1; _arg$10 = $f._arg$10; _arg$11 = $f._arg$11; _arg$12 = $f._arg$12; _arg$13 = $f._arg$13; _arg$14 = $f._arg$14; _arg$15 = $f._arg$15; _arg$16 = $f._arg$16; _arg$17 = $f._arg$17; _arg$2 = $f._arg$2; _arg$3 = $f._arg$3; _arg$4 = $f._arg$4; _arg$5 = $f._arg$5; _arg$6 = $f._arg$6; _arg$7 = $f._arg$7; _arg$8 = $f._arg$8; _arg$9 = $f._arg$9; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; _r$6 = $f._r$6; _r$7 = $f._r$7; _r$8 = $f._r$8; _r$9 = $f._r$9; p = $f.p; x = $f.x; x$1 = $f.x$1; x$2 = $f.x$2; x$3 = $f.x$3; x$4 = $f.x$4; x$5 = $f.x$5; x$6 = $f.x$6; x$7 = $f.x$7; x$8 = $f.x$8; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
+		var $24r, _arg, _arg$1, _arg$10, _arg$11, _arg$12, _arg$13, _arg$14, _arg$15, _arg$16, _arg$17, _arg$18, _arg$19, _arg$2, _arg$20, _arg$21, _arg$22, _arg$23, _arg$24, _arg$3, _arg$4, _arg$5, _arg$6, _arg$7, _arg$8, _arg$9, _r, _r$1, _r$10, _r$11, _r$12, _r$13, _r$2, _r$3, _r$4, _r$5, _r$6, _r$7, _r$8, _r$9, p, x, x$1, x$10, x$2, x$3, x$4, x$5, x$6, x$7, x$8, x$9, $s, $r;
+		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $24r = $f.$24r; _arg = $f._arg; _arg$1 = $f._arg$1; _arg$10 = $f._arg$10; _arg$11 = $f._arg$11; _arg$12 = $f._arg$12; _arg$13 = $f._arg$13; _arg$14 = $f._arg$14; _arg$15 = $f._arg$15; _arg$16 = $f._arg$16; _arg$17 = $f._arg$17; _arg$18 = $f._arg$18; _arg$19 = $f._arg$19; _arg$2 = $f._arg$2; _arg$20 = $f._arg$20; _arg$21 = $f._arg$21; _arg$22 = $f._arg$22; _arg$23 = $f._arg$23; _arg$24 = $f._arg$24; _arg$3 = $f._arg$3; _arg$4 = $f._arg$4; _arg$5 = $f._arg$5; _arg$6 = $f._arg$6; _arg$7 = $f._arg$7; _arg$8 = $f._arg$8; _arg$9 = $f._arg$9; _r = $f._r; _r$1 = $f._r$1; _r$10 = $f._r$10; _r$11 = $f._r$11; _r$12 = $f._r$12; _r$13 = $f._r$13; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; _r$6 = $f._r$6; _r$7 = $f._r$7; _r$8 = $f._r$8; _r$9 = $f._r$9; p = $f.p; x = $f.x; x$1 = $f.x$1; x$10 = $f.x$10; x$2 = $f.x$2; x$3 = $f.x$3; x$4 = $f.x$4; x$5 = $f.x$5; x$6 = $f.x$6; x$7 = $f.x$7; x$8 = $f.x$8; x$9 = $f.x$9; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
 		p = [p];
 		p[0] = this;
 		_r = vecty.Markup(new sliceType([event.Change((function(p) { return function(e) {
@@ -30554,7 +30621,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 				if (_1 === ("cube-color")) {
 					p[0].MeshColor = $clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String();
 					params = three.NewMaterialParameters();
-					params.Object.color = $externalize(three.NewColor(p[0].MeshColor), ptrType$4);
+					params.Object.color = $externalize(three.NewColor(p[0].MeshColor), ptrType$5);
 					p[0].cubeMesh.Object.material = $externalize(three.NewMeshLambertMaterial(params), three.Material);
 					break;
 				} else if (_1 === ("cube-width")) {
@@ -30574,11 +30641,15 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 					break;
 				} else if (_1 === ("background-color")) {
 					p[0].BackgroundColor = $clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String();
-					p[0].scene.Object.background = $externalize(three.NewColor(p[0].BackgroundColor), ptrType$4);
+					p[0].scene.Object.background = $externalize(three.NewColor(p[0].BackgroundColor), ptrType$5);
 					break;
 				} else if (_1 === ("directional-light-color")) {
-					p[0].LightColor = $clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String();
-					p[0].directionalLight.Object.color = $externalize(three.NewColor(p[0].LightColor), ptrType$4);
+					p[0].DirectionalLightColor = $clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String();
+					p[0].directionalLight.Object.color = $externalize(three.NewColor(p[0].DirectionalLightColor), ptrType$5);
+					break;
+				} else if (_1 === ("ambient-light-color")) {
+					p[0].AmbientLightColor = $clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String();
+					p[0].ambientLight.Object.color = $externalize(three.NewColor(p[0].AmbientLightColor), ptrType$5);
 					break;
 				} else if (_1 === ("rotation-speed-y")) {
 					_tuple$3 = strconv.Atoi($clone($clone(e.Target, $packages["syscall/js"].Value).Get("value"), $packages["syscall/js"].Value).String());
@@ -30607,23 +30678,34 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		_r$2 = elem.Div(new sliceType$2([(x$5 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("cube-rotation-container"), vecty.Style("display", "none")])), new x$5.constructor.elem(x$5)), new components.RangeInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "rotation-speed-y", p[0].RotationSpeedY, -1000, 1000, 10, "Y Rotation:"), new components.RangeInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "rotation-speed-x", p[0].RotationSpeedX, -1000, 1000, 10, "X Rotation:")])); /* */ $s = 3; case 3: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 		_arg$9 = _r$2;
 		_arg$10 = new components.DisplayButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "lightsources-lock", "Lightsources", "sub-menu", "#lightsources-container", "open_in_full", "close_fullscreen");
-		_r$3 = elem.Div(new sliceType$2([(x$6 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("lightsources-container"), vecty.Style("display", "none")])), new x$6.constructor.elem(x$6)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "directional-light-color", p[0].LightColor, "Light:")])); /* */ $s = 4; case 4: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
-		_arg$11 = _r$3;
-		_arg$12 = new components.DisplayButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "scene-lock", "Scene", "sub-menu", "#scene-container", "open_in_full", "close_fullscreen");
-		_r$4 = elem.Div(new sliceType$2([(x$7 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("scene-container"), vecty.Style("display", "none")])), new x$7.constructor.elem(x$7)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "background-color", p[0].BackgroundColor, "Background:")])); /* */ $s = 5; case 5: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
-		_arg$13 = _r$4;
-		_r$5 = elem.Div(new sliceType$2([_arg$5, _arg$6, _arg$7, _arg$8, _arg$9, _arg$10, _arg$11, _arg$12, _arg$13])); /* */ $s = 6; case 6: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
-		_arg$14 = _r$5;
-		_r$6 = elem.Div(new sliceType$2([_arg$2, _arg$3, _arg$4, _arg$14])); /* */ $s = 7; case 7: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
-		_arg$15 = _r$6;
-		_r$7 = elem.Div(new sliceType$2([(x$8 = vecty.Markup(new sliceType([prop.ID("canvas-container"), vecty.Style("width", "90%"), vecty.Style("margin-left", "auto"), vecty.Style("margin-right", "auto")])), new x$8.constructor.elem(x$8)), wglrenderer.WebGLRenderer(new wglrenderer.WebGLOptions.ptr($methodVal(p[0], "init"), $methodVal(p[0], "shutdown")), new sliceType$2([]))])); /* */ $s = 8; case 8: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
-		_arg$16 = _r$7;
-		_r$8 = elem.Div(new sliceType$2([_arg$1, _arg$15, _arg$16])); /* */ $s = 9; case 9: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
-		_arg$17 = _r$8;
-		_r$9 = elem.Body(new sliceType$2([_arg, _arg$17])); /* */ $s = 10; case 10: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
-		$24r = _r$9;
-		$s = 11; case 11: return $24r;
-		/* */ } return; } if ($f === undefined) { $f = { $blk: Page.ptr.prototype.Render }; } $f.$24r = $24r; $f._arg = _arg; $f._arg$1 = _arg$1; $f._arg$10 = _arg$10; $f._arg$11 = _arg$11; $f._arg$12 = _arg$12; $f._arg$13 = _arg$13; $f._arg$14 = _arg$14; $f._arg$15 = _arg$15; $f._arg$16 = _arg$16; $f._arg$17 = _arg$17; $f._arg$2 = _arg$2; $f._arg$3 = _arg$3; $f._arg$4 = _arg$4; $f._arg$5 = _arg$5; $f._arg$6 = _arg$6; $f._arg$7 = _arg$7; $f._arg$8 = _arg$8; $f._arg$9 = _arg$9; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._r$6 = _r$6; $f._r$7 = _r$7; $f._r$8 = _r$8; $f._r$9 = _r$9; $f.p = p; $f.x = x; $f.x$1 = x$1; $f.x$2 = x$2; $f.x$3 = x$3; $f.x$4 = x$4; $f.x$5 = x$5; $f.x$6 = x$6; $f.x$7 = x$7; $f.x$8 = x$8; $f.$s = $s; $f.$r = $r; return $f;
+		_arg$11 = (x$6 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("lightsources-container"), vecty.Style("display", "none")])), new x$6.constructor.elem(x$6));
+		_arg$12 = new components.DisplayButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "ambient-lightsources-lock", "Ambient Lightsource", "sub-menu-2", "#ambient-lightsources-container", "open_in_full", "close_fullscreen");
+		_r$3 = elem.Div(new sliceType$2([(x$7 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("ambient-lightsources-container"), vecty.Style("display", "none")])), new x$7.constructor.elem(x$7)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "ambient-light-color", p[0].AmbientLightColor, "Light:")])); /* */ $s = 4; case 4: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
+		_arg$13 = _r$3;
+		_r$4 = elem.Div(new sliceType$2([_arg$12, _arg$13])); /* */ $s = 5; case 5: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
+		_arg$14 = _r$4;
+		_arg$15 = new components.DisplayButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "directional-lightsources-lock", "Directional Lightsources", "sub-menu-2", "#directional-lightsources-container", "open_in_full", "close_fullscreen");
+		_r$5 = elem.Div(new sliceType$2([(x$8 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("directional-lightsources-container"), vecty.Style("display", "none")])), new x$8.constructor.elem(x$8)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "directional-light-color", p[0].DirectionalLightColor, "Light:")])); /* */ $s = 6; case 6: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
+		_arg$16 = _r$5;
+		_r$6 = elem.Div(new sliceType$2([_arg$15, _arg$16])); /* */ $s = 7; case 7: if($c) { $c = false; _r$6 = _r$6.$blk(); } if (_r$6 && _r$6.$blk !== undefined) { break s; }
+		_arg$17 = _r$6;
+		_r$7 = elem.Div(new sliceType$2([_arg$11, _arg$14, _arg$17])); /* */ $s = 8; case 8: if($c) { $c = false; _r$7 = _r$7.$blk(); } if (_r$7 && _r$7.$blk !== undefined) { break s; }
+		_arg$18 = _r$7;
+		_arg$19 = new components.DisplayButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "scene-lock", "Scene", "sub-menu", "#scene-container", "open_in_full", "close_fullscreen");
+		_r$8 = elem.Div(new sliceType$2([(x$9 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("scene-container"), vecty.Style("display", "none")])), new x$9.constructor.elem(x$9)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "background-color", p[0].BackgroundColor, "Background:")])); /* */ $s = 9; case 9: if($c) { $c = false; _r$8 = _r$8.$blk(); } if (_r$8 && _r$8.$blk !== undefined) { break s; }
+		_arg$20 = _r$8;
+		_r$9 = elem.Div(new sliceType$2([_arg$5, _arg$6, _arg$7, _arg$8, _arg$9, _arg$10, _arg$18, _arg$19, _arg$20])); /* */ $s = 10; case 10: if($c) { $c = false; _r$9 = _r$9.$blk(); } if (_r$9 && _r$9.$blk !== undefined) { break s; }
+		_arg$21 = _r$9;
+		_r$10 = elem.Div(new sliceType$2([_arg$2, _arg$3, _arg$4, _arg$21])); /* */ $s = 11; case 11: if($c) { $c = false; _r$10 = _r$10.$blk(); } if (_r$10 && _r$10.$blk !== undefined) { break s; }
+		_arg$22 = _r$10;
+		_r$11 = elem.Div(new sliceType$2([(x$10 = vecty.Markup(new sliceType([prop.ID("canvas-container"), vecty.Style("width", "90%"), vecty.Style("margin-left", "auto"), vecty.Style("margin-right", "auto")])), new x$10.constructor.elem(x$10)), wglrenderer.WebGLRenderer(new wglrenderer.WebGLOptions.ptr($methodVal(p[0], "init"), $methodVal(p[0], "shutdown")), new sliceType$2([]))])); /* */ $s = 12; case 12: if($c) { $c = false; _r$11 = _r$11.$blk(); } if (_r$11 && _r$11.$blk !== undefined) { break s; }
+		_arg$23 = _r$11;
+		_r$12 = elem.Div(new sliceType$2([_arg$1, _arg$22, _arg$23])); /* */ $s = 13; case 13: if($c) { $c = false; _r$12 = _r$12.$blk(); } if (_r$12 && _r$12.$blk !== undefined) { break s; }
+		_arg$24 = _r$12;
+		_r$13 = elem.Body(new sliceType$2([_arg, _arg$24])); /* */ $s = 14; case 14: if($c) { $c = false; _r$13 = _r$13.$blk(); } if (_r$13 && _r$13.$blk !== undefined) { break s; }
+		$24r = _r$13;
+		$s = 15; case 15: return $24r;
+		/* */ } return; } if ($f === undefined) { $f = { $blk: Page.ptr.prototype.Render }; } $f.$24r = $24r; $f._arg = _arg; $f._arg$1 = _arg$1; $f._arg$10 = _arg$10; $f._arg$11 = _arg$11; $f._arg$12 = _arg$12; $f._arg$13 = _arg$13; $f._arg$14 = _arg$14; $f._arg$15 = _arg$15; $f._arg$16 = _arg$16; $f._arg$17 = _arg$17; $f._arg$18 = _arg$18; $f._arg$19 = _arg$19; $f._arg$2 = _arg$2; $f._arg$20 = _arg$20; $f._arg$21 = _arg$21; $f._arg$22 = _arg$22; $f._arg$23 = _arg$23; $f._arg$24 = _arg$24; $f._arg$3 = _arg$3; $f._arg$4 = _arg$4; $f._arg$5 = _arg$5; $f._arg$6 = _arg$6; $f._arg$7 = _arg$7; $f._arg$8 = _arg$8; $f._arg$9 = _arg$9; $f._r = _r; $f._r$1 = _r$1; $f._r$10 = _r$10; $f._r$11 = _r$11; $f._r$12 = _r$12; $f._r$13 = _r$13; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f._r$6 = _r$6; $f._r$7 = _r$7; $f._r$8 = _r$8; $f._r$9 = _r$9; $f.p = p; $f.x = x; $f.x$1 = x$1; $f.x$10 = x$10; $f.x$2 = x$2; $f.x$3 = x$3; $f.x$4 = x$4; $f.x$5 = x$5; $f.x$6 = x$6; $f.x$7 = x$7; $f.x$8 = x$8; $f.x$9 = x$9; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	Page.prototype.Render = function() { return this.$val.Render(); };
 	Page.ptr.prototype.init = function(renderer) {
@@ -30640,8 +30722,8 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		$clone(p.renderer, three.WebGLRenderer).SetPixelRatio(devicePixelRatio);
 		$clone(p.renderer, three.WebGLRenderer).SetSize(p.canvasWidth, p.canvasHeight, true);
 		p.renderer.Object.shadowMap.enabled = $externalize(true, $Bool);
-		p.directionalLight = three.NewDirectionalLight(three.NewColor(p.LightColor), 1);
-		$clone($internalize(p.directionalLight.Object.position, ptrType$5), three.Vector3).Set(p.SunPosition[0], p.SunPosition[1], p.SunPosition[2]);
+		p.directionalLight = three.NewDirectionalLight(three.NewColor(p.DirectionalLightColor), 1);
+		$clone($internalize(p.directionalLight.Object.position, ptrType$6), three.Vector3).Set(p.SunPosition[0], p.SunPosition[1], p.SunPosition[2]);
 		p.directionalLight.Object.castShadow = $externalize(true, $Bool);
 		p.directionalLight.Object.shadow.mapSize.width = 1024;
 		p.directionalLight.Object.shadow.mapSize.height = 1024;
@@ -30651,15 +30733,17 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		p.directionalLight.Object.shadow.camera.bottom = -300;
 		p.directionalLight.Object.shadow.camera.far = 1000;
 		p.scene.Add(p.directionalLight);
+		p.ambientLight = three.NewAmbientLight(three.NewColor(p.AmbientLightColor), 1);
+		p.scene.Add(p.ambientLight);
 		params = three.NewMaterialParameters();
-		params.Object.color = $externalize(three.NewColor(p.MeshColor), ptrType$4);
+		params.Object.color = $externalize(three.NewColor(p.MeshColor), ptrType$5);
 		mat = three.NewMeshLambertMaterial(params);
 		geom = $clone(three.NewBoxGeometry(new three.BoxGeometryParameters.ptr((p.MeshWidth), (p.MeshHeight), (p.MeshDepth), 0, 0, 0)), three.BoxGeometry);
 		_r = three.NewMesh(new geom.constructor.elem(geom), mat); /* */ $s = 1; case 1: if($c) { $c = false; _r = _r.$blk(); } if (_r && _r.$blk !== undefined) { break s; }
 		p.cubeMesh = _r;
 		p.cubeMesh.Object.castShadow = $externalize(true, $Bool);
 		p.scene.Add(p.cubeMesh);
-		p.scene.Object.background = $externalize(three.NewColor(p.BackgroundColor), ptrType$4);
+		p.scene.Object.background = $externalize(three.NewColor(p.BackgroundColor), ptrType$5);
 		textureLoader = three.NewTextureLoader();
 		textureLoader.Object.crossOrigin = $externalize("anonymous", $String);
 		groundTexture = textureLoader.Load("https://raw.githubusercontent.com/akosgarai/webgl-cube-editor/main/assets/grass.jpg", (function(text) {
@@ -30667,7 +30751,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 			text.wrapS = 1000;
 			text.wrapT = 1000;
 			text.anisotropy = 16;
-			text.repeat = $externalize(three.NewVector2(25, 25), ptrType$6);
+			text.repeat = $externalize(three.NewVector2(25, 25), ptrType$7);
 		}));
 		materialParams = three.NewMaterialParameters();
 		materialParams.Object.map = groundTexture;
@@ -30675,7 +30759,7 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		groundGeom = $clone(three.NewBoxGeometry(new three.BoxGeometryParameters.ptr(20000, 0, 20000, 0, 0, 0)), three.BoxGeometry);
 		_r$1 = three.NewMesh(new groundGeom.constructor.elem(groundGeom), groundMaterial); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 		groundMesh = _r$1;
-		$clone($internalize(groundMesh.Object.position, ptrType$5), three.Vector3).Set(0, -100, 0);
+		$clone($internalize(groundMesh.Object.position, ptrType$6), three.Vector3).Set(0, -100, 0);
 		groundMesh.Object.receiveShadow = $externalize(true, $Bool);
 		p.scene.Add(groundMesh);
 		p.animate();
@@ -30709,13 +30793,13 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 			p.canvasWidth = windowWidth;
 		}
 		$global.requestAnimationFrame($externalize($methodVal(p, "animate"), funcType));
-		$internalize(p.cubeMesh.Object.rotation, ptrType$7).Object.y = $parseFloat($internalize(p.cubeMesh.Object.rotation, ptrType$7).Object.y) + 0.0001 * (p.RotationSpeedY);
-		$internalize(p.cubeMesh.Object.rotation, ptrType$7).Object.x = $parseFloat($internalize(p.cubeMesh.Object.rotation, ptrType$7).Object.x) + 0.0001 * (p.RotationSpeedX);
+		$internalize(p.cubeMesh.Object.rotation, ptrType$8).Object.y = $parseFloat($internalize(p.cubeMesh.Object.rotation, ptrType$8).Object.y) + 0.0001 * (p.RotationSpeedY);
+		$internalize(p.cubeMesh.Object.rotation, ptrType$8).Object.x = $parseFloat($internalize(p.cubeMesh.Object.rotation, ptrType$8).Object.x) + 0.0001 * (p.RotationSpeedX);
 		$clone(p.renderer, three.WebGLRenderer).Render(p.scene, $clone(p.camera, three.PerspectiveCamera));
 	};
 	Page.prototype.animate = function() { return this.$val.animate(); };
-	ptrType$8.methods = [{prop: "Render", name: "Render", pkg: "", typ: $funcType([], [vecty.ComponentOrHTML], false)}, {prop: "init", name: "init", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "shutdown", name: "shutdown", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "animate", name: "animate", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([], [], false)}];
-	Page.init("github.com/akosgarai/webgl-cube-editor", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "Title", name: "Title", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "MeshColor", name: "MeshColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "BackgroundColor", name: "BackgroundColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "LightColor", name: "LightColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "MeshWidth", name: "MeshWidth", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "MeshHeight", name: "MeshHeight", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "MeshDepth", name: "MeshDepth", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "RotationSpeedY", name: "RotationSpeedY", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "RotationSpeedX", name: "RotationSpeedX", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "SunPosition", name: "SunPosition", embedded: false, exported: true, typ: arrayType, tag: ""}, {prop: "scene", name: "scene", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "camera", name: "camera", embedded: false, exported: false, typ: three.PerspectiveCamera, tag: ""}, {prop: "renderer", name: "renderer", embedded: false, exported: false, typ: ptrType$1, tag: ""}, {prop: "cubeMesh", name: "cubeMesh", embedded: false, exported: false, typ: ptrType$2, tag: ""}, {prop: "directionalLight", name: "directionalLight", embedded: false, exported: false, typ: ptrType$3, tag: ""}, {prop: "canvasWidth", name: "canvasWidth", embedded: false, exported: false, typ: $Float64, tag: ""}, {prop: "canvasHeight", name: "canvasHeight", embedded: false, exported: false, typ: $Float64, tag: ""}]);
+	ptrType$9.methods = [{prop: "Render", name: "Render", pkg: "", typ: $funcType([], [vecty.ComponentOrHTML], false)}, {prop: "init", name: "init", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "shutdown", name: "shutdown", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([ptrType$1], [], false)}, {prop: "animate", name: "animate", pkg: "github.com/akosgarai/webgl-cube-editor", typ: $funcType([], [], false)}];
+	Page.init("github.com/akosgarai/webgl-cube-editor", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "Title", name: "Title", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "MeshColor", name: "MeshColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "BackgroundColor", name: "BackgroundColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "DirectionalLightColor", name: "DirectionalLightColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "AmbientLightColor", name: "AmbientLightColor", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "MeshWidth", name: "MeshWidth", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "MeshHeight", name: "MeshHeight", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "MeshDepth", name: "MeshDepth", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "RotationSpeedY", name: "RotationSpeedY", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "RotationSpeedX", name: "RotationSpeedX", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "SunPosition", name: "SunPosition", embedded: false, exported: true, typ: arrayType, tag: ""}, {prop: "scene", name: "scene", embedded: false, exported: false, typ: ptrType, tag: ""}, {prop: "camera", name: "camera", embedded: false, exported: false, typ: three.PerspectiveCamera, tag: ""}, {prop: "renderer", name: "renderer", embedded: false, exported: false, typ: ptrType$1, tag: ""}, {prop: "cubeMesh", name: "cubeMesh", embedded: false, exported: false, typ: ptrType$2, tag: ""}, {prop: "directionalLight", name: "directionalLight", embedded: false, exported: false, typ: ptrType$3, tag: ""}, {prop: "ambientLight", name: "ambientLight", embedded: false, exported: false, typ: ptrType$4, tag: ""}, {prop: "canvasWidth", name: "canvasWidth", embedded: false, exported: false, typ: $Float64, tag: ""}, {prop: "canvasHeight", name: "canvasHeight", embedded: false, exported: false, typ: $Float64, tag: ""}]);
 	$init = function() {
 		$pkg.$init = function() {};
 		/* */ var $f, $c = false, $s = 0, $r; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:

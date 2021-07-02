@@ -20,6 +20,7 @@ const (
 	CubeDepthId             = "cube-dept"
 	BackgroundColorId       = "background-color"
 	DirectionalLightColorId = "directional-light-color"
+	AmbientLightColorId     = "ambient-light-color"
 	RotationSpeedYId        = "rotation-speed-y"
 	RotationSpeedXId        = "rotation-speed-x"
 )
@@ -27,21 +28,23 @@ const (
 // Page is a top-level app component.
 type Page struct {
 	vecty.Core
-	Title            string
-	MeshColor        string
-	BackgroundColor  string
-	LightColor       string
-	MeshWidth        int
-	MeshHeight       int
-	MeshDepth        int
-	RotationSpeedY   int
-	RotationSpeedX   int
-	SunPosition      [3]float64
-	scene            *three.Scene
-	camera           three.PerspectiveCamera
-	renderer         *three.WebGLRenderer
-	cubeMesh         *three.Mesh
-	directionalLight *three.DirectionalLight
+	Title                 string
+	MeshColor             string
+	BackgroundColor       string
+	DirectionalLightColor string
+	AmbientLightColor     string
+	MeshWidth             int
+	MeshHeight            int
+	MeshDepth             int
+	RotationSpeedY        int
+	RotationSpeedX        int
+	SunPosition           [3]float64
+	scene                 *three.Scene
+	camera                three.PerspectiveCamera
+	renderer              *three.WebGLRenderer
+	cubeMesh              *three.Mesh
+	directionalLight      *three.DirectionalLight
+	ambientLight          *three.AmbientLight
 
 	canvasWidth  float64
 	canvasHeight float64
@@ -78,8 +81,12 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 					p.scene.Background = three.NewColor(p.BackgroundColor)
 					break
 				case DirectionalLightColorId:
-					p.LightColor = e.Target.Get("value").String()
-					p.directionalLight.Set("color", three.NewColor(p.LightColor))
+					p.DirectionalLightColor = e.Target.Get("value").String()
+					p.directionalLight.Set("color", three.NewColor(p.DirectionalLightColor))
+					break
+				case AmbientLightColorId:
+					p.AmbientLightColor = e.Target.Get("value").String()
+					p.ambientLight.Set("color", three.NewColor(p.AmbientLightColor))
 					break
 				case RotationSpeedYId:
 					p.RotationSpeedY, _ = strconv.Atoi(e.Target.Get("value").String())
@@ -170,7 +177,42 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 							prop.ID("lightsources-container"),
 							vecty.Style("display", "none"),
 						),
-						&components.ColorPicker{Id: DirectionalLightColorId, Value: p.LightColor, Label: "Light:"},
+						elem.Div(
+							&components.DisplayButton{
+								Id:                 "ambient-lightsources-lock",
+								Label:              "Ambient Lightsource",
+								TabulationClass:    "sub-menu-2",
+								TargetFormSelector: "#ambient-lightsources-container",
+								OffIcon:            "open_in_full",
+								OnIcon:             "close_fullscreen",
+							},
+							elem.Div(
+								vecty.Markup(
+									vecty.Class("row"),
+									prop.ID("ambient-lightsources-container"),
+									vecty.Style("display", "none"),
+								),
+								&components.ColorPicker{Id: AmbientLightColorId, Value: p.AmbientLightColor, Label: "Light:"},
+							),
+						),
+						elem.Div(
+							&components.DisplayButton{
+								Id:                 "directional-lightsources-lock",
+								Label:              "Directional Lightsources",
+								TabulationClass:    "sub-menu-2",
+								TargetFormSelector: "#directional-lightsources-container",
+								OffIcon:            "open_in_full",
+								OnIcon:             "close_fullscreen",
+							},
+							elem.Div(
+								vecty.Markup(
+									vecty.Class("row"),
+									prop.ID("directional-lightsources-container"),
+									vecty.Style("display", "none"),
+								),
+								&components.ColorPicker{Id: DirectionalLightColorId, Value: p.DirectionalLightColor, Label: "Light:"},
+							),
+						),
 					),
 					&components.DisplayButton{
 						Id:                 "scene-lock",
@@ -222,7 +264,7 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 	p.renderer.Get("shadowMap").Set("enabled", true)
 
 	// lights
-	p.directionalLight = three.NewDirectionalLight(three.NewColor(p.LightColor), 1)
+	p.directionalLight = three.NewDirectionalLight(three.NewColor(p.DirectionalLightColor), 1)
 	p.directionalLight.Position.Set(p.SunPosition[0], p.SunPosition[1], p.SunPosition[2])
 	p.directionalLight.Set("castShadow", true)
 	p.directionalLight.Get("shadow").Get("mapSize").Set("width", 1024)
@@ -233,6 +275,9 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 	p.directionalLight.Get("shadow").Get("camera").Set("bottom", -300)
 	p.directionalLight.Get("shadow").Get("camera").Set("far", 1000)
 	p.scene.Add(p.directionalLight)
+
+	p.ambientLight = three.NewAmbientLight(three.NewColor(p.AmbientLightColor), 1)
+	p.scene.Add(p.ambientLight)
 
 	// material
 	params := three.NewMaterialParameters()
