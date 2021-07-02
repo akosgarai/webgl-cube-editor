@@ -183,42 +183,38 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 							prop.ID("lightsources-container"),
 							vecty.Style("display", "none"),
 						),
+						&components.DisplayButton{
+							Id:                 "ambient-lightsources-lock",
+							Label:              "Ambient Lightsource",
+							TabulationClass:    "sub-menu-2",
+							TargetFormSelector: "#ambient-lightsources-container",
+							OffIcon:            "open_in_full",
+							OnIcon:             "close_fullscreen",
+						},
 						elem.Div(
-							&components.DisplayButton{
-								Id:                 "ambient-lightsources-lock",
-								Label:              "Ambient Lightsource",
-								TabulationClass:    "sub-menu-2",
-								TargetFormSelector: "#ambient-lightsources-container",
-								OffIcon:            "open_in_full",
-								OnIcon:             "close_fullscreen",
-							},
-							elem.Div(
-								vecty.Markup(
-									vecty.Class("row"),
-									prop.ID("ambient-lightsources-container"),
-									vecty.Style("display", "none"),
-								),
-								&components.ColorPicker{Id: AmbientLightColorId, Value: p.AmbientLightColor, Label: "Light color:"},
-								&components.FloatRangeInput{Id: AmbientLightIntensityId, Value: p.AmbientLightIntensity, Label: "Intensity:", MinValue: 0, MaxValue: 1, StepValue: 0.01},
+							vecty.Markup(
+								vecty.Class("row"),
+								prop.ID("ambient-lightsources-container"),
+								vecty.Style("display", "none"),
 							),
+							&components.ColorPicker{Id: AmbientLightColorId, Value: p.AmbientLightColor, Label: "Light color:"},
+							&components.FloatRangeInput{Id: AmbientLightIntensityId, Value: p.AmbientLightIntensity, Label: "Intensity:", MinValue: 0, MaxValue: 1, StepValue: 0.01},
 						),
+						&components.DisplayButton{
+							Id:                 "directional-lightsources-lock",
+							Label:              "Directional Lightsources",
+							TabulationClass:    "sub-menu-2",
+							TargetFormSelector: "#directional-lightsources-container",
+							OffIcon:            "open_in_full",
+							OnIcon:             "close_fullscreen",
+						},
 						elem.Div(
-							&components.DisplayButton{
-								Id:                 "directional-lightsources-lock",
-								Label:              "Directional Lightsources",
-								TabulationClass:    "sub-menu-2",
-								TargetFormSelector: "#directional-lightsources-container",
-								OffIcon:            "open_in_full",
-								OnIcon:             "close_fullscreen",
-							},
-							elem.Div(
-								vecty.Markup(
-									vecty.Class("row"),
-									prop.ID("directional-lightsources-container"),
-									vecty.Style("display", "none"),
-								),
-								&components.ColorPicker{Id: DirectionalLightColorId, Value: p.DirectionalLightColor, Label: "Light:"},
+							vecty.Markup(
+								vecty.Class("row"),
+								prop.ID("directional-lightsources-container"),
+								vecty.Style("display", "none"),
 							),
+							&components.ColorPicker{Id: DirectionalLightColorId, Value: p.DirectionalLightColor, Label: "Light:"},
 						),
 					),
 					&components.DisplayButton{
