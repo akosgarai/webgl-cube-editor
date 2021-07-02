@@ -8,8 +8,8 @@ import (
 	"github.com/hexops/vecty/prop"
 )
 
-// DispalButton is a general app component.
-type DispalButton struct {
+// DisplayButton is a general app component.
+type DisplayButton struct {
 	vecty.Core
 	Id                 string
 	Label              string
@@ -19,8 +19,8 @@ type DispalButton struct {
 	OnIcon             string
 }
 
-// Render implements vecty.Component for DispalButton.
-func (i *DispalButton) Render() vecty.ComponentOrHTML {
+// Render implements vecty.Component for DisplayButton.
+func (i *DisplayButton) Render() vecty.ComponentOrHTML {
 	return elem.Div(
 		vecty.Markup(
 			vecty.Class("row", i.TabulationClass),

@@ -107,7 +107,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 					prop.ID("form-container"),
 				),
 				&components.Heading{Text: p.Title},
-				&components.DispalButton{
+				&components.DisplayButton{
 					Id:                 "settings-lock",
 					Label:              "Settings",
 					TabulationClass:    "main-menu",
@@ -120,7 +120,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 						prop.ID("form-items-container"),
 						vecty.Style("display", "none"),
 					),
-					&components.DispalButton{
+					&components.DisplayButton{
 						Id:                 "cube-display-lock",
 						Label:              "Cube Display",
 						TabulationClass:    "sub-menu",
@@ -139,7 +139,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 						&components.NumericInput{Id: CubeHeightId, Value: p.MeshHeight, Label: "Cube Height:"},
 						&components.NumericInput{Id: CubeDepthId, Value: p.MeshDepth, Label: "Cube Depth:"},
 					),
-					&components.DispalButton{
+					&components.DisplayButton{
 						Id:                 "cube-rotation-lock",
 						Label:              "Cube Rotation",
 						TabulationClass:    "sub-menu",
@@ -156,7 +156,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 						&components.RangeInput{Id: RotationSpeedYId, Value: p.RotationSpeedY, Label: "Y Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
 						&components.RangeInput{Id: RotationSpeedXId, Value: p.RotationSpeedX, Label: "X Rotation:", MinValue: -1000, MaxValue: 1000, StepValue: 10},
 					),
-					&components.DispalButton{
+					&components.DisplayButton{
 						Id:                 "lightsources-lock",
 						Label:              "Lightsources",
 						TabulationClass:    "sub-menu",
@@ -172,7 +172,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 						),
 						&components.ColorPicker{Id: DirectionalLightColorId, Value: p.LightColor, Label: "Light:"},
 					),
-					&components.DispalButton{
+					&components.DisplayButton{
 						Id:                 "scene-lock",
 						Label:              "Scene",
 						TabulationClass:    "sub-menu",

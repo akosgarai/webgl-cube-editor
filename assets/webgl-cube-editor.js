@@ -15590,7 +15590,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/hexops/vecty
 	return $pkg;
 })();
 $packages["github.com/akosgarai/webgl-cube-editor/pkg/components"] = (function() {
-	var $pkg = {}, $init, vecty, elem, event, prop, js, strconv, ColorPicker, DispalButton, Heading, Label, NumericInput, RangeInput, sliceType, sliceType$1, sliceType$2, ptrType, ptrType$1, ptrType$2, ptrType$3, ptrType$4, ptrType$5;
+	var $pkg = {}, $init, vecty, elem, event, prop, js, strconv, ColorPicker, DisplayButton, Heading, Label, NumericInput, RangeInput, sliceType, sliceType$1, sliceType$2, ptrType, ptrType$1, ptrType$2, ptrType$3, ptrType$4, ptrType$5;
 	vecty = $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/hexops/vecty"];
 	elem = $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/hexops/vecty/elem"];
 	event = $packages["github.com/akosgarai/webgl-cube-editor/vendor/github.com/hexops/vecty/event"];
@@ -15611,7 +15611,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/pkg/components"] = (function()
 		this.Value = Value_;
 		this.Label = Label_;
 	});
-	DispalButton = $pkg.DispalButton = $newType(0, $kindStruct, "components.DispalButton", true, "github.com/akosgarai/webgl-cube-editor/pkg/components", true, function(Core_, Id_, Label_, TabulationClass_, TargetFormSelector_, OffIcon_, OnIcon_) {
+	DisplayButton = $pkg.DisplayButton = $newType(0, $kindStruct, "components.DisplayButton", true, "github.com/akosgarai/webgl-cube-editor/pkg/components", true, function(Core_, Id_, Label_, TabulationClass_, TargetFormSelector_, OffIcon_, OnIcon_) {
 		this.$val = this;
 		if (arguments.length === 0) {
 			this.Core = new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false);
@@ -15691,7 +15691,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/pkg/components"] = (function()
 	sliceType$1 = $sliceType(vecty.Applyer);
 	sliceType$2 = $sliceType(vecty.MarkupOrChild);
 	ptrType = $ptrType(ColorPicker);
-	ptrType$1 = $ptrType(DispalButton);
+	ptrType$1 = $ptrType(DisplayButton);
 	ptrType$2 = $ptrType(Heading);
 	ptrType$3 = $ptrType(Label);
 	ptrType$4 = $ptrType(NumericInput);
@@ -15716,7 +15716,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/pkg/components"] = (function()
 		/* */ } return; } if ($f === undefined) { $f = { $blk: ColorPicker.ptr.prototype.Render }; } $f.$24r = $24r; $f._arg = _arg; $f._arg$1 = _arg$1; $f._arg$2 = _arg$2; $f._arg$3 = _arg$3; $f._arg$4 = _arg$4; $f._arg$5 = _arg$5; $f._arg$6 = _arg$6; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f.c = c; $f.x = x; $f.x$1 = x$1; $f.x$2 = x$2; $f.x$3 = x$3; $f.$s = $s; $f.$r = $r; return $f;
 	};
 	ColorPicker.prototype.Render = function() { return this.$val.Render(); };
-	DispalButton.ptr.prototype.Render = function() {
+	DisplayButton.ptr.prototype.Render = function() {
 		var $24r, _arg, _arg$1, _arg$2, _arg$3, _arg$4, _arg$5, _arg$6, _r, _r$1, _r$2, _r$3, _r$4, _r$5, i, x, x$1, x$2, $s, $r;
 		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $24r = $f.$24r; _arg = $f._arg; _arg$1 = $f._arg$1; _arg$2 = $f._arg$2; _arg$3 = $f._arg$3; _arg$4 = $f._arg$4; _arg$5 = $f._arg$5; _arg$6 = $f._arg$6; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; _r$3 = $f._r$3; _r$4 = $f._r$4; _r$5 = $f._r$5; i = $f.i; x = $f.x; x$1 = $f.x$1; x$2 = $f.x$2; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
 		i = [i];
@@ -15746,9 +15746,9 @@ $packages["github.com/akosgarai/webgl-cube-editor/pkg/components"] = (function()
 		_r$5 = elem.Div(new sliceType$2([_arg, _arg$6])); /* */ $s = 6; case 6: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
 		$24r = _r$5;
 		$s = 7; case 7: return $24r;
-		/* */ } return; } if ($f === undefined) { $f = { $blk: DispalButton.ptr.prototype.Render }; } $f.$24r = $24r; $f._arg = _arg; $f._arg$1 = _arg$1; $f._arg$2 = _arg$2; $f._arg$3 = _arg$3; $f._arg$4 = _arg$4; $f._arg$5 = _arg$5; $f._arg$6 = _arg$6; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f.i = i; $f.x = x; $f.x$1 = x$1; $f.x$2 = x$2; $f.$s = $s; $f.$r = $r; return $f;
+		/* */ } return; } if ($f === undefined) { $f = { $blk: DisplayButton.ptr.prototype.Render }; } $f.$24r = $24r; $f._arg = _arg; $f._arg$1 = _arg$1; $f._arg$2 = _arg$2; $f._arg$3 = _arg$3; $f._arg$4 = _arg$4; $f._arg$5 = _arg$5; $f._arg$6 = _arg$6; $f._r = _r; $f._r$1 = _r$1; $f._r$2 = _r$2; $f._r$3 = _r$3; $f._r$4 = _r$4; $f._r$5 = _r$5; $f.i = i; $f.x = x; $f.x$1 = x$1; $f.x$2 = x$2; $f.$s = $s; $f.$r = $r; return $f;
 	};
-	DispalButton.prototype.Render = function() { return this.$val.Render(); };
+	DisplayButton.prototype.Render = function() { return this.$val.Render(); };
 	Heading.ptr.prototype.Render = function() {
 		var $24r, _r, _r$1, _r$2, h, $s, $r;
 		/* */ $s = 0; var $f, $c = false; if (this !== undefined && this.$blk !== undefined) { $f = this; $c = true; $24r = $f.$24r; _r = $f._r; _r$1 = $f._r$1; _r$2 = $f._r$2; h = $f.h; $s = $f.$s; $r = $f.$r; } s: while (true) { switch ($s) { case 0:
@@ -15824,7 +15824,7 @@ $packages["github.com/akosgarai/webgl-cube-editor/pkg/components"] = (function()
 	ptrType$4.methods = [{prop: "Render", name: "Render", pkg: "", typ: $funcType([], [vecty.ComponentOrHTML], false)}];
 	ptrType$5.methods = [{prop: "Render", name: "Render", pkg: "", typ: $funcType([], [vecty.ComponentOrHTML], false)}];
 	ColorPicker.init("", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "Id", name: "Id", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Label", name: "Label", embedded: false, exported: true, typ: $String, tag: ""}]);
-	DispalButton.init("", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "Id", name: "Id", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Label", name: "Label", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "TabulationClass", name: "TabulationClass", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "TargetFormSelector", name: "TargetFormSelector", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "OffIcon", name: "OffIcon", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "OnIcon", name: "OnIcon", embedded: false, exported: true, typ: $String, tag: ""}]);
+	DisplayButton.init("", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "Id", name: "Id", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Label", name: "Label", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "TabulationClass", name: "TabulationClass", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "TargetFormSelector", name: "TargetFormSelector", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "OffIcon", name: "OffIcon", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "OnIcon", name: "OnIcon", embedded: false, exported: true, typ: $String, tag: ""}]);
 	Heading.init("", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "Text", name: "Text", embedded: false, exported: true, typ: $String, tag: ""}]);
 	Label.init("", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "Text", name: "Text", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "For", name: "For", embedded: false, exported: true, typ: $String, tag: ""}]);
 	NumericInput.init("", [{prop: "Core", name: "Core", embedded: true, exported: true, typ: vecty.Core, tag: ""}, {prop: "Id", name: "Id", embedded: false, exported: true, typ: $String, tag: ""}, {prop: "Value", name: "Value", embedded: false, exported: true, typ: $Int, tag: ""}, {prop: "Label", name: "Label", embedded: false, exported: true, typ: $String, tag: ""}]);
@@ -30598,18 +30598,18 @@ $packages["github.com/akosgarai/webgl-cube-editor"] = (function() {
 		_arg$1 = (x$1 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["container"]))])), new x$1.constructor.elem(x$1));
 		_arg$2 = (x$2 = vecty.Markup(new sliceType([prop.ID("form-container")])), new x$2.constructor.elem(x$2));
 		_arg$3 = new components.Heading.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), p[0].Title);
-		_arg$4 = new components.DispalButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "settings-lock", "Settings", "main-menu", "#form-items-container", "open_in_full", "close_fullscreen");
+		_arg$4 = new components.DisplayButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "settings-lock", "Settings", "main-menu", "#form-items-container", "open_in_full", "close_fullscreen");
 		_arg$5 = (x$3 = vecty.Markup(new sliceType([prop.ID("form-items-container"), vecty.Style("display", "none")])), new x$3.constructor.elem(x$3));
-		_arg$6 = new components.DispalButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-display-lock", "Cube Display", "sub-menu", "#cube-display-container", "open_in_full", "close_fullscreen");
+		_arg$6 = new components.DisplayButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-display-lock", "Cube Display", "sub-menu", "#cube-display-container", "open_in_full", "close_fullscreen");
 		_r$1 = elem.Div(new sliceType$2([(x$4 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("cube-display-container"), vecty.Style("display", "none")])), new x$4.constructor.elem(x$4)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-color", p[0].MeshColor, "Cube Color:"), new components.NumericInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-width", p[0].MeshWidth, "Cube Width:"), new components.NumericInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-height", p[0].MeshHeight, "Cube Height:"), new components.NumericInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-dept", p[0].MeshDepth, "Cube Depth:")])); /* */ $s = 2; case 2: if($c) { $c = false; _r$1 = _r$1.$blk(); } if (_r$1 && _r$1.$blk !== undefined) { break s; }
 		_arg$7 = _r$1;
-		_arg$8 = new components.DispalButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-rotation-lock", "Cube Rotation", "sub-menu", "#cube-rotation-container", "open_in_full", "close_fullscreen");
+		_arg$8 = new components.DisplayButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "cube-rotation-lock", "Cube Rotation", "sub-menu", "#cube-rotation-container", "open_in_full", "close_fullscreen");
 		_r$2 = elem.Div(new sliceType$2([(x$5 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("cube-rotation-container"), vecty.Style("display", "none")])), new x$5.constructor.elem(x$5)), new components.RangeInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "rotation-speed-y", p[0].RotationSpeedY, -1000, 1000, 10, "Y Rotation:"), new components.RangeInput.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "rotation-speed-x", p[0].RotationSpeedX, -1000, 1000, 10, "X Rotation:")])); /* */ $s = 3; case 3: if($c) { $c = false; _r$2 = _r$2.$blk(); } if (_r$2 && _r$2.$blk !== undefined) { break s; }
 		_arg$9 = _r$2;
-		_arg$10 = new components.DispalButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "lightsources-lock", "Lightsources", "sub-menu", "#lightsources-container", "open_in_full", "close_fullscreen");
+		_arg$10 = new components.DisplayButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "lightsources-lock", "Lightsources", "sub-menu", "#lightsources-container", "open_in_full", "close_fullscreen");
 		_r$3 = elem.Div(new sliceType$2([(x$6 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("lightsources-container"), vecty.Style("display", "none")])), new x$6.constructor.elem(x$6)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "directional-light-color", p[0].LightColor, "Light:")])); /* */ $s = 4; case 4: if($c) { $c = false; _r$3 = _r$3.$blk(); } if (_r$3 && _r$3.$blk !== undefined) { break s; }
 		_arg$11 = _r$3;
-		_arg$12 = new components.DispalButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "scene-lock", "Scene", "sub-menu", "#scene-container", "open_in_full", "close_fullscreen");
+		_arg$12 = new components.DisplayButton.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "scene-lock", "Scene", "sub-menu", "#scene-container", "open_in_full", "close_fullscreen");
 		_r$4 = elem.Div(new sliceType$2([(x$7 = vecty.Markup(new sliceType([vecty.Class(new sliceType$1(["row"])), prop.ID("scene-container"), vecty.Style("display", "none")])), new x$7.constructor.elem(x$7)), new components.ColorPicker.ptr(new vecty.Core.ptr($ifaceNil, $ifaceNil, false, false), "background-color", p[0].BackgroundColor, "Background:")])); /* */ $s = 5; case 5: if($c) { $c = false; _r$4 = _r$4.$blk(); } if (_r$4 && _r$4.$blk !== undefined) { break s; }
 		_arg$13 = _r$4;
 		_r$5 = elem.Div(new sliceType$2([_arg$5, _arg$6, _arg$7, _arg$8, _arg$9, _arg$10, _arg$11, _arg$12, _arg$13])); /* */ $s = 6; case 6: if($c) { $c = false; _r$5 = _r$5.$blk(); } if (_r$5 && _r$5.$blk !== undefined) { break s; }
