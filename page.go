@@ -2,11 +2,12 @@ package main
 
 import (
 	"strconv"
+	"strings"
 
 	"github.com/akosgarai/webgl-cube-editor/pkg/components"
 	"github.com/akosgarai/webgl-cube-editor/pkg/forms"
 	"github.com/akosgarai/webgl-cube-editor/pkg/wglrenderer"
-	"github.com/divan/three"
+	"github.com/gmlewis/go-threejs/three"
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/hexops/vecty"
 	"github.com/hexops/vecty/elem"
@@ -28,9 +29,14 @@ const (
 	RotationSpeedXId            = "rotation-speed-x"
 )
 
+var (
+	threejs = three.New()
+)
+
 // Page is a top-level app component.
 type Page struct {
 	vecty.Core
+
 	Title                     string
 	MeshColor                 string
 	BackgroundColor           string
@@ -44,15 +50,21 @@ type Page struct {
 	RotationSpeedY            int
 	RotationSpeedX            int
 	SunPosition               [3]float64
-	scene                     *three.Scene
-	camera                    three.PerspectiveCamera
-	renderer                  *three.WebGLRenderer
-	cubeMesh                  *three.Mesh
-	directionalLight          *three.DirectionalLight
-	ambientLight              *three.AmbientLight
+
+	scene            *three.Scene
+	camera           *three.PerspectiveCamera
+	renderer         *three.WebGLRenderer
+	cubeMesh         *three.Mesh
+	directionalLight *three.DirectionalLight
+	ambientLight     *three.AmbientLight
 
 	canvasWidth  float64
 	canvasHeight float64
+}
+
+func ColorpicerValueToInt(color string) int {
+	col, _ := strconv.ParseInt(strings.Trim(color, "#"), 16, 32)
+	return int(col)
 }
 
 // Render implements vecty.Component for Page.
@@ -64,10 +76,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				switch e.Target.Get("id").String() {
 				case CubeColorId:
 					p.MeshColor = e.Target.Get("value").String()
-					// material
-					params := three.NewMaterialParameters()
-					params.Color = three.NewColor(p.MeshColor)
-					p.cubeMesh.Material = three.NewMeshLambertMaterial(params)
+					p.cubeMesh.JSObject().Get("material").Set("color", threejs.NewColor(ColorpicerValueToInt(p.MeshColor)))
 					break
 				case CubeWidthId:
 					p.MeshWidth, _ = strconv.Atoi(e.Target.Get("value").String())
@@ -83,23 +92,23 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 					break
 				case BackgroundColorId:
 					p.BackgroundColor = e.Target.Get("value").String()
-					p.scene.Background = three.NewColor(p.BackgroundColor)
+					p.scene.JSObject().Set("background", threejs.NewColor(ColorpicerValueToInt(p.BackgroundColor)))
 					break
 				case DirectionalLightColorId:
 					p.DirectionalLightColor = e.Target.Get("value").String()
-					p.directionalLight.Set("color", three.NewColor(p.DirectionalLightColor))
+					p.directionalLight.JSObject().Set("color", threejs.NewColor(ColorpicerValueToInt(p.DirectionalLightColor)))
 					break
 				case DirectionalLightIntensityId:
 					p.DirectionalLightIntensity, _ = strconv.ParseFloat(e.Target.Get("value").String(), 64)
-					p.directionalLight.Set("intensity", p.DirectionalLightIntensity)
+					p.directionalLight.JSObject().Set("intensity", p.DirectionalLightIntensity)
 					break
 				case AmbientLightColorId:
 					p.AmbientLightColor = e.Target.Get("value").String()
-					p.ambientLight.Set("color", three.NewColor(p.AmbientLightColor))
+					p.ambientLight.JSObject().Set("color", threejs.NewColor(ColorpicerValueToInt(p.AmbientLightColor)))
 					break
 				case AmbientLightIntensityId:
 					p.AmbientLightIntensity, _ = strconv.ParseFloat(e.Target.Get("value").String(), 64)
-					p.ambientLight.Set("intensity", p.AmbientLightIntensity)
+					p.ambientLight.JSObject().Set("intensity", p.AmbientLightIntensity)
 					break
 				case RotationSpeedYId:
 					p.RotationSpeedY, _ = strconv.Atoi(e.Target.Get("value").String())
@@ -110,11 +119,7 @@ func (p *Page) Render() vecty.ComponentOrHTML {
 				}
 				if updateGeometry {
 					// size
-					p.cubeMesh.Geometry = three.NewBoxGeometry(&three.BoxGeometryParameters{
-						Width:  float64(p.MeshWidth),
-						Height: float64(p.MeshHeight),
-						Depth:  float64(p.MeshDepth),
-					})
+					p.cubeMesh.JSObject().Set("geometry", threejs.NewBoxGeometry(float64(p.MeshWidth), float64(p.MeshHeight), float64(p.MeshDepth), nil))
 				}
 			}),
 		),
@@ -195,75 +200,58 @@ func (p *Page) init(renderer *three.WebGLRenderer) {
 	devicePixelRatio := js.Global.Get("devicePixelRatio").Float()
 
 	// setup camera and scene
-	p.camera = three.NewPerspectiveCamera(70, p.canvasWidth/p.canvasHeight, 1, 1000)
-	p.camera.Position.Set(0, 0, 400)
-	p.scene = three.NewScene()
+	p.camera = threejs.NewPerspectiveCamera(70, p.canvasWidth/p.canvasHeight, 1, 1000)
+	p.camera.Position().Set(0, 0, 400)
+	p.scene = threejs.NewScene()
 
-	p.renderer.SetPixelRatio(devicePixelRatio)
+	p.renderer = p.renderer.SetPixelRatio(devicePixelRatio)
 	p.renderer.SetSize(p.canvasWidth, p.canvasHeight, true)
-	p.renderer.Get("shadowMap").Set("enabled", true)
-
+	p.renderer.JSObject().Get("shadowMap").Set("enabled", true)
 	// lights
-	p.directionalLight = three.NewDirectionalLight(three.NewColor(p.DirectionalLightColor), p.DirectionalLightIntensity)
-	p.directionalLight.Position.Set(p.SunPosition[0], p.SunPosition[1], p.SunPosition[2])
-	p.directionalLight.Set("castShadow", true)
-	p.directionalLight.Get("shadow").Get("mapSize").Set("width", 1024)
-	p.directionalLight.Get("shadow").Get("mapSize").Set("height", 1024)
-	p.directionalLight.Get("shadow").Get("camera").Set("left", -300)
-	p.directionalLight.Get("shadow").Get("camera").Set("right", 300)
-	p.directionalLight.Get("shadow").Get("camera").Set("top", 300)
-	p.directionalLight.Get("shadow").Get("camera").Set("bottom", -300)
-	p.directionalLight.Get("shadow").Get("camera").Set("far", 1000)
+	p.directionalLight = threejs.NewDirectionalLight(float64(ColorpicerValueToInt(p.DirectionalLightColor)), p.DirectionalLightIntensity)
+	p.directionalLight.Position().Set(p.SunPosition[0], p.SunPosition[1], p.SunPosition[2])
+	p.directionalLight.JSObject().Set("castShadow", true)
+	p.directionalLight.JSObject().Get("shadow").Get("mapSize").Set("width", 1024)
+	p.directionalLight.JSObject().Get("shadow").Get("mapSize").Set("height", 1024)
+	p.directionalLight.JSObject().Get("shadow").Get("camera").Set("left", -300)
+	p.directionalLight.JSObject().Get("shadow").Get("camera").Set("right", 300)
+	p.directionalLight.JSObject().Get("shadow").Get("camera").Set("top", 300)
+	p.directionalLight.JSObject().Get("shadow").Get("camera").Set("bottom", -300)
+	p.directionalLight.JSObject().Get("shadow").Get("camera").Set("far", 1000)
 	p.scene.Add(p.directionalLight)
-
-	p.ambientLight = three.NewAmbientLight(three.NewColor(p.AmbientLightColor), p.AmbientLightIntensity)
+	p.ambientLight = threejs.NewAmbientLight(ColorpicerValueToInt(p.AmbientLightColor), p.AmbientLightIntensity)
 	p.scene.Add(p.ambientLight)
 
 	// material
-	params := three.NewMaterialParameters()
-	params.Color = three.NewColor(p.MeshColor)
-	mat := three.NewMeshLambertMaterial(params)
+	mat := threejs.NewMeshLambertMaterial(three.MeshLambertMaterialOpts{"color": threejs.NewColor(ColorpicerValueToInt(p.MeshColor))})
 
 	// cube object
-	geom := three.NewBoxGeometry(&three.BoxGeometryParameters{
-		Width:  float64(p.MeshWidth),
-		Height: float64(p.MeshHeight),
-		Depth:  float64(p.MeshDepth),
-	})
-	p.cubeMesh = three.NewMesh(geom, mat)
-	p.cubeMesh.Set("castShadow", true)
+	geom := threejs.NewBoxGeometry(float64(p.MeshWidth), float64(p.MeshHeight), float64(p.MeshDepth), nil)
+	p.cubeMesh = threejs.NewMesh(geom, mat)
+	p.cubeMesh.JSObject().Set("castShadow", true)
 	p.scene.Add(p.cubeMesh)
-	p.scene.Background = three.NewColor(p.BackgroundColor)
+	p.scene.JSObject().Set("background", threejs.NewColor(ColorpicerValueToInt(p.BackgroundColor)))
 	// ground texture
 	// const RepeatWrapping = 1000;
-	textureLoader := three.NewTextureLoader()
-	textureLoader.CrossOrigin = "anonymous"
-	groundTexture := textureLoader.Load("https://raw.githubusercontent.com/akosgarai/webgl-cube-editor/main/assets/grass.jpg", func(text *js.Object) {
-		text.Set("wrapS", 1000)
-		text.Set("wrapT", 1000)
-		text.Set("anisotropy", 16)
-		text.Set("repeat", three.NewVector2(25, 25))
-	})
-	materialParams := three.NewMaterialParameters()
-	materialParams.Map = groundTexture
-	groundMaterial := three.NewMeshLambertMaterial(materialParams)
-	groundGeom := three.NewBoxGeometry(&three.BoxGeometryParameters{
-		Width:  20000,
-		Height: 0,
-		Depth:  20000,
-	})
-	groundMesh := three.NewMesh(groundGeom, groundMaterial)
-	groundMesh.Position.Set(0, -100, 0)
-	groundMesh.Set("receiveShadow", true)
+	textureLoader := threejs.NewTextureLoader()
+	textureLoader.SetCrossOrigin("anonymous")
+	groundTexture := textureLoader.Load("https://raw.githubusercontent.com/akosgarai/webgl-cube-editor/main/assets/grass.jpg", nil, nil, nil)
+	groundTexture.SetWrapS(1000)
+	groundTexture.SetWrapT(1000)
+	groundTexture.SetAnisotropy(16)
+	groundTexture.JSObject().Get("repeat").Set("x", 25)
+	groundTexture.JSObject().Get("repeat").Set("y", 25)
+	groundMesh := threejs.NewMesh(threejs.NewBoxGeometry(20000, 0, 20000, nil), threejs.NewMeshLambertMaterial(three.MeshLambertMaterialOpts{"map": groundTexture.JSObject()}))
+	groundMesh.Position().Set(0, -100, 0)
+	groundMesh.JSObject().Set("receiveShadow", true)
 	p.scene.Add(groundMesh)
-
 	// start animation
 	p.animate()
 }
 func (p *Page) shutdown(renderer *three.WebGLRenderer) {
 	// After shutdown, we shouldn't use any of these anymore.
 	p.scene = nil
-	p.camera = three.PerspectiveCamera{}
+	p.camera = &three.PerspectiveCamera{}
 	p.renderer = nil
 	p.cubeMesh = nil
 	p.directionalLight = nil
@@ -277,13 +265,14 @@ func (p *Page) animate() {
 	if windowWidth != p.canvasWidth {
 		js.Global.Get("document").Call("querySelector", "#canvas-container canvas").Set("width", windowWidth)
 		js.Global.Get("document").Call("querySelector", "#canvas-container canvas").Set("style", "width: 100%")
-		p.camera.Aspect = windowWidth / p.canvasHeight
+		p.camera.JSObject().Set("aspect", windowWidth/p.canvasHeight)
 		p.camera.UpdateProjectionMatrix()
 		p.renderer.SetSize(windowWidth, p.canvasHeight, false)
 		p.canvasWidth = windowWidth
 	}
 	js.Global.Call("requestAnimationFrame", p.animate)
-	p.cubeMesh.Rotation.Set("y", p.cubeMesh.Rotation.Get("y").Float()+0.0001*float64(p.RotationSpeedY))
-	p.cubeMesh.Rotation.Set("x", p.cubeMesh.Rotation.Get("x").Float()+0.0001*float64(p.RotationSpeedX))
-	p.renderer.Render(p.scene, p.camera)
+	p.cubeMesh.JSObject().Get("rotation").Set("y", p.cubeMesh.JSObject().Get("rotation").Get("y").Float()+0.0001*float64(p.RotationSpeedY))
+	p.cubeMesh.JSObject().Get("rotation").Set("x", p.cubeMesh.JSObject().Get("rotation").Get("x").Float()+0.0001*float64(p.RotationSpeedX))
+
+	p.renderer.Render(p.scene, p.camera, nil)
 }
