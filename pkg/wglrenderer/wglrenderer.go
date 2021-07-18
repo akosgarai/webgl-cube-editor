@@ -74,7 +74,6 @@ type webGLRendererParameters struct {
 // Note: We can't use three.NewWebGLRenderer because it doesn't allow
 // specifying any parameters yet. Easy enough to just call ourself, though.
 func newWebGLRenderer(parameters *webGLRendererParameters) *three.WebGLRenderer {
-	//return three.WebGLRendererFromJSObject(js.MakeWrapper(map[string]interface{}{"canvas": parameters.Canvas}))
 	return three.WebGLRendererFromJSObject(js.Global.Get("THREE").Get("WebGLRenderer").New(map[string]interface{}{
 		"canvas": parameters.Canvas,
 	}))
